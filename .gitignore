@@ -1,0 +1,2 @@
+*.ovpn
+sops/keys.txt
