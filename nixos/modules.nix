@@ -2,7 +2,7 @@
   imports = [
     ./modules/audio.nix
     ./modules/bluetooth.nix
-    ./modules/desktop-environment.nix
+    ./modules/hyprland.nix
     ./modules/fonts.nix
     ./modules/locale.nix
     ./modules/network.nix

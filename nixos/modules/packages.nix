@@ -8,22 +8,15 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    jq
     firefox-bin
     tldr
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     alacritty
-    wl-clipboard
-    mako
-    grim
-    slurp
-    dmenu
     kitty
     home-manager
-    playerctl
-    swww
     python312
-    python312Packages.pywal
     networkmanagerapplet
     bat
     htop
@@ -33,21 +26,19 @@ in
     gcc
     grc
     killall
-    fuzzel
-    eww-wayland
     discord
+    webcord
     run
-    dunst
     spotify
-    copyq
     gnumake
+    slurp
+    grim
     brightnessctl
     wineWowPackages.waylandFull
     winetricks
     vulkan-tools
     lutris
     fastfetch
-    tk
     obs-studio
     libsForQt5.kdenlive
     acpi

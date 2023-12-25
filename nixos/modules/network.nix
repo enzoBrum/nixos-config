@@ -5,7 +5,7 @@ in
 {
   networking.hostName = "enzoPC";
   networking.networkmanager.enable = true;
-  environment.systemPackages = with pkgs; [ networkmanagerapplet ];
+  environment.systemPackages = with pkgs; [ networkmanagerapplet socat ];
   users.users.erb.extraGroups = [ "networkmanager" ];
   services.openvpn.servers = {
     labsec = {
@@ -14,6 +14,13 @@ in
         auth-user-pass ${config.sops.secrets.vpn_credentials.path}
       '';
       autoStart = false;
+      up = ''
+        echo -n "vpn-up" | socat - UNIX-CONNECT:/tmp/color_server.sock
+      '';
+
+      down = ''
+        echo -n "vpn-down" | socat - UNIX-CONNECT:/tmp/color_server.sock
+      '';
     };
   };
 
