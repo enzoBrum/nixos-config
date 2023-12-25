@@ -20,6 +20,10 @@
     group = config.users.users.erb.group;
   };
 
-  sops.secrets.vpn_config.sopsFile = ../../secrets.yaml;
-
+  sops.secrets.vpn_config = {
+    sopsFile = ../../secrets.yaml;
+    mode = "004";
+    owner = config.users.users.erb.name;
+    group = config.users.users.erb.group;
+  };
 }
