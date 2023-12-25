@@ -13,7 +13,6 @@
   sops.age.keyFile = "/home/erb/.config/sops/age/keys.txt";
   sops.defaultSopsFile = ./secrets.yaml;
 
-  # Warning to future me! vpn_credentials is used inside vpn_config to set auth-user-pass with the path /run/secrets/vpn_credentials
   sops.secrets.vpn_credentials = {
     sopsFile = ../../secrets.yaml;
     mode = "004";
