@@ -24,12 +24,6 @@ alacritty &
 
 if [ $(hyprctl monitors -j | jq length) -eq "2" ]; then
     hyprctl dispatch focusmonitor 1 &
-
-    for number in {1..10}; do
-        hyprctl keyword workspace '$number, monitor:HDMI-A-1'
-    done
-else
-    eww open main_window &
 fi
 
 $scripts/change_color.py &

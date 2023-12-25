@@ -48,8 +48,21 @@ in
 
   programs.fish = {
     enable = true;
-    interactiveShellInit =
-      "	set fish_greeting # Disable greeting\n	fastfetch\n      ";
+    interactiveShellInit = ''
+      set fish_greeting
+      fastfetch
+
+      set monitor_count (hyprctl monitors -j | jq length)
+      if test $monitor_count -eq 2; and test "$USING_TWO_MONITORS" != "true"
+        set -Ux USING_TWO_MONITORS true
+        echo "Using two monitors..."
+        set workspaces
+        for num in (seq 1 10)
+          set -a workspaces "keyword workspace $num, monitor:HDMI-A-1;"
+        end
+        hyprctl --batch "$workspaces"
+      end
+    '';
 
     shellAliases = {
       cat = "bat --style=plain";

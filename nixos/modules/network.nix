@@ -15,11 +15,11 @@ in
       '';
       autoStart = false;
       up = ''
-        echo -n "vpn-up" | socat - UNIX-CONNECT:/tmp/color_server.sock
+        echo -n "vpn-up" | ${pkgs.socat}/bin/socat - UNIX-CONNECT:/tmp/color_server.sock
       '';
 
       down = ''
-        echo -n "vpn-down" | socat - UNIX-CONNECT:/tmp/color_server.sock
+        echo -n "vpn-down" | ${pkgs.socat}/bin/socat - UNIX-CONNECT:/tmp/color_server.sock
       '';
     };
   };
