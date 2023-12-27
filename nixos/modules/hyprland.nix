@@ -11,6 +11,7 @@
         };
       };
       windowManager.qtile.enable = true;
+      windowManager.qtile.backend = "wayland";
     };
   };
   programs.hyprland.enable = true;

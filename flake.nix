@@ -17,9 +17,14 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, home-manager, lanzaboote, sops-nix, ... }: {
+  outputs = { nixpkgs, nixpkgs-stable, home-manager, lanzaboote, sops-nix, ags, ... }@inputs: {
     nixosConfigurations = {
       enzoPC = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
@@ -38,6 +43,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.erb = import ./home/home.nix;
+            home-manager.extraSpecialArgs = { inherit inputs; };
           }
           lanzaboote.nixosModules.lanzaboote
           sops-nix.nixosModules.sops

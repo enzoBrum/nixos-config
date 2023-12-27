@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-mkfs.fat -F 32 -n BOOT /dev/sda1 
+mkfs.fat -F 32 -n BOOT /dev/sda1
 
 cryptsetup luksFormat /dev/sda2
 
@@ -30,5 +30,12 @@ cp * /mnt/etc/nixos
 nix-shell -p sbctl --run 'sbctl create-keys'
 nix-shell -p sbctl --run 'sbctl enroll-keys --microsoft'
 cp -r /etc/secureboot /mnt/etc
+
+mkdir -p /mnt/home/erb/repos
+cd /mnt/home/erb/repos
+git clone https://github.com/enzoBrum/nixos-config.git
+
+read -sp "Age private key: " key
+echo $key > /mnt/etc/age-keys.txt
 
 nixos-install --flake /mnt/etc/nixos/flake.nix#enzoPC --root /mnt

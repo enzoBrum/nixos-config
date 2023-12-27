@@ -50,18 +50,8 @@ in
     enable = true;
     interactiveShellInit = ''
       set fish_greeting
+      set -gx XDG_DATA_DIRS $XDG_DATA_DIRS /usr/share /var/lib/flatpak/exports/share $HOME/.local/share/flatpak/exports/share
       fastfetch
-
-      set monitor_count (hyprctl monitors -j | jq length)
-      if test $monitor_count -eq 2; and test "$USING_TWO_MONITORS" != "true"
-        set -Ux USING_TWO_MONITORS true
-        echo "Using two monitors..."
-        set workspaces
-        for num in (seq 1 10)
-          set -a workspaces "keyword workspace $num, monitor:HDMI-A-1;"
-        end
-        hyprctl --batch "$workspaces"
-      end
     '';
 
     shellAliases = {

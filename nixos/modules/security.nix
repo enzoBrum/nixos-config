@@ -10,19 +10,19 @@
 
   environment.systemPackages = with pkgs; [ gnome-secrets openssl sops ];
 
-  sops.age.keyFile = "/home/erb/.config/sops/age/keys.txt";
+  sops.age.keyFile = "/etc/age-keys.txt";
   sops.defaultSopsFile = ./secrets.yaml;
 
   sops.secrets.vpn_credentials = {
     sopsFile = ../../secrets.yaml;
-    mode = "004";
+    mode = "0040";
     owner = config.users.users.erb.name;
     group = config.users.users.erb.group;
   };
 
   sops.secrets.vpn_config = {
     sopsFile = ../../secrets.yaml;
-    mode = "004";
+    mode = "0040";
     owner = config.users.users.erb.name;
     group = config.users.users.erb.group;
   };

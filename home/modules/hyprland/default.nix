@@ -24,16 +24,16 @@
 
       monitor=eDP-1,1920x1080@60,0x0,1
       monitor=HDMI-A-1,1920x1080@60,1920x0,1
-      workspace=1, monitor:eDP-1
-      workspace=2, monitor:eDP-1
-      workspace=3, monitor:eDP-1
-      workspace=4, monitor:eDP-1
-      workspace=5, monitor:eDP-1
-      workspace=6, monitor:eDP-1
-      workspace=7, monitor:eDP-1
-      workspace=8, monitor:eDP-1
-      workspace=9, monitor:eDP-1
-      workspace=10, monitor:eDP-1
+      workspace=1, monitor:HDMI-A-1
+      workspace=2, monitor:HDMI-A-1
+      workspace=3, monitor:HDMI-A-1
+      workspace=4, monitor:HDMI-A-1
+      workspace=5, monitor:HDMI-A-1
+      workspace=6, monitor:HDMI-A-1
+      workspace=7, monitor:HDMI-A-1
+      workspace=8, monitor:HDMI-A-1
+      workspace=9, monitor:HDMI-A-1
+      workspace=10, monitor:HDMI-A-1
       workspace=11, monitor:eDP-1
       workspace=12, monitor:eDP-1
       workspace=13, monitor:eDP-1
