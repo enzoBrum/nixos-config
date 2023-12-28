@@ -16,37 +16,37 @@
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/e766e385-6aa5-4552-8e8b-4a58d7f03d4f";
+      device = "/dev/disk/by-label/NIX";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
-  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/07c4800a-4d2e-4545-a132-9b4d05ff7656";
+  boot.initrd.luks.devices."root".device = "/dev/disk/by-label/NIX";
 
   fileSystems."/home" =
     {
-      device = "/dev/disk/by-uuid/e766e385-6aa5-4552-8e8b-4a58d7f03d4f";
+      device = "/dev/disk/by-label/NIX";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
 
   fileSystems."/nix" =
     {
-      device = "/dev/disk/by-uuid/e766e385-6aa5-4552-8e8b-4a58d7f03d4f";
+      device = "/dev/disk/by-label/NIX";
       fsType = "btrfs";
       options = [ "subvol=@nix" ];
     };
 
   fileSystems."/swap" =
     {
-      device = "/dev/disk/by-uuid/e766e385-6aa5-4552-8e8b-4a58d7f03d4f";
+      device = "/dev/disk/by-label/NIX";
       fsType = "btrfs";
       options = [ "subvol=@swap" ];
     };
 
   fileSystems."/efi" =
     {
-      device = "/dev/disk/by-uuid/32CC-5B1C";
+      device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
     };
 
