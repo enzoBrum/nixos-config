@@ -21,7 +21,7 @@
       options = [ "subvol=@" ];
     };
 
-  boot.initrd.luks.devices."root".device = "/dev/disk/by-label/NIX";
+  boot.initrd.luks.devices."root".device = "/dev/sda2";
 
   fileSystems."/home" =
     {
