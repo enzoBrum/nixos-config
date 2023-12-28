@@ -23,9 +23,7 @@ mount --mkdir /dev/sda1 /mnt/efi
 
 btrfs filesystem mkswapfile -s 10G /mnt/swap/swapfile
 
-nixos-generate-config --root /mnt
-rm hardware-configuration.nix
-cp * /mnt/etc/nixos
+mkdir -p /mnt/etc/nixos
 
 nix-shell -p sbctl --run 'sbctl create-keys'
 nix-shell -p sbctl --run 'sbctl enroll-keys --microsoft'
@@ -37,5 +35,7 @@ git clone https://github.com/enzoBrum/nixos-config.git
 
 read -sp "Age private key: " key
 echo $key > /mnt/etc/age-keys.txt
+mkdir -p /mnt/home/erb/.config/sops/age
+cp /mnt/etc/age-keys.txt /mnt/home/erb/.config/sops/age/
 
-nixos-install --flake /mnt/etc/nixos/flake.nix#enzoPC --root /mnt
+nixos-install --root /mnt --flake "github:enzoBrum/nixos-config"#enzoPC
