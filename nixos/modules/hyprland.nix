@@ -3,15 +3,15 @@
     xserver = {
       enable = true;
       displayManager = {
-        lightdm.enable = true;
+        gdm.enable = true;
+        gdm.wayland = true;
         defaultSession = "hyprland";
         autoLogin = {
           enable = true;
           user = "erb";
         };
       };
-      windowManager.qtile.enable = true;
-      windowManager.qtile.backend = "wayland";
+      desktopManager.gnome.enable = true;
     };
   };
   programs.hyprland.enable = true;
