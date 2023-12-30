@@ -39,3 +39,4 @@ mkdir -p /mnt/home/erb/.config/sops/age
 cp /mnt/etc/age-keys.txt /mnt/home/erb/.config/sops/age/
 
 nixos-install --root /mnt --flake "github:enzoBrum/nixos-config"#enzoPC
+nixos-enter --root /mnt && chown erb -R /home/erb/
