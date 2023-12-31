@@ -12,11 +12,11 @@ in
 
   programs.home-manager.enable = true;
 
-  gtk = {
-    enable = true;
-    theme.package = pkgs.dracula-theme;
-    theme.name = "Dracula";
-  };
+  # gtk = {
+  #   enable = true;
+  #   theme.package = pkgs.dracula-theme;
+  #   theme.name = "Dracula";
+  # };
 
   # bluetooth-related settings
   services.mpris-proxy.enable = true;

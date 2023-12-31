@@ -8,6 +8,7 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    eza
     jq
     firefox-bin
     tldr

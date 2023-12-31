@@ -54,20 +54,20 @@ with lib.hm.gvariant;
     "org/gnome/desktop/wm/keybindings" = {
       maximize = [ "<Super>Up" ];
       minimize = [ "<Shift><Control><Alt><Super>F1" ];
-      move-to-monitor-down = [];
-      move-to-monitor-left = [];
-      move-to-monitor-right = [];
-      move-to-monitor-up = [];
-      switch-applications = [];
-      switch-applications-backward = [];
+      move-to-monitor-down = [ ];
+      move-to-monitor-left = [ ];
+      move-to-monitor-right = [ ];
+      move-to-monitor-up = [ ];
+      switch-applications = [ ];
+      switch-applications-backward = [ ];
       switch-group = [ "<Super>Above_Tab" "<Alt>Above_Tab" ];
-      switch-group-backward = [];
-      switch-input-source = [];
-      switch-input-source-backward = [];
-      switch-to-workspace-1 = [];
-      switch-to-workspace-last = [];
-      switch-to-workspace-left = [];
-      switch-to-workspace-right = [];
+      switch-group-backward = [ ];
+      switch-input-source = [ ];
+      switch-input-source-backward = [ ];
+      switch-to-workspace-1 = [ ];
+      switch-to-workspace-last = [ ];
+      switch-to-workspace-left = [ ];
+      switch-to-workspace-right = [ ];
       unmaximize = [ "<Super>Down" "<Alt>F5" ];
     };
 
@@ -75,7 +75,8 @@ with lib.hm.gvariant;
       auto-raise = false;
       button-layout = "appmenu:close";
       focus-mode = "click";
-      workspace-names = [];
+      num-workspaces = 20;
+      workspace-names = [ ];
     };
 
     "org/gnome/mutter" = {
@@ -85,13 +86,13 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/mutter/keybindings" = {
-      cancel-input-capture = [];
-      toggle-tiled-left = [];
-      toggle-tiled-right = [];
+      cancel-input-capture = [ ];
+      toggle-tiled-left = [ ];
+      toggle-tiled-right = [ ];
     };
 
     "org/gnome/mutter/wayland/keybindings" = {
-      restore-shortcuts = [];
+      restore-shortcuts = [ ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -100,27 +101,34 @@ with lib.hm.gvariant;
       logout = [ "<Alt><Super>q" ];
       next = [ "<Shift><Super>space" ];
       play = [ "<Super>space" ];
-      rotate-video-lock-static = [];
+      rotate-video-lock-static = [ ];
       screensaver = [ "<Super>q" ];
       www = [ "<Super>z" ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Super>Return";
-      command = "gnome-terminal";
+      command = "blackbox";
       name = "terminal";
     };
 
     "org/gnome/shell" = {
-      disabled-extensions = [ "nasa_apod@elinvention.ovh" "apps-menu@gnome-shell-extensions.gcampax.github.com" "places-menu@gnome-shell-extensions.gcampax.github.com" "window-list@gnome-shell-extensions.gcampax.github.com" "blur-my-shell@aunetx" ];
-      enabled-extensions = [ "launch-new-instance@gnome-shell-extensions.gcampax.github.com" "focus-changer@heartmire" "Vitals@CoreCoding.com" "gsconnect@andyholmes.github.io" "easy_docker_containers@red.software.systems" "caffeine@patapon.info" "pano@elhan.io" "BingWallpaper@ineffable-gmail.com" "background-logo@fedorahosted.org" "paperwm@paperwm.github.com" ];
+      enabled-extensions = [ 
+        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+        "focus-changer@heartmire" 
+        "Vitals@CoreCoding.com" 
+        "easy_docker_containers@red.software.systems" 
+        "caffeine@patapon.info" 
+        "pano@elhan.io" 
+        "paperwm@paperwm.github.com" 
+      ];
       favorite-apps = [ "org.gnome.Calendar.desktop" "org.gnome.Nautilus.desktop" "org.gnome.Software.desktop" "org.mozilla.firefox.desktop" ];
       welcome-dialog-last-shown-version = "45.0";
     };
 
     "org/gnome/shell/extensions/blur-my-shell/applications" = {
       customize = true;
-      whitelist = [];
+      whitelist = [ ];
     };
 
     "org/gnome/shell/extensions/pano" = {
@@ -167,11 +175,11 @@ with lib.hm.gvariant;
 
     "org/gnome/shell/keybindings" = {
       focus-active-notification = [ "<Shift><Super>n" ];
-      shift-overview-down = [];
-      shift-overview-up = [];
-      switch-to-application-1 = [];
-      switch-to-application-2 = [];
-      toggle-message-tray = [];
+      shift-overview-down = [ ];
+      shift-overview-up = [ ];
+      switch-to-application-1 = [ ];
+      switch-to-application-2 = [ ];
+      toggle-message-tray = [ ];
     };
 
     "org/gnome/system/location" = {
