@@ -1,3 +1,2 @@
 # nixos-config
-nixos config files
-
+my personal nixos config files
