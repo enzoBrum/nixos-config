@@ -7,5 +7,6 @@
     vitals
     caffeine
     pano
+    blur-my-shell
   ] ++ [pkgs.blackbox-terminal];
 }
