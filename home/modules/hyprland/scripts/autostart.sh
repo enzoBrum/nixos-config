@@ -25,7 +25,6 @@ dunst &
 # terminal
 alacritty &
 
-
 $scripts/change_color.py &
 sleep 1 && $scripts/change_wallpaper.py &
 $scripts/change_workspace.py &

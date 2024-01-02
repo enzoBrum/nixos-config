@@ -1,13 +1,8 @@
-import Widget from 'resource:///com/github/Aylur/ags/widget.js';
+import App from 'resource:///com/github/Aylur/ags/app.js'
+import { execAsync } from 'resource:///com/github/Aylur/ags/utils.js'
 
-const myLabel = Widget.Label({
-    label: 'some example content',
-})
+const outdir = '/home/erb/repos/nixos-config/home/modules/ags/config/build'
 
-const myBar = Widget.Window({
-    name: 'bar',
-    anchor: ['top', 'left', 'right'],
-    child: myLabel,
-})
+const main = await import(`file://${outdir}/main.js`)
 
-export default { windows: [myBar] }
+export default main.default

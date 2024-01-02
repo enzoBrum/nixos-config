@@ -113,14 +113,14 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell" = {
-      enabled-extensions = [ 
+      enabled-extensions = [
         "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-        "focus-changer@heartmire" 
-        "Vitals@CoreCoding.com" 
-        "easy_docker_containers@red.software.systems" 
-        "caffeine@patapon.info" 
-        "pano@elhan.io" 
-        "paperwm@paperwm.github.com" 
+        "focus-changer@heartmire"
+        "Vitals@CoreCoding.com"
+        "caffeine@patapon.info"
+        "pano@elhan.io"
+        "paperwm@paperwm.github.com"
+        "blur-my-shell@aunetx"
       ];
       favorite-apps = [ "org.gnome.Calendar.desktop" "org.gnome.Nautilus.desktop" "org.gnome.Software.desktop" "org.mozilla.firefox.desktop" ];
       welcome-dialog-last-shown-version = "45.0";
@@ -129,6 +129,7 @@ with lib.hm.gvariant;
     "org/gnome/shell/extensions/blur-my-shell/applications" = {
       customize = true;
       whitelist = [ ];
+      # whitelist = [ "com.raggesilver.BlackBox" ];
     };
 
     "org/gnome/shell/extensions/pano" = {

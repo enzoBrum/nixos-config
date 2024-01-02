@@ -1,2 +1,6 @@
 *.ovpn
 sops/keys.txt
+node_modules
+.direnv
+build
+types
