@@ -7,7 +7,7 @@ import socket
 
 
 def change_wallpaper(base_path: str, used: set):
-    wallpapers = set(os.listdir(base_path))
+    wallpapers = set([path for path in os.listdir(base_path) if "blurred" not in path])
 
     if used == wallpapers:
         used.clear()
