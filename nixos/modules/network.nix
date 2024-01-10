@@ -1,11 +1,8 @@
-{ config, pkgs, pkgs-stable, ... }:
-let
-  vpn_password = builtins.readFile config.sops.secrets.vpn_password.path;
-in
-{
+{ config, pkgs, pkgs-stable, ... }: {
   networking.hostName = "enzoPC";
   networking.networkmanager.enable = true;
-  environment.systemPackages = with pkgs; [ networkmanagerapplet socat ];
+  services.usbmuxd.enable = true;
+  environment.systemPackages = with pkgs; [ networkmanagerapplet socat libimobiledevice ifuse  ];
   users.users.erb.extraGroups = [ "networkmanager" ];
   services.openvpn.servers = {
     labsec = {

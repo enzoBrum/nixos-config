@@ -30,11 +30,7 @@ sleep 1 && $scripts/change_wallpaper.py &
 $scripts/change_workspace.py &
 $scripts/battery_notifier.py &
 
-# # change bar rounding and margin to follow hyprland
-# # sleep 1 && $scripts/init_eww.py &
-
-# # rokcet-chat
-# # $scripts/init_rocket-chat.py > /dev/null 2>&1 &
+waybar
 
 # # other
 # /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &

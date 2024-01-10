@@ -22,9 +22,11 @@
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, home-manager, lanzaboote, sops-nix, ags, ... }@inputs: {
+  outputs = { nixpkgs, nixpkgs-stable, home-manager, lanzaboote, sops-nix, ags, hyprland, ... }@inputs: {
     nixosConfigurations = {
       enzoPC = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
@@ -33,7 +35,7 @@
             system = system;
             config.allowUnfree = true;
           };
-
+          hyprland = hyprland;
         };
 
         modules = [

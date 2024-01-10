@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   p10kTheme = "./scripts/.p10k.zsh";
 in
@@ -17,6 +17,7 @@ in
     theme.package = pkgs.dracula-theme;
     theme.name = "Dracula";
   };
+
 
   # bluetooth-related settings
   services.mpris-proxy.enable = true;

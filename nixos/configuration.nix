@@ -5,8 +5,13 @@
   ];
 
   nix = {
-    settings.auto-optimise-store = true;
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+      substituters = ["https://hyprland.cachix.org"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    };
+    
     gc.automatic = true;
     gc.dates = "weekly";
     gc.options = "--delete-older-than 14d";
@@ -33,12 +38,14 @@
       theme = "bgrt";
     };
 
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "quiet"
       "splash"
       "bgrt_disable"
       "vt.global_cursor_default=0"
       "fbcon=nodefer"
+      "intel_pstate=active"
     ];
   };
 

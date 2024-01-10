@@ -6,30 +6,32 @@ import random
 import socket
 
 
-def change_wallpaper(base_path, last_wallpaper):
-    wall = last_wallpaper
-    while wall == last_wallpaper:
-        wall = random.choice(os.listdir(base_path))
+def change_wallpaper(base_path: str, used: set):
+    wallpapers = set(os.listdir(base_path))
 
+    if used == wallpapers:
+        used.clear()
+    
+    wall = random.choice( list(wallpapers.difference(used)) )
+    used.add(wall)
     return os.path.join(base_path, wall)
 
 
 def main():
-    base_path = os.path.join("/", "home", "erb", "wallpaper")
-    wallpaper = "/home/erb/wallpaper/randall-mackey-mural2.jpg"
-    last_wallpaper = wallpaper
+    base_path = "/home/erb/repos/nixos-config/assets/wallpaper"
+    wallpaper = "/home/erb/repos/nixos-config/assets/wallpaper/randall-mackey-mural2.jpg"
 
     subprocess.run(["swww", "init"])
 
     WALLPAPER_DURATION = 300
     first = True
+    used = {"randall-mackey-mural2.jpg"}
     while True:
         with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as sock:
             if first:
                 first = False
             else:
-                wallpaper = change_wallpaper(base_path, last_wallpaper)
-                last_wallpaper = wallpaper
+                wallpaper = change_wallpaper(base_path, used)
 
             subprocess.run(
                 ["swww", "img", wallpaper],

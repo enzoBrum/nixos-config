@@ -1,8 +1,9 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, inputs, ... }: {
   imports = [ ./packages.nix ];
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
+    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 
     extraConfig = ''
       # This is an example Hyprland config file.

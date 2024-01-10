@@ -9,9 +9,9 @@
         "eDP-1"
         "HDMI-A-1"
       ];
-      modules-left = [ "image" "hyprland/workspaces" "hyprland/window" ];
-      modules-center = [ "mpris" ];
-      modules-right = [ "clock" "battery" "network" ];
+      modules-left = [ "image" "hyprland/workspaces" ];
+      modules-center = [ "clock" ];
+      modules-right = [ "pulseaudio" "battery" "network" ];
 
       "battery" = {
         bat = "BAT1";
@@ -26,30 +26,8 @@
       };
 
       clock = {
-        format = "{:%H:%M} \uf017 ";
-        "format-alt" = "{:%A, %B %d, %Y (%R)} \uf5ef ";
-        "tooltip-format" = "\n<span size='9pt' font='WenQuanYi Zen Hei Mono'>{calendar}</span>";
-        calendar = {
-          mode = "year";
-          "mode-mon-col" = 3;
-          "weeks-pos" = "right";
-          "on-scroll" = 1;
-          "on-click-right" = "mode";
-          format = {
-            months = "<span color='#ffead3'><b>{}</b></span>";
-            days = "<span color='#ecc6d9'><b>{}</b></span>";
-            weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-            weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-            today = "<span color='#ff6699'><b><u>{}</u></b></span>";
-          };
-        };
-        actions = {
-          "on-click-right" = "mode";
-          "on-click-forward" = "tz_up";
-          "on-click-backward" = "tz_down";
-          "on-scroll-up" = "shift_up";
-          "on-scroll-down" = "shift_down";
-        };
+        format = "{:%b %d    %R}  ";
+        interval = 60;
       };
 
       "hyprland/workspaces" = {
@@ -67,16 +45,25 @@
         };
       };
 
-      mpris = {
-        format = "DEFAULT: {player_icon} {dynamic}";
-        "format-paused" = "DEFAULT: {status_icon} <i>{dynamic}</i>";
-        "player-icons" = {
-          default = "▶";
-          mpv = "🎵";
+
+      network = {
+        tooltip = false;
+        "format-wifi" = "     {essid}";
+        "format-ethernet" = " {ipaddr}";
+      };
+
+      pulseaudio = {
+        tooltip = false;
+        "scroll-step" = 5;
+        format = "{icon} {volume}%";
+        "format-icons" = {
+          "default" = [ "" "" "" ];
         };
-        "status-icons" = {
-          paused = "⏸";
-        };
+      };
+
+      image = {
+        	path = "/home/erb/repos/nixos-config/assets/nix_logo.png";
+	        size = 20;
       };
     };
   };
@@ -84,16 +71,55 @@
 
   programs.waybar.style = ''
     #workspaces button {
-      color: #a7cad2;
-      font-size: 15px;
+         color: #a7cad2;
+         font-size: 15px;
     }
-    #workspaces button.empty {
-      color: #3f717c;
-      font-size: 9px;
+     #workspaces button.empty {
+         color: #3f717c ;
+         font-size: 9px;
     }
-    #workspaces button.active {
-      color: #a7cad2;
-      font-size: 15px;
+     #workspaces button.active {
+         color: #a7cad2;
+         font-size: 15px;
     }
+     #battery {
+         margin-left: 8px;
+         padding-left: 16px;
+         padding-right: 16px;
+    }
+     #network {
+         margin-left: 8px;
+         padding-left: 16px;
+         padding-right: 16px;
+    }
+     #pulseaudio {
+         margin-left: 8px;
+         padding-left: 16px;
+         padding-right: 16px;
+    }
+     .modules-right {
+         color: #4d4d4d;
+         margin-left: 8px;
+         padding-left: 16px;
+         padding-right: 16px;
+         background: #a7cad2;
+         border-radius: 13px;
+    }
+     .modules-center {
+         color: #4d4d4d;
+         margin-left: 8px;
+         padding-left: 16px;
+         padding-right: 16px;
+         background: #bd93f9;
+         border-radius: 13px;
+    }
+     .modules-left {
+         margin-left: 8px;
+         padding-left: 16px;
+         padding-right: 16px;
+         background: #424242;
+         border-radius: 13px;
+    }
+ 
   '';
 }

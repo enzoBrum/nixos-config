@@ -1,5 +1,6 @@
-{ config, pkgs, pkgs-stable, ... }: {
+{ config, pkgs, pkgs-stable, hyprland, ... }: {
   programs.hyprland.enable = true;
+  # programs.hyprland.package = hyprland.packages.${pkgs.system}.hyprland;
   programs.hyprland.xwayland.enable = true;
 
   programs.mtr.enable = true;

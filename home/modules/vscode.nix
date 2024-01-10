@@ -28,6 +28,9 @@ in
         nixd
         nixpkgs-fmt
         nil
+        rustc
+        cargo
+        rust-analyzer
       ]);
   };
 }

@@ -5,4 +5,7 @@ const outdir = '/home/erb/repos/nixos-config/home/modules/ags/config/build'
 
 const main = await import(`file://${outdir}/main.js`)
 
-export default main.default
+export default {
+    windows: main.windows,
+    style: '/home/erb/repos/nixos-config/home/modules/ags/config/style.scss'
+};

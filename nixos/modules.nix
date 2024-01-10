@@ -11,5 +11,6 @@
     ./modules/gdm.nix
     ./modules/hyprland.nix
     ./modules/gnome.nix
+    ./modules/steam.nix
   ];
 }

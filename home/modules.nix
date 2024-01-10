@@ -7,6 +7,7 @@
     ./modules/vscode.nix
     ./modules/direnv.nix
     ./modules/waybar.nix
-    ./modules/ags/default.nix
+    ./modules/helix.nix
+    ./modules/alacritty.nix
   ];
 }
