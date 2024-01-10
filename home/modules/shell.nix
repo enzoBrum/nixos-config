@@ -22,6 +22,7 @@ in
     };
 
     initExtra = ''
+      setopt AUTO_CD
       [[ ! -f ${p10kTheme} ]] || source ${p10kTheme}
       fastfetch
     '';
