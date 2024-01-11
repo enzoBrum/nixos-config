@@ -1,8 +1,63 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   p10kTheme = "/home/erb/repos/nixos-config/scripts/.p10k.zsh";
 in
 {
+  programs.starship = {
+    enable = false;
+    enableTransience = true;
+    settings = {
+      format = lib.concatStrings [
+        "$username"
+        "$hostname"
+        "$localip"
+        "$directory"
+        "$git_branch"
+        "$git_commit"
+        "$git_state"
+        "$git_metrics"
+        "$git_status"
+        "$docker_context"
+        # "$package"
+        # "$c"
+        # "$cmake"
+        # "$golang"
+        # "$java"
+        # "$nodejs"
+        # "$python"
+        # "$rust"
+        "$nix_shell"
+        # "$conda"
+        # "$meson"
+        "$direnv"
+        "$custom"
+        "$sudo"
+        "$cmd_duration"
+        "$line_break"
+        "$jobs"
+        "$time"
+        "$status"
+        "$os"
+        "$container"
+        "$shell"
+        "$character"
+      ];
+      aws.style = "bold #ffb86c";
+      cmd_duration.style = "bold #f1fa8c";
+      directory.style = "bold #50fa7b";
+      hostname.style = "bold #ff5555";
+      git_branch.style = "bold #ff79c6";
+      git_status.style = "bold #ff5555";
+      username = {
+        format = "[$user]($style) on ";
+        style_user = "bold #bd93f9";
+      };
+      character = {
+        success_symbol = "[λ](bold #f8f8f2)";
+        error_symbol = "[λ](bold #ff5555)";
+      };
+    };
+  };
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
