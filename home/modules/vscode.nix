@@ -1,13 +1,9 @@
 { config, pkgs, ... }:
-let
-  iekuatiara = pkgs.python311.withPackages (ps: with ps; [ flask cryptography pyhanko redis asn1crypto psycopg2 ]);
-in
 {
   programs.vscode = {
     enable = true;
     package = pkgs.vscode.fhsWithPackages (ps:
       with ps; [
-        iekuatiara
         gcc
         clang
         clang-tools
