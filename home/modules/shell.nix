@@ -1,6 +1,14 @@
 { config, lib, pkgs, ... }:
 let
   p10kTheme = "/home/erb/repos/nixos-config/scripts/.p10k.zsh";
+  aliases = {
+      cat = "bat --style=plain";
+      update = "flatpak update && sudo nix-channel --update && cd /home/erb/repos/nixos-config && nix flake update && cd - && rebuild";
+      rebuild = "sudo nixos-rebuild switch --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
+      ls = "eza --icons=always";
+      screenshoot = ''grim -g "#(slurp -d)" - | swappy -f -'';    
+      rebuild-test = "sudo nixos-rebuild test --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
+  };
 in
 {
   programs.starship = {
@@ -64,13 +72,7 @@ in
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     defaultKeymap = "emacs";
-    shellAliases = {
-      cat = "bat --style=plain";
-      update = "flatpak update && sudo nix-channel --update && cd /home/erb/repos/nixos-config && nix flake update && cd - && rebuild";
-      rebuild = "sudo nixos-rebuild switch --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
-      ls = "eza --icons=always";
-      screenshoot = ''grim -g "#(slurp -d)" - | swappy -f -'';
-    };
+    shellAliases = aliases;
 
     sessionVariables = {
       EDITOR = "hx";
@@ -117,12 +119,7 @@ in
       fastfetch
     '';
 
-    shellAliases = {
-      cat = "bat --style=plain";
-      update = "flatpak update && sudo nix-channel --update && cd /home/erb/repos/nixos-config && nix flake update && cd - && rebuild";
-      rebuild = "sudo nixos-rebuild switch --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
-      ls = "eza --icons=always";
-    };
+    shellAliases = aliases;
 
     plugins = with pkgs.fishPlugins; [
       # Enable a plugin (here grc for colorized command output) from nixpkgs
