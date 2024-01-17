@@ -26,6 +26,14 @@ def main():
     WALLPAPER_DURATION = 300
     first = True
     used = {"randall-mackey-mural2.jpg"}
+
+    begin = time.time()
+    while not os.path.exists("/tmp/color_server.sock") and time.time() - begin < 60:
+        time.sleep(0.5)
+
+    if not os.path.exists("/tmp/color_server.sock"):
+        subprocess.run("notify-send /tmp/color_server.sock não existe!", shell=True)
+        
     while True:
         with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as sock:
             if first:

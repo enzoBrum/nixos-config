@@ -53,8 +53,8 @@ in
         style_user = "bold #bd93f9";
       };
       character = {
-        success_symbol = "[λ](bold #f8f8f2)";
-        error_symbol = "[λ](bold #ff5555)";
+        success_symbol = "[❯](bold #f8f8f2)";
+        error_symbol = "[❯](bold #ff5555)";
       };
     };
   };
@@ -66,9 +66,10 @@ in
     defaultKeymap = "emacs";
     shellAliases = {
       cat = "bat --style=plain";
-      update = "sudo nix-channel --update && cd /home/erb/repos/nixos-config && nix flake update && cd - && rebuild";
+      update = "flatpak update && sudo nix-channel --update && cd /home/erb/repos/nixos-config && nix flake update && cd - && rebuild";
       rebuild = "sudo nixos-rebuild switch --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
       ls = "eza --icons=always";
+      screenshoot = ''grim -g "#(slurp -d)" - | swappy -f -'';
     };
 
     sessionVariables = {
@@ -118,7 +119,7 @@ in
 
     shellAliases = {
       cat = "bat --style=plain";
-      update = "sudo nix-channel --update && cd /home/erb/repos/nixos-config && nix flake update && cd - && rebuild";
+      update = "flatpak update && sudo nix-channel --update && cd /home/erb/repos/nixos-config && nix flake update && cd - && rebuild";
       rebuild = "sudo nixos-rebuild switch --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
       ls = "eza --icons=always";
     };

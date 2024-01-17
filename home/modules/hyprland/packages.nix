@@ -9,6 +9,7 @@
     fuzzel
     eww-wayland
     dunst
-    copyq
+    cliphist
+    swappy
   ];
 }

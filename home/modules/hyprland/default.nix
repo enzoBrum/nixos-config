@@ -145,7 +145,7 @@
 
       exec-once = $scripts/autostart.sh
 
-      bind = $mainMod, V, exec, copyq menu
+      bind = $mainMod, V, exec, $scripts/launch_fuzzel.py clipboard
       bind = $mainMod, A, toggleopaque
       bind = $mainMod, Return, exec, alacritty
       bind = $mainMod, W, killactive, 
@@ -156,7 +156,7 @@
       bind = $mainMod, X, exec, code
       bind = $mainMod_SHIFT,SPACE , togglefloating, 
       bind = $mainMod,SPACE, exec, playerctl play-pause
-      bind = $mainMod, R, exec, $scripts/launch_fuzzel.py
+      bind = $mainMod, R, exec, $scripts/launch_fuzzel.py app
       bind = $mainMod, Q, exec, eww open --toggle main_window
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, S, togglesplit, # dwindle

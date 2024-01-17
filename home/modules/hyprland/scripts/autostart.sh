@@ -14,7 +14,7 @@ else
 fi
 
 # clipboard manager
-copyq --start-server &
+wl-paste --watch cliphist store &
 
 # wallpaper
 swww init &
@@ -26,7 +26,7 @@ dunst &
 alacritty &
 
 $scripts/change_color.py &
-sleep 1 && $scripts/change_wallpaper.py &
+$scripts/change_wallpaper.py &
 $scripts/change_workspace.py &
 $scripts/battery_notifier.py &
 
