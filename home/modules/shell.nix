@@ -3,7 +3,7 @@ let
   p10kTheme = "/home/erb/repos/nixos-config/scripts/.p10k.zsh";
   aliases = {
       cat = "bat --style=plain";
-      update = "flatpak update && sudo nix-channel --update && cd /home/erb/repos/nixos-config && nix flake update && cd - && rebuild";
+      update = "sudo nix-channel --update && cd /home/erb/repos/nixos-config && nix flake update && cd - && rebuild";
       rebuild = "sudo nixos-rebuild switch --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
       ls = "eza --icons=always";
       screenshoot = ''grim -g "#(slurp -d)" - | swappy -f -'';    

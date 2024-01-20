@@ -7,10 +7,12 @@
       nil
     ];
     settings = {
-      theme = "dracula";
+      theme = "catppuccin_macchiato";
       editor = {
         line-number = "relative";
         lsp.display-messages = true;
+        true-color = true;
+        auto-save = true;
       };
       
       keys.normal = {
