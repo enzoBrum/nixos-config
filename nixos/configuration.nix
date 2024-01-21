@@ -76,7 +76,7 @@
 
   programs.zsh.enable = true;
   programs.fish.enable = true;
-  users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.fish;
   environment.pathsToLink = [ "/share/zsh" ];
 
   users.users.erb = {

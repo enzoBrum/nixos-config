@@ -12,16 +12,16 @@ let
     rebuild-test =
       "sudo nixos-rebuild test --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
   };
+  flavour = "macchiato";
 in {
   programs.starship = {
-    enable = false;
+    enable = true;
     enableTransience = true;
     settings = {
       format = lib.concatStrings [
+        "$directory"
         "$username"
         "$hostname"
-        "$localip"
-        "$directory"
         "$git_branch"
         "$git_commit"
         "$git_state"
@@ -29,12 +29,12 @@ in {
         "$git_status"
         "$docker_context"
         # "$package"
-        # "$c"
+        "$c"
         # "$cmake"
         # "$golang"
-        # "$java"
+        "$java"
         # "$nodejs"
-        # "$python"
+        "$python"
         # "$rust"
         "$nix_shell"
         # "$conda"
@@ -52,21 +52,19 @@ in {
         "$shell"
         "$character"
       ];
-      aws.style = "bold #ffb86c";
-      cmd_duration.style = "bold #f1fa8c";
-      directory.style = "bold #50fa7b";
-      hostname.style = "bold #ff5555";
-      git_branch.style = "bold #ff79c6";
-      git_status.style = "bold #ff5555";
-      username = {
-        format = "[$user]($style) on ";
-        style_user = "bold #bd93f9";
-      };
-      character = {
-        success_symbol = "[❯](bold #f8f8f2)";
-        error_symbol = "[❯](bold #ff5555)";
-      };
-    };
+
+      palette = "catppuccin_${flavour}";
+    } // builtins.fromTOML (
+      builtins.readFile (
+        pkgs.fetchFromGitHub
+        {
+          owner = "catppuccin";
+          repo = "starship";
+          rev = "5629d2356f62a9f2f8efad3ff37476c19969bd4f";
+          sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0=";
+        } + /palettes/${flavour}.toml
+      )
+    );
   };
   programs.zsh = {
     enable = true;
