@@ -20,7 +20,6 @@ in {
     home-manager
     python312
     networkmanagerapplet
-    bat
     htop
     nodejs
     fzf

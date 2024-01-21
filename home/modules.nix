@@ -9,5 +9,6 @@
     ./modules/waybar.nix
     ./modules/helix.nix
     ./modules/alacritty.nix
+    ./modules/bat.nix
   ];
 }

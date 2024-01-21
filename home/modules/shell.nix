@@ -2,7 +2,7 @@
 let
   p10kTheme = "/home/erb/repos/nixos-config/scripts/.p10k.zsh";
   aliases = {
-    cat = "bat --style=plain";
+    cat = "bat --theme catppuccin-macchiato --style=plain";
     update =
       "sudo nix-channel --update && cd /home/erb/repos/nixos-config && nix flake update && cd - && rebuild";
     rebuild =
