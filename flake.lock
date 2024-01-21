@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1705716042,
-        "narHash": "sha256-63pQUyNXhcdRi+JN1zHYYUJNiksci20bgF1HnsYmlZE=",
+        "lastModified": 1705753030,
+        "narHash": "sha256-TA0dvVoYfjx2List8b+FUKIdXGk90PYtKhk2lMXUpCw=",
         "owner": "Aylur",
         "repo": "ags",
-        "rev": "f5fc7f7878326b10697833b7c5cd18b8c3fcebd1",
+        "rev": "43a0a62d51ddba9e9f555af85870374d947fc65c",
         "type": "github"
       },
       "original": {
@@ -159,11 +159,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1705687772,
-        "narHash": "sha256-f+x5Abvo53yjjEkWIs1KtClSL4SAYRoiI69vl0x216E=",
+        "lastModified": 1705738587,
+        "narHash": "sha256-oIt4bUVXRR7qnBPizcPA7fTiZl4xz9QaSdzLNukjtkw=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "b86ed02d8ae7c955e1f42cc27a19fe18d82c50b7",
+        "rev": "f40e382fc6208d4fe2e53581ea27510cb62417dd",
         "type": "github"
       },
       "original": {

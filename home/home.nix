@@ -1,6 +1,13 @@
 { config, lib, pkgs, ... }:
 let
-  p10kTheme = "./scripts/.p10k.zsh";
+  theme-name = "Catppuccin-Macchiato-Compact-Pink-Dark";
+  theme-pkg = pkgs.catppuccin-gtk.override {
+    accents = [ "pink" ];
+    size = "compact";
+    variant = "macchiato";
+  };
+  # theme-name = "Dracula";
+  # theme-pkg = pkgs.dracula-theme;
 in
 {
   imports = [ ./modules.nix ];
@@ -14,8 +21,12 @@ in
 
   gtk = {
     enable = true;
-    theme.package = pkgs.dracula-theme;
-    theme.name = "Dracula";
+    theme.package = pkgs.catppuccin-gtk.override {
+      accents = [ "pink" ];
+      size = "standard";
+      variant = "macchiato";
+    };
+    theme.name = "Catppuccin-Macchiato-Standard-Pink-Dark"; # note to self, the name is important. If you do not know the name, use gnome-tweaks.
   };
 
   xdg.configFile."gdb/gdbinit".text = ''
