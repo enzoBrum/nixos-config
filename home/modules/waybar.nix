@@ -5,10 +5,7 @@
       layer = "top";
       position = "top";
       height = 30;
-      output = [
-        "eDP-1"
-        "HDMI-A-1"
-      ];
+      output = [ "eDP-1" "HDMI-A-1" ];
       modules-left = [ "image" "hyprland/workspaces" ];
       modules-center = [ "clock" ];
       modules-right = [ "pulseaudio" "battery" "network" ];
@@ -45,7 +42,6 @@
         };
       };
 
-
       network = {
         tooltip = false;
         "format-wifi" = "     {essid}";
@@ -56,18 +52,15 @@
         tooltip = false;
         "scroll-step" = 5;
         format = "{icon} {volume}%";
-        "format-icons" = {
-          "default" = [ "" "" "" ];
-        };
+        "format-icons" = { "default" = [ "" "" "" ]; };
       };
 
       image = {
-        	path = "/home/erb/repos/nixos-config/assets/nix_logo.png";
-	        size = 20;
+        path = "/home/erb/repos/nixos-config/assets/nix_logo.png";
+        size = 20;
       };
     };
   };
-
 
   programs.waybar.style = ''
     #workspaces button {
@@ -120,6 +113,6 @@
          background: #424242;
          border-radius: 13px;
     }
- 
+
   '';
 }

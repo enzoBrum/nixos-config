@@ -20,8 +20,10 @@ with lib.hm.gvariant;
     "org/gnome/desktop/background" = {
       color-shading-type = "solid";
       picture-options = "zoom";
-      picture-uri = "file:///home/erb/repos/nixos-config/assets/wallpaper/wallhaven-7pm1qy_1920x1080.png";
-      picture-uri-dark = "file:///home/erb/repos/nixos-config/assets/wallpaper/wallhaven-7pm1qy_1920x1080.png";
+      picture-uri =
+        "file:///home/erb/repos/nixos-config/assets/wallpaper/wallhaven-7pm1qy_1920x1080.png";
+      picture-uri-dark =
+        "file:///home/erb/repos/nixos-config/assets/wallpaper/wallhaven-7pm1qy_1920x1080.png";
       primary-color = "#000000000000";
       secondary-color = "#000000000000";
     };
@@ -46,7 +48,8 @@ with lib.hm.gvariant;
     "org/gnome/desktop/screensaver" = {
       color-shading-type = "solid";
       picture-options = "zoom";
-      picture-uri = "file:///home/erb/repos/nixos-config/assets/wallpaper/wallhaven-7pm1qy_1920x1080.png";
+      picture-uri =
+        "file:///home/erb/repos/nixos-config/assets/wallpaper/wallhaven-7pm1qy_1920x1080.png";
       primary-color = "#000000000000";
       secondary-color = "#000000000000";
     };
@@ -91,13 +94,13 @@ with lib.hm.gvariant;
       toggle-tiled-right = [ ];
     };
 
-    "org/gnome/mutter/wayland/keybindings" = {
-      restore-shortcuts = [ ];
-    };
+    "org/gnome/mutter/wayland/keybindings" = { restore-shortcuts = [ ]; };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
       control-center = [ "<Super>e" ];
-      custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" ];
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+      ];
       logout = [ "<Alt><Super>q" ];
       next = [ "<Shift><Super>space" ];
       play = [ "<Super>space" ];
@@ -106,11 +109,12 @@ with lib.hm.gvariant;
       www = [ "<Super>z" ];
     };
 
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "<Super>Return";
-      command = "blackbox";
-      name = "terminal";
-    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
+      {
+        binding = "<Super>Return";
+        command = "blackbox";
+        name = "terminal";
+      };
 
     "org/gnome/shell" = {
       enabled-extensions = [
@@ -122,7 +126,12 @@ with lib.hm.gvariant;
         "paperwm@paperwm.github.com"
         "blur-my-shell@aunetx"
       ];
-      favorite-apps = [ "org.gnome.Calendar.desktop" "org.gnome.Nautilus.desktop" "org.gnome.Software.desktop" "org.mozilla.firefox.desktop" ];
+      favorite-apps = [
+        "org.gnome.Calendar.desktop"
+        "org.gnome.Nautilus.desktop"
+        "org.gnome.Software.desktop"
+        "org.mozilla.firefox.desktop"
+      ];
       welcome-dialog-last-shown-version = "45.0";
     };
 
@@ -153,24 +162,44 @@ with lib.hm.gvariant;
       close-window = [ "<Super>w" ];
       live-alt-tab = [ "" ];
       move-down = [ "<Shift><Super>j" ];
-      move-down-workspace = [ "<Control><Super>Page_Down" "<Shift><Super>braceright" "<Shift><Super>at" ];
-      move-left = [ "<Control><Super>comma" "<Shift><Super>comma" "<Shift><Super>h" ];
-      move-monitor-left = [ "<Shift><Control><Super>Left" "<Shift><Super>Left" "<Shift><Alt><Super>h" ];
-      move-monitor-right = [ "<Shift><Control><Super>Right" "<Shift><Super>Right" "<Shift><Alt><Super>l" ];
-      move-right = [ "<Control><Super>period" "<Shift><Super>period" "<Shift><Super>l" ];
+      move-down-workspace = [
+        "<Control><Super>Page_Down"
+        "<Shift><Super>braceright"
+        "<Shift><Super>at"
+      ];
+      move-left =
+        [ "<Control><Super>comma" "<Shift><Super>comma" "<Shift><Super>h" ];
+      move-monitor-left = [
+        "<Shift><Control><Super>Left"
+        "<Shift><Super>Left"
+        "<Shift><Alt><Super>h"
+      ];
+      move-monitor-right = [
+        "<Shift><Control><Super>Right"
+        "<Shift><Super>Right"
+        "<Shift><Alt><Super>l"
+      ];
+      move-right =
+        [ "<Control><Super>period" "<Shift><Super>period" "<Shift><Super>l" ];
       move-up = [ "<Shift><Super>k" ];
-      move-up-workspace = [ "<Control><Super>Page_Up" "<Shift><Super>braceleft" "<Shift><Super>exclam" ];
+      move-up-workspace = [
+        "<Control><Super>Page_Up"
+        "<Shift><Super>braceleft"
+        "<Shift><Super>exclam"
+      ];
       new-window = [ "<Super>n" ];
       previous-workspace = [ "" ];
       switch-down = [ "<Super>j" ];
-      switch-down-workspace = [ "<Super>Page_Down" "<Super>bracketright" "<Super>2" ];
+      switch-down-workspace =
+        [ "<Super>Page_Down" "<Super>bracketright" "<Super>2" ];
       switch-down-workspace-from-all-monitors = [ "" ];
       switch-left = [ "<Super>h" ];
       switch-monitor-left = [ "<Alt><Super>h" "<Super>Left" ];
       switch-monitor-right = [ "<Alt><Super>l" "<Super>Right" ];
       switch-right = [ "<Super>l" ];
       switch-up = [ "<Super>k" ];
-      switch-up-workspace = [ "<Super>Page_Up" "<Super>1" "<Super>bracketleft" ];
+      switch-up-workspace =
+        [ "<Super>Page_Up" "<Super>1" "<Super>bracketleft" ];
       toggle-maximize-width = [ "<Super>Tab" ];
     };
 
@@ -183,8 +212,6 @@ with lib.hm.gvariant;
       toggle-message-tray = [ ];
     };
 
-    "org/gnome/system/location" = {
-      enabled = true;
-    };
+    "org/gnome/system/location" = { enabled = true; };
   };
 }

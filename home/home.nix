@@ -8,8 +8,7 @@ let
   };
   # theme-name = "Dracula";
   # theme-pkg = pkgs.dracula-theme;
-in
-{
+in {
   imports = [ ./modules.nix ];
 
   home.username = "erb";
@@ -26,16 +25,17 @@ in
       size = "standard";
       variant = "macchiato";
     };
-    theme.name = "Catppuccin-Macchiato-Standard-Pink-Dark"; # note to self, the name is important. If you do not know the name, use gnome-tweaks.
+    theme.name =
+      "Catppuccin-Macchiato-Standard-Pink-Dark"; # note to self, the name is important. If you do not know the name, use gnome-tweaks.
   };
 
   xdg.configFile."gdb/gdbinit".text = ''
-  python
-  import sys
-  sys.path.insert(0, '${pkgs.libgcc.lib}/share/gcc-${pkgs.libgcc.lib.version}/python')
-  from libstdcxx.v6.printers import register_libstdcxx_printers
-  register_libstdcxx_printers (None)
-  end
+    python
+    import sys
+    sys.path.insert(0, '${pkgs.libgcc.lib}/share/gcc-${pkgs.libgcc.lib.version}/python')
+    from libstdcxx.v6.printers import register_libstdcxx_printers
+    register_libstdcxx_printers (None)
+    end
   '';
 
   # bluetooth-related settings

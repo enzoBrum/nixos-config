@@ -2,15 +2,17 @@
 let
   p10kTheme = "/home/erb/repos/nixos-config/scripts/.p10k.zsh";
   aliases = {
-      cat = "bat --style=plain";
-      update = "sudo nix-channel --update && cd /home/erb/repos/nixos-config && nix flake update && cd - && rebuild";
-      rebuild = "sudo nixos-rebuild switch --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
-      ls = "eza --icons=always";
-      screenshoot = ''grim -g "#(slurp -d)" - | swappy -f -'';    
-      rebuild-test = "sudo nixos-rebuild test --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
+    cat = "bat --style=plain";
+    update =
+      "sudo nix-channel --update && cd /home/erb/repos/nixos-config && nix flake update && cd - && rebuild";
+    rebuild =
+      "sudo nixos-rebuild switch --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
+    ls = "eza --icons=always";
+    screenshoot = ''grim -g "#(slurp -d)" - | swappy -f -'';
+    rebuild-test =
+      "sudo nixos-rebuild test --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
   };
-in
-{
+in {
   programs.starship = {
     enable = false;
     enableTransience = true;
@@ -89,13 +91,11 @@ in
       fastfetch
     '';
 
-    plugins = [
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-    ];
+    plugins = [{
+      name = "powerlevel10k";
+      src = pkgs.zsh-powerlevel10k;
+      file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+    }];
   };
 
   programs.fish = {
@@ -141,9 +141,7 @@ in
         src = done.src;
       }
 
-
     ];
   };
-
 
 }

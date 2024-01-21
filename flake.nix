@@ -26,31 +26,32 @@
     hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, home-manager, lanzaboote, sops-nix, ags, hyprland, ... }@inputs: {
-    nixosConfigurations = {
-      enzoPC = nixpkgs.lib.nixosSystem rec {
-        system = "x86_64-linux";
-        specialArgs = {
-          pkgs-stable = import nixpkgs-stable {
-            system = system;
-            config.allowUnfree = true;
+  outputs = { nixpkgs, nixpkgs-stable, home-manager, lanzaboote, sops-nix, ags
+    , hyprland, ... }@inputs: {
+      nixosConfigurations = {
+        enzoPC = nixpkgs.lib.nixosSystem rec {
+          system = "x86_64-linux";
+          specialArgs = {
+            pkgs-stable = import nixpkgs-stable {
+              system = system;
+              config.allowUnfree = true;
+            };
+            hyprland = hyprland;
           };
-          hyprland = hyprland;
-        };
 
-        modules = [
-          ./nixos/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.erb = import ./home/home.nix;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-          }
-          lanzaboote.nixosModules.lanzaboote
-          sops-nix.nixosModules.sops
-        ];
+          modules = [
+            ./nixos/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.erb = import ./home/home.nix;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+            }
+            lanzaboote.nixosModules.lanzaboote
+            sops-nix.nixosModules.sops
+          ];
+        };
       };
     };
-  };
 }

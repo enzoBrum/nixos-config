@@ -7,13 +7,7 @@
   programs.dconf.enable = true;
   programs.cdemu.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    virt-manager
-    distrobox
-  ];
+  environment.systemPackages = with pkgs; [ virt-manager distrobox ];
 
-  users.users.erb.extraGroups = [
-    "libvirtd"
-    "docker"
-  ];
+  users.users.erb.extraGroups = [ "libvirtd" "docker" ];
 }

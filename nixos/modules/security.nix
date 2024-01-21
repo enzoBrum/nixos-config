@@ -16,22 +16,20 @@
         }
     });
   '';
-  
-  security.sudo.extraRules = [
-    {
-      commands = [
-        {
-          command = "${pkgs.systemd}/bin/systemctl start openvpn-labsec";
-          options = [ "NOPASSWD" ];
-        }
-        {
-          command = "${pkgs.systemd}/bin/systemctl stop openvpn-labsec";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-      groups = [ "wheel" ];
-    }
-  ];
+
+  security.sudo.extraRules = [{
+    commands = [
+      {
+        command = "${pkgs.systemd}/bin/systemctl start openvpn-labsec";
+        options = [ "NOPASSWD" ];
+      }
+      {
+        command = "${pkgs.systemd}/bin/systemctl stop openvpn-labsec";
+        options = [ "NOPASSWD" ];
+      }
+    ];
+    groups = [ "wheel" ];
+  }];
   users.users.erb.extraGroups = [ "tss" ];
 
   environment.systemPackages = with pkgs; [ gnome-secrets openssl sops ];

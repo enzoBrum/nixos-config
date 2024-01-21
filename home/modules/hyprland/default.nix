@@ -72,7 +72,7 @@
           # these rules only apply to alacritty (see window rules)
           inactive_opacity = 1
           active_opacity = 1
-    
+
           rounding = 15
 
           blur {
@@ -82,7 +82,7 @@
             ignore_opacity = true
             new_optimizations = true
           }
-    
+
           #inactive_opacity = 0
           drop_shadow = true
           shadow_range = 6

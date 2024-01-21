@@ -1,17 +1,16 @@
 { config, pkgs, pkgs-stable, lib, ... }: {
-  imports = [
-    ./hardware-configuration.nix
-    ./modules.nix
-  ];
+  imports = [ ./hardware-configuration.nix ./modules.nix ];
 
   nix = {
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+      substituters = [ "https://hyprland.cachix.org" ];
+      trusted-public-keys = [
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      ];
     };
-    
+
     gc.automatic = true;
     gc.dates = "weekly";
     gc.options = "--delete-older-than 14d";
@@ -82,9 +81,7 @@
 
   users.users.erb = {
     isNormalUser = true;
-    extraGroups = [
-      "wheel"
-    ];
+    extraGroups = [ "wheel" ];
 
   };
 
