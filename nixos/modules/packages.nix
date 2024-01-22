@@ -7,6 +7,7 @@ let
   '';
 in {
   environment.systemPackages = with pkgs; [
+    nix-search-cli
     catppuccin
     tree
     eza

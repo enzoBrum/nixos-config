@@ -27,6 +27,8 @@ in {
     };
     theme.name =
       "Catppuccin-Macchiato-Standard-Pink-Dark"; # note to self, the name is important. If you do not know the name, use gnome-tweaks.
+    cursorTheme.package = pkgs.catppuccin-cursors.macchiatoPink;
+    cursorTheme.name = "Catppuccin-Macchiato-Pink-Cursors";
   };
 
   xdg.configFile."gdb/gdbinit".text = ''
@@ -36,6 +38,45 @@ in {
     from libstdcxx.v6.printers import register_libstdcxx_printers
     register_libstdcxx_printers (None)
     end
+  '';
+
+  xdg.dataFile."blackbox/schemes/Catppuccin-Macchiato.json".text = # json
+  ''
+    {
+      "name": "Catppuccin-Macchiato",
+      "comment": "Soothing pastel theme for the high-spirited!",
+      "background-color": "#24273A",
+      "foreground-color": "#CAD3F5",
+      "badge-color": "#5B6078",
+      "bold-color": "#5B6078",
+      "cursor-background-color": "#F4DBD6",
+      "cursor-foreground-color": "#24273A",
+      "highlight-background-color": "#F4DBD6",
+      "highlight-foreground-color": "#24273A",
+      "palette": [
+        "#494D64",
+        "#ED8796",
+        "#A6DA95",
+        "#EED49F",
+        "#8AADF4",
+        "#F5BDE6",
+        "#8BD5CA",
+        "#B8C0E0",
+        "#5B6078",
+        "#ED8796",
+        "#A6DA95",
+        "#EED49F",
+        "#8AADF4",
+        "#F5BDE6",
+        "#8BD5CA",
+        "#A5ADCB"
+      ],
+      "use-badge-color": false,
+      "use-bold-color": false,
+      "use-cursor-color": true,
+      "use-highlight-color": true,
+      "use-theme-colors": false
+    }
   '';
 
   # bluetooth-related settings
