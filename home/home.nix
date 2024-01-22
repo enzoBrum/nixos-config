@@ -27,8 +27,6 @@ in {
     };
     theme.name =
       "Catppuccin-Macchiato-Standard-Pink-Dark"; # note to self, the name is important. If you do not know the name, use gnome-tweaks.
-    cursorTheme.package = pkgs.catppuccin-cursors.macchiatoPink;
-    cursorTheme.name = "Catppuccin-Macchiato-Pink-Cursors";
   };
 
   xdg.configFile."gdb/gdbinit".text = ''
