@@ -8,7 +8,7 @@ let
     rebuild =
       "sudo nixos-rebuild switch --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
     ls = "eza --icons=always";
-    screenshoot = ''grim -g "#(slurp -d)" - | swappy -f -'';
+    screenshoot = ''grim -g "$(slurp -d)" - | swappy -f -'';
     rebuild-test =
       "sudo nixos-rebuild test --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
   };

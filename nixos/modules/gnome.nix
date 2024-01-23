@@ -3,6 +3,6 @@
   security.pam.services.erb.enableGnomeKeyring = true;
 
   environment.systemPackages = with pkgs.gnomeExtensions;
-    [ paperwm vitals caffeine pano blur-my-shell ]
+    [ paperwm vitals caffeine pano blur-my-shell user-themes  ]
     ++ [ pkgs.blackbox-terminal ];
 }

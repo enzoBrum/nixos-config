@@ -116,6 +116,9 @@ with lib.hm.gvariant;
         name = "terminal";
       };
 
+
+    "org/gnome/shell/extensions/user-theme" =  { name = "Catppuccin-Macchiato-Standard-Pink-Dark";};
+    
     "org/gnome/shell" = {
       enabled-extensions = [
         "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
@@ -125,6 +128,7 @@ with lib.hm.gvariant;
         "pano@elhan.io"
         "paperwm@paperwm.github.com"
         "blur-my-shell@aunetx"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
       ];
       favorite-apps = [
         "org.gnome.Calendar.desktop"
