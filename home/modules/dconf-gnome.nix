@@ -116,9 +116,10 @@ with lib.hm.gvariant;
         name = "terminal";
       };
 
+    "org/gnome/shell/extensions/user-theme" = {
+      name = "Catppuccin-Macchiato-Standard-Pink-Dark";
+    };
 
-    "org/gnome/shell/extensions/user-theme" =  { name = "Catppuccin-Macchiato-Standard-Pink-Dark";};
-    
     "org/gnome/shell" = {
       enabled-extensions = [
         "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
