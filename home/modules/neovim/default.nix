@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }: {
   imports = lib.filesystem.listFilesRecursive ./plugins;
   programs.neovim = {
-    enable = true;
-    defaultEditor = true;
+    enable = false;
+    defaultEditor = false;
 
     extraLuaConfig = # lua
       ''
