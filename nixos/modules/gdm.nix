@@ -5,7 +5,7 @@
       displayManager = {
         gdm.enable = true;
         gdm.wayland = true;
-        defaultSession = "gnome";
+        defaultSession = "hyprland";
 
         autoLogin = {
           enable = true;

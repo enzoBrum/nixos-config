@@ -10,5 +10,6 @@
     ./modules/helix.nix
     ./modules/alacritty.nix
     ./modules/bat.nix
+    ./modules/neovim/default.nix
   ];
 }

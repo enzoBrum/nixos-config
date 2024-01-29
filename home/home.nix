@@ -38,7 +38,7 @@ in {
     end
   '';
 
-  xdg.dataFile."blackbox/schemes/Catppuccin-Macchiato.json".text = # json
+  xdg.dataFile."blackbox/schemes/Catppuccin-Macchiato.json".text = /* json */
     ''
       {
         "name": "Catppuccin-Macchiato",

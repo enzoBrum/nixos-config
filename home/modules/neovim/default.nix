@@ -1,54 +1,108 @@
 { config, lib, pkgs, ... }: {
-  imports = lib.filesystem.listFilesRecursive ./plugins;
+  imports = lib.filter (a: !lib.strings.hasSuffix "helpers.nix" a) (lib.filesystem.listFilesRecursive ./plugins);
+
+
   programs.neovim = {
-    enable = false;
+    enable = true;
     defaultEditor = false;
+    extraLuaConfig = /* lua */
+    ''
+    vim.g.mapleader = ' '
+    vim.g.maplocalleader = ' '
 
-    extraLuaConfig = # lua
-      ''
-        vim.g.mapleader = ' ';
-        vim.g.maplocalleader = ' ';
+    -- Set highlight on search
+    vim.o.hlsearch = false
 
-        vim.o.hlsearch = false;
-        vim.wo.number = true;
-        vim.o.clipboard = 'unnamedplus';
-        vim.o.breakindent = true;
-        vim.wo.signcolumn = 'number';
+    -- Make line numbers default
+    vim.wo.number = true
 
-        vim.o.ignorecase = true;
-        vim.o.smartcase = true;
+    -- Enable mouse mode
+    vim.o.mouse = 'a'
 
-        vim.o.updatetime = 250;
-        vim.o.timeoutlen = 500;
+    -- Enable break indent
+    vim.o.breakindent = true
 
-        vim.o.completeopt = 'menuone,preview';
-        vim.o.termguicolors = true;
-        vim.o.relativenumber = true;
-        vim.o.number = true;
-        vim.o.tabstop = 2;
-        vim.o.shiftwidth = 2;
-        vim.o.expandtab = true;
-        vim.o.autoindent = true;
-        vim.o.smartindent = true;
-        vim.o.wrap = false;
+    -- Save undo history
+    vim.o.undofile = true
 
-        vim.o.background = "dark";
-        vim.o.splitright = true;
-        vim.o.splitbelow = true;
+    -- Case-insensitive searching UNLESS \C or capital in search
+    vim.o.ignorecase = true
+    vim.o.smartcase = true
 
-        -- window management
-        vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
-        vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
-        vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
-        vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
+    -- Keep signcolumn on by default
+    vim.wo.signcolumn = 'yes'
 
-        vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
-        vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
-        vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
-        vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
-        vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab        
+    -- Decrease update time
+    vim.o.updatetime = 250
+    vim.o.timeoutlen = 300
+    vim.o.relativenumber = true;
 
-        vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', {silent = true});
-      '';
+    vim.o.expandtab = true;
+    vim.o.autoindent = true;
+    vim.o.smartindent = true;
+    vim.o.wrap = false;
+    --vim.o.tabstop = 4
+    --vim.o.softtabstop = 4
+    --vim.opt.shiftwidth = 4
+
+    local group = vim.api.nvim_create_augroup('FileTypeSettings', { clear = true })
+
+    --[[
+    vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'nix',
+        command = 'setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2',
+        group = group,
+    })
+
+    vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'py',
+        command = 'setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4',
+        group = group,
+    })
+
+    vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'cpp',
+        command = 'setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2',
+        group = group,
+    })
+    vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'java',
+        command = 'setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4',
+        group = group,
+    })
+    --]]
+    -- Set completeopt to have a better completion experience
+    vim.o.completeopt = 'menuone,noselect'
+
+    -- NOTE: You should make sure your terminal supports this
+    vim.o.termguicolors = true
+
+    -- [[ Basic Keymaps ]]
+
+    -- Keymaps for better default experience
+    -- See `:help vim.keymap.set()`
+    vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+    -- Remap for dealing with word wrap
+    vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+    vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+    -- clipboard 
+    vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = "Copy to system clipboard" })
+    vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = "Paste after cursor from system clipboard" })
+    vim.keymap.set({ 'n', 'v' }, '<leader>P', '"+P', { desc = "Paste before cursor from system clipboard" })
+
+
+    -- [[ Highlight on yank ]]
+    -- See `:help vim.highlight.on_yank()`
+    local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+    vim.api.nvim_create_autocmd('TextYankPost', {
+      callback = function()
+        vim.highlight.on_yank()
+      end,
+      group = highlight_group,
+      pattern = '*',
+    })
+    '';
   };
 }

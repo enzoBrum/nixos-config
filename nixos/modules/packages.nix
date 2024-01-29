@@ -7,6 +7,7 @@ let
   '';
 in {
   environment.systemPackages = with pkgs; [
+    lunarvim
     nix-search-cli
     catppuccin
     tree
