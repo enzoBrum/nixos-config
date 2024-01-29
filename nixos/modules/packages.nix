@@ -5,7 +5,8 @@ let
     program=$(cat $1 | head -n 1 | awk -F '/' '{print $NF}')
     sed '1s/.*/\/usr\/bin\/env $program/' $1 | bash -s - $2 $3 $4 $5 $6 $7
   '';
-in {
+in
+{
   environment.systemPackages = with pkgs; [
     lunarvim
     nix-search-cli

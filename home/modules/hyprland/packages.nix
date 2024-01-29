@@ -12,7 +12,8 @@ let
       wal -s -n -i $1
       echo "wallpaper changed" | socat - UNIX-CONNECT:/tmp/color_server.sock
     '';
-in {
+in
+{
   home.packages = with pkgs; [
     chwall
     wl-clipboard

@@ -13,7 +13,8 @@ let
       "sudo nixos-rebuild test --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
   };
   flavour = "macchiato";
-in {
+in
+{
   programs.starship = {
     enable = false;
     enableTransience = true;
@@ -54,12 +55,13 @@ in {
       ];
 
       palette = "catppuccin_${flavour}";
-    } // builtins.fromTOML (builtins.readFile (pkgs.fetchFromGitHub {
-      owner = "catppuccin";
-      repo = "starship";
-      rev = "5629d2356f62a9f2f8efad3ff37476c19969bd4f";
-      sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0=";
-    } + /palettes/${flavour}.toml));
+    } // builtins.fromTOML (builtins.readFile (pkgs.fetchFromGitHub
+      {
+        owner = "catppuccin";
+        repo = "starship";
+        rev = "5629d2356f62a9f2f8efad3ff37476c19969bd4f";
+        sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0=";
+      } + /palettes/${flavour}.toml));
   };
   programs.zsh = {
     enable = true;
@@ -72,31 +74,35 @@ in {
     sessionVariables = {
       EDITOR = "hx";
       NIXOS_OZONE_WL = 1;
-      FZF_DEFAULT_OPTS='' \
-              --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
-              --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
-              --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796'';
+      FZF_DEFAULT_OPTS = ''
+        \
+                     --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+                     --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+                     --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796'';
     };
 
-    initExtra = 
-    let
-      grc-zsh = pkgs.fetchFromGitHub {
-        owner = "garabik";
-        repo = "grc";
-        rev = "f4a579e08d356a3ea00a8c6fda7de84fff5f676a";
-        sha256 = "sha256-bv+m+850edLSmo2/mlFUlYmcV8NJ5bxsa0jHyEl0Rp8=";
-      } + /grc.zsh;
-    in
-    ''
-      source ${grc-zsh}
-      setopt NO_CASE_GLOB
-      zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' 
-      source "${pkgs.fzf}/share/fzf/key-bindings.zsh"
-      source "${pkgs.fzf}/share/fzf/completion.zsh"
-      setopt AUTO_CD
-      [[ ! -f ${p10kTheme} ]] || source ${p10kTheme}
-      fastfetch
-    '';
+    initExtra =
+      let
+        grc-zsh = pkgs.fetchFromGitHub
+          {
+            owner = "garabik";
+            repo = "grc";
+            rev = "f4a579e08d356a3ea00a8c6fda7de84fff5f676a";
+            sha256 = "sha256-bv+m+850edLSmo2/mlFUlYmcV8NJ5bxsa0jHyEl0Rp8=";
+          } + /grc.zsh;
+      in
+      ''
+        bindkey "^[[1;5C" forward-word
+        bindkey "^[[1;5D" backward-word
+        source ${grc-zsh}
+          setopt NO_CASE_GLOB
+          zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' 
+          source "${pkgs.fzf}/share/fzf/key-bindings.zsh"
+          source "${pkgs.fzf}/share/fzf/completion.zsh"
+          setopt AUTO_CD
+          [[ ! -f ${p10kTheme} ]] || source ${p10kTheme}
+          fastfetch
+      '';
 
     plugins = [
       {

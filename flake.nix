@@ -26,8 +26,16 @@
     hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, home-manager, lanzaboote, sops-nix, ags
-    , hyprland, ... }@inputs: {
+  outputs =
+    { nixpkgs
+    , nixpkgs-stable
+    , home-manager
+    , lanzaboote
+    , sops-nix
+    , ags
+    , hyprland
+    , ...
+    }@inputs: {
       nixosConfigurations = {
         enzoPC = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";

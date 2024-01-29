@@ -1,5 +1,3 @@
-{pkgs, ...}: {
-    programs.neovim.plugins = with pkgs.vimPlugins; [
-        ReplaceWithRegister
-    ];
+{ pkgs, ... }: {
+  programs.neovim.plugins = with pkgs.vimPlugins; [ ReplaceWithRegister ];
 }

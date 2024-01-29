@@ -1,5 +1,3 @@
-{pkgs, ...}: {
-    programs.neovim.plugins = with pkgs.vimPlugins; [
-      vim-sleuth
-    ];
-  }
+{ pkgs, ... }: {
+  programs.neovim.plugins = with pkgs.vimPlugins; [ vim-sleuth ];
+}

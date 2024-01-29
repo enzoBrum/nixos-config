@@ -8,7 +8,8 @@ let
   };
   # theme-name = "Dracula";
   # theme-pkg = pkgs.dracula-theme;
-in {
+in
+{
   imports = [ ./modules.nix ];
 
   home.username = "erb";
