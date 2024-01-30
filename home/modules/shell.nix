@@ -72,7 +72,7 @@ in
     shellAliases = aliases;
 
     sessionVariables = {
-      EDITOR = "hx";
+      EDITOR = "nvim";
       NIXOS_OZONE_WL = 1;
       FZF_DEFAULT_OPTS = ''
         \

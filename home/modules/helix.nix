@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
   programs.helix = {
     enable = true;
-    defaultEditor = true;
+    defaultEditor = false;
     extraPackages = with pkgs; [ python311Packages.python-lsp-server nil ];
     settings = {
       theme = "catppuccin_macchiato";

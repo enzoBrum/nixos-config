@@ -12,7 +12,7 @@ in
 
   programs.neovim = {
     enable = true;
-    defaultEditor = false;
+    defaultEditor = true;
     extraLuaConfig = /* lua */
       ''
         vim.g.mapleader = ' '
