@@ -163,6 +163,7 @@ in {
       jdk21
       nil
       nixpkgs-fmt
+      clang-tools
     ];
   };
 
