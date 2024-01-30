@@ -19,6 +19,7 @@
   nixpkgs.config.allowUnfree = true;
 
   boot = {
+    tmp.cleanOnBoot = true;
     bootspec.enable = true;
     loader = {
       systemd-boot.enable = false;
@@ -38,7 +39,10 @@
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
+    initrd.verbose = false;
+    consoleLogLevel = 0;
     kernelParams = [
+      "udev.log_level=3"
       "quiet"
       "splash"
       "bgrt_disable"
