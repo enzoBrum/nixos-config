@@ -34,7 +34,7 @@ cd /mnt/home/erb/repos
 git clone https://github.com/enzoBrum/nixos-config.git
 
 read -sp "Age private key: " key
-echo $key > /mnt/etc/age-keys.txt
+echo $key > /mnt/etc/keys.txt
 mkdir -p /mnt/home/erb/.config/sops/age
 cp /mnt/etc/age-keys.txt /mnt/home/erb/.config/sops/age/
 
