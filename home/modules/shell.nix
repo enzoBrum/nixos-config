@@ -92,16 +92,18 @@ in
           } + /grc.zsh;
       in
       ''
+        bindkey '^H' backward-kill-word
+        bindkey '5~' kill-word
         bindkey "^[[1;5C" forward-word
         bindkey "^[[1;5D" backward-word
         source ${grc-zsh}
-          setopt NO_CASE_GLOB
-          zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' 
-          source "${pkgs.fzf}/share/fzf/key-bindings.zsh"
-          source "${pkgs.fzf}/share/fzf/completion.zsh"
-          setopt AUTO_CD
-          [[ ! -f ${p10kTheme} ]] || source ${p10kTheme}
-          fastfetch
+        setopt NO_CASE_GLOB
+        zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' 
+        source "${pkgs.fzf}/share/fzf/key-bindings.zsh"
+        source "${pkgs.fzf}/share/fzf/completion.zsh"
+        setopt AUTO_CD
+        [[ ! -f ${p10kTheme} ]] || source ${p10kTheme}
+        fastfetch
       '';
 
     plugins = [
