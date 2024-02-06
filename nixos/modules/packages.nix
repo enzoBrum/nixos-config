@@ -52,5 +52,7 @@ in
     xfce.thunar
     neovim
     p7zip
+    lazydocker
+    lazygit
   ];
 }
