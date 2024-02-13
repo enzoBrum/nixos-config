@@ -3,9 +3,6 @@
 
   security.rtkit.enable = true;
   security.polkit.enable = true;
-  security.tpm2.enable = true;
-  security.tpm2.pkcs11.enable = true;
-  security.tpm2.tctiEnvironment.enable = true;
 
   programs.gnupg.agent.enable = true;
   programs.gnupg.agent.enableSSHSupport = false;
@@ -33,7 +30,6 @@
     ];
     groups = [ "wheel" ];
   }];
-  users.users.erb.extraGroups = [ "tss" ];
 
   environment.systemPackages = with pkgs; [ gnome-secrets openssl sops ];
 

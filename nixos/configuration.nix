@@ -45,9 +45,7 @@
       "udev.log_level=3"
       "quiet"
       "splash"
-      "bgrt_disable"
       "vt.global_cursor_default=0"
-      "fbcon=nodefer"
       "intel_pstate=active"
     ];
   };
