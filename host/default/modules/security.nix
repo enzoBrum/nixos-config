@@ -37,14 +37,14 @@
   sops.defaultSopsFile = ./secrets.yaml;
 
   sops.secrets.vpn_credentials = {
-    sopsFile = ../../secrets.yaml;
+    sopsFile = ../../../secrets.yaml;
     mode = "0040";
     owner = config.users.users.erb.name;
     group = config.users.users.erb.group;
   };
 
   sops.secrets.vpn_config = {
-    sopsFile = ../../secrets.yaml;
+    sopsFile = ../../../secrets.yaml;
     mode = "0040";
     owner = config.users.users.erb.name;
     group = config.users.users.erb.group;

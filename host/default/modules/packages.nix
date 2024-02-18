@@ -10,13 +10,11 @@ in
   environment.systemPackages = with pkgs; [
     xorg.xhost
     nix-search-cli
-    catppuccin
     tree
     eza
     jq
     firefox-bin
     tldr
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     ripgrep
     kitty
@@ -24,17 +22,13 @@ in
     python312
     networkmanagerapplet
     htop
-    nodejs
     fzf
-    clang
-    gcc
     grc
     killall
     discord
     webcord
     run
     spotify
-    gnumake
     slurp
     grim
     brightnessctl
@@ -43,7 +37,6 @@ in
     vulkan-tools
     lutris
     fastfetch
-    obs-studio
     libsForQt5.kdenlive
     acpi
     swaylock
