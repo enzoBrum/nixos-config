@@ -21,9 +21,9 @@ with lib.hm.gvariant;
       color-shading-type = "solid";
       picture-options = "zoom";
       picture-uri =
-        "file:///home/erb/repos/nixos-config/assets/wallpaper/wallhaven-7pm1qy_1920x1080.png";
+        "file:///home/erb/repos/nixos-config/assets/wallpaper/wallhaven-858vpj_1920x1080.png";
       picture-uri-dark =
-        "file:///home/erb/repos/nixos-config/assets/wallpaper/wallhaven-7pm1qy_1920x1080.png";
+        "file:///home/erb/repos/nixos-config/assets/wallpaper/wallhaven-858vpj_1920x1080.png";
       primary-color = "#000000000000";
       secondary-color = "#000000000000";
     };
@@ -117,7 +117,11 @@ with lib.hm.gvariant;
       };
 
     "org/gnome/shell/extensions/user-theme" = {
-      name = "Catppuccin-Macchiato-Standard-Pink-Dark";
+      name = "Catppuccin-Macchiato-Standard-Blue-Dark";
+    };
+
+    "org/gnome/desktop/interface" = {
+      gtk-theme = "Catppuccin-Macchiato-Standard-Blue-Dark";
     };
 
     "org/gnome/shell" = {

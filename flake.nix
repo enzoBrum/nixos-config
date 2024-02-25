@@ -18,12 +18,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ags = {
-      url = "github:Aylur/ags";
+    spicetify-nix = {
+      url = "github:the-argus/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs =
@@ -32,8 +30,7 @@
     , home-manager
     , lanzaboote
     , sops-nix
-    , ags
-    , hyprland
+    , spicetify-nix
     , ...
     }@inputs: {
       nixosConfigurations = {
@@ -44,7 +41,6 @@
               system = system;
               config.allowUnfree = true;
             };
-            hyprland = hyprland;
           };
 
           modules = [
@@ -54,7 +50,13 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.erb = import ./home/home.nix;
-              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                pkgs-stable = import nixpkgs-stable {
+                  system = system;
+                  config.allowUnfree = true;
+                };
+              };
             }
             lanzaboote.nixosModules.lanzaboote
             sops-nix.nixosModules.sops
