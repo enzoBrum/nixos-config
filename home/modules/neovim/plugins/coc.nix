@@ -35,6 +35,10 @@ in {
         name = "coc-json";
       })
       (helpers.notUsedByVSCode {
+        pkg = coc-sql;
+        name = "coc-sql";
+      })
+      (helpers.notUsedByVSCode {
         pkg = coc-nvim;
         name = "coc.nvim";
         extraConfig = /* lua */

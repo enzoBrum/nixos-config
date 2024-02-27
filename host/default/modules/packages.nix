@@ -15,6 +15,7 @@ in
     jq
     firefox-bin
     tldr
+    obs-studio
     wget
     ripgrep
     kitty

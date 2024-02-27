@@ -11,6 +11,5 @@
     ./modules/alacritty.nix
     ./modules/bat.nix
     ./modules/neovim/default.nix
-    ./modules/spicetify
   ];
 }
