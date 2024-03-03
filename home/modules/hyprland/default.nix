@@ -124,7 +124,7 @@
       misc {
           animate_manual_resizes = false
           enable_swallow = true
-          swallow_regex = ^(Alacritty|kitty|org.wezfurlong.wezterm)$
+          swallow_regex = ^(Alacritty|kitty|org.wezfurlong.wezterm|com.raggesilver.BlackBox)$
       }
 
       Binds {
@@ -133,7 +133,7 @@
 
 
       #windowrulev2 = opacity 0.9 ,class:^(Alacritty)$
-      windowrulev2 = noblur, class:^(?!.*(Alacritty|kitty|org.wezfurlong.wezterm)).*$ 
+      windowrulev2 = noblur, class:^(?!.*(Alacritty|kitty|org.wezfurlong.wezterm|com.raggesilver.BlackBox)).*$ 
       # windowrulev2 = opaque, class:^(?!.*(Alacritty|kitty)).*$
       windowrulev2 = float, class:^(.*(copyq|iwgtk|pavucontrol|MEGAsync)).*$
       windowrulev2 = tile, class:^(.*(Mars)).*$
@@ -147,7 +147,7 @@
 
       bind = $mainMod, V, exec, $scripts/launch_fuzzel.py clipboard
       bind = $mainMod, A, toggleopaque
-      bind = $mainMod, Return, exec, wezterm
+      bind = $mainMod, Return, exec, blackbox
       bind = $mainMod, W, killactive, 
       bind = $mainMod_ALT, Q , exit, 
       bind = $mainMod, F , fullscreen, 0 

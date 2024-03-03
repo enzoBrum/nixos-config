@@ -23,7 +23,7 @@ swww init &
 swaync &
 
 # terminal
-wezterm &
+blackbox &
 
 $scripts/change_color.py &
 $scripts/change_wallpaper.py &

@@ -43,6 +43,11 @@ in {
         name = "coc.nvim";
         extraConfig = /* lua */
           ''
+            vim.g.coc_root_patterns = {'.direnv'}
+
+            vim.cmd([[autocmd BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')]])
+
+
             function _G.check_back_space()
                 local col = vim.fn.col('.') - 1
                 return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
@@ -181,11 +186,9 @@ in {
         "diagnostic.virtualTextCurrentLineOnly": false,
         "diagnostic.virtualText": true,
         "workspace.rootPatterns": [
-          ".git"
+          ".direnv"
         ],
-        "workspace.ignoredFolders": [
-          "labsec"
-        ]
+        "workspace.ignoredFolders": ["**/iekuatiara/**/*", "**/iekuatiara"],
         "languageserver": {
           "nix": {
             "command": "nil",
