@@ -8,7 +8,7 @@
       output = [ "eDP-1" "HDMI-A-1" ];
       modules-left = [ "image" "hyprland/workspaces" ];
       modules-center = [ "clock" ];
-      modules-right = [ "pulseaudio" "battery" "network" ];
+      modules-right = [ "pulseaudio" "battery" "network" "custom/notification" ];
 
       "battery" = {
         bat = "BAT1";
@@ -59,6 +59,27 @@
         path = "/home/erb/repos/nixos-config/assets/nix_logo.png";
         size = 20;
       };
+
+      "custom/notification" = {
+        tooltip = false;
+        format = "{icon}";
+        format-icons = {
+          notification = "<span foreground='red'><sup></sup></span>";
+          none = "";
+          dnd-notification = "<span foreground='red'><sup></sup></span>";
+          dnd-none = "";
+          inhibited-notification = "<span foreground='red'><sup></sup></span>";
+          inhibited-none = "";
+          dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>";
+          dnd-inhibited-none = "";
+        };
+        return-type = "json";
+        exec-if = "which swaync-client";
+        exec = "swaync-client -swb";
+        on-click = "swaync-client -t -sw";
+        on-click-right = "swaync-client -d -sw";
+        escape = true;
+      };
     };
   };
 
@@ -90,6 +111,12 @@
          padding-left: 16px;
          padding-right: 16px;
     }
+
+    
+       #custom-notification {
+           margin-left: 8px;
+           padding-right: 16px;
+      }
      .modules-right {
          color: #4d4d4d;
          margin-left: 8px;

@@ -11,20 +11,18 @@ def change_wallpaper(base_path: str, used: set):
 
     if used == wallpapers:
         used.clear()
-    
-    wall = random.choice( list(wallpapers.difference(used)) )
+
+    wall = random.choice(list(wallpapers.difference(used)))
     used.add(wall)
     return os.path.join(base_path, wall)
 
 
 def main():
     base_path = "/home/erb/repos/nixos-config/assets/wallpaper"
-    wallpaper = "/home/erb/repos/nixos-config/assets/wallpaper/randall-mackey-mural2.jpg"
 
     subprocess.run(["swww", "init"])
 
     WALLPAPER_DURATION = 300
-    first = True
     used = {"randall-mackey-mural2.jpg"}
 
     begin = time.time()
@@ -33,13 +31,10 @@ def main():
 
     if not os.path.exists("/tmp/color_server.sock"):
         subprocess.run("notify-send /tmp/color_server.sock não existe!", shell=True)
-        
+
     while True:
         with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as sock:
-            if first:
-                first = False
-            else:
-                wallpaper = change_wallpaper(base_path, used)
+            wallpaper = change_wallpaper(base_path, used)
 
             subprocess.run(
                 ["swww", "img", wallpaper],
@@ -48,6 +43,16 @@ def main():
             )
             subprocess.run(
                 ["wal", "-s", "-n", "-i", wallpaper],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+            subprocess.run(
+                [
+                    "ln",
+                    "-sf",
+                    wallpaper,
+                    "/home/erb/.current_image.png",
+                ],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
             )

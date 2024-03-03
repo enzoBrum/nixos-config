@@ -10,6 +10,7 @@ let
       fi
       swww img $1
       wal -s -n -i $1
+      ln -sf $(realpath $1) /home/erb/.current_image.png
       echo "wallpaper changed" | socat - UNIX-CONNECT:/tmp/color_server.sock
     '';
 in
@@ -17,15 +18,16 @@ in
   home.packages = with pkgs; [
     chwall
     wl-clipboard
+    swaynotificationcenter
     mako
     dmenu
     playerctl
     swww
     python312Packages.pywal
     fuzzel
-    eww-wayland
     dunst
     cliphist
     swappy
+    hyprlock
   ];
 }

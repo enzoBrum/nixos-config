@@ -35,8 +35,8 @@ in {
         name = "coc-json";
       })
       (helpers.notUsedByVSCode {
-        pkg = coc-sql;
-        name = "coc-sql";
+        pkg = coc-sqlfluff;
+        name = "coc-sqlfluff";
       })
       (helpers.notUsedByVSCode {
         pkg = coc-nvim;
@@ -163,7 +163,7 @@ in {
     ];
 
     extraPackages = with pkgs; [
-      (python3.withPackages (ps: with ps; [ black flake8 ]))
+      (python3.withPackages (ps: with ps; [ black flake8 pylint isort ]))
       jdk21
       nil
       nixpkgs-fmt
@@ -177,10 +177,15 @@ in {
         "python.formatting.provider": "black",
         "coc.preferences.formatOnSave": true,
         "python.pythonPath": "nvim-python3",
-        "python.analysis.typeCheckingMode": "off",
         "java.jdt.ls.java.home": "${pkgs.jdk21}/lib/openjdk",
         "diagnostic.virtualTextCurrentLineOnly": false,
         "diagnostic.virtualText": true,
+        "workspace.rootPatterns": [
+          ".git"
+        ],
+        "workspace.ignoredFolders": [
+          "labsec"
+        ]
         "languageserver": {
           "nix": {
             "command": "nil",

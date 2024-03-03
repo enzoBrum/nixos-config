@@ -20,17 +20,18 @@ wl-paste --watch cliphist store &
 swww init &
 
 #notification daemno
-dunst &
+swaync &
 
 # terminal
-alacritty &
+wezterm &
 
 $scripts/change_color.py &
 $scripts/change_wallpaper.py &
 $scripts/change_workspace.py &
 $scripts/battery_notifier.py &
 
-waybar
+hyprctl setcursor Catppuccin-Macchiato-Blue-Cursors 26 &
+waybar &
 
 # # other
 # /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &

@@ -1,14 +1,4 @@
 { config, lib, pkgs, ... }:
-let
-  theme-name = "Catppuccin-Macchiato-Compact-Pink-Dark";
-  theme-pkg = pkgs.catppuccin-gtk.override {
-    accents = [ "pink" ];
-    size = "compact";
-    variant = "macchiato";
-  };
-  # theme-name = "Dracula";
-  # theme-pkg = pkgs.dracula-theme;
-in
 {
   imports = [ ./modules.nix ];
 
@@ -28,6 +18,8 @@ in
     };
     theme.name =
       "Catppuccin-Macchiato-Standard-Blue-Dark"; # note to self, the name is important. If you do not know the name, use gnome-tweaks.
+    cursorTheme.name = "Catppuccin-Macchiato-Blue-Cursors"; # rember to change this in hyprland config.
+    cursorTheme.package = pkgs.catppuccin-cursors.macchiatoBlue;
   };
 
   xdg.configFile."gdb/gdbinit".text = ''

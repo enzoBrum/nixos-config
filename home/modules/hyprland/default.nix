@@ -1,5 +1,5 @@
 { config, pkgs, inputs, ... }: {
-  imports = [ ./packages.nix ];
+  imports = [ ./packages.nix ./hyprlock.nix ./swaync.nix ];
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -124,7 +124,7 @@
       misc {
           animate_manual_resizes = false
           enable_swallow = true
-          swallow_regex = ^(Alacritty|kitty)$
+          swallow_regex = ^(Alacritty|kitty|org.wezfurlong.wezterm)$
       }
 
       Binds {
@@ -133,7 +133,7 @@
 
 
       #windowrulev2 = opacity 0.9 ,class:^(Alacritty)$
-      windowrulev2 = noblur, class:^(?!.*(Alacritty|kitty)).*$ 
+      windowrulev2 = noblur, class:^(?!.*(Alacritty|kitty|org.wezfurlong.wezterm)).*$ 
       # windowrulev2 = opaque, class:^(?!.*(Alacritty|kitty)).*$
       windowrulev2 = float, class:^(.*(copyq|iwgtk|pavucontrol|MEGAsync)).*$
       windowrulev2 = tile, class:^(.*(Mars)).*$
@@ -147,12 +147,12 @@
 
       bind = $mainMod, V, exec, $scripts/launch_fuzzel.py clipboard
       bind = $mainMod, A, toggleopaque
-      bind = $mainMod, Return, exec, alacritty
+      bind = $mainMod, Return, exec, wezterm
       bind = $mainMod, W, killactive, 
       bind = $mainMod_ALT, Q , exit, 
       bind = $mainMod, F , fullscreen, 0 
       bind = $mainMod,TAB  , fullscreen, 1 
-      bind = $mainMod, Z, exec, firefox
+      bind = $mainMod, Z, exec, google-chrome-stable
       bind = $mainMod, X, exec, code
       bind = $mainMod_SHIFT,SPACE , togglefloating, 
       bind = $mainMod,SPACE, exec, playerctl play-pause

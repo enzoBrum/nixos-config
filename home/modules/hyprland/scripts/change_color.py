@@ -18,7 +18,7 @@ def col_shaded(color, shade_multiplier=0.5):
     return "#" + col_hex
 
 
-def change_color(bg = None, fg = None):
+def change_color(bg=None, fg=None):
     colors_path = "/home/erb/.cache/wal/colors.json"
     data = json.load(open(colors_path, "r"))
 
@@ -28,17 +28,6 @@ def change_color(bg = None, fg = None):
         f'hyprctl --batch "keyword general:col.active_border rgba({fg[1:]+"ff"}); keyword general:col.inactive_border rgba({col_shaded(fg)[1:]+"ff"});"',
         shell=True,
         check=True,
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )
-    subprocess.run(
-        [
-            "eww",
-            "update",
-            f"fg_color={fg}",
-            f"bg_color={bg}",
-            f"inactive_color={col_shaded(fg)}",
-        ],
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )

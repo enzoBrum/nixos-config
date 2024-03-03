@@ -14,6 +14,7 @@ in
     eza
     jq
     firefox-bin
+    google-chrome
     tldr
     obs-studio
     wget

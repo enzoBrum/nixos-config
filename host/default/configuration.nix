@@ -1,6 +1,7 @@
 { config, pkgs, pkgs-stable, lib, ... }: {
   imports = [ ./hardware-configuration.nix ./modules.nix ];
 
+  programs.nix-ld.enable = true;
   nix = {
     settings = {
       auto-optimise-store = true;
