@@ -33,6 +33,8 @@ $scripts/battery_notifier.py &
 hyprctl setcursor Catppuccin-Macchiato-Blue-Cursors 26 &
 waybar &
 
+eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=ssh) &
+
 # # other
 # /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
