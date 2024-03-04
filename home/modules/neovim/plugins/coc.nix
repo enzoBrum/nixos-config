@@ -1,6 +1,33 @@
-{ config, pkgs, ... }:
-let helpers = import ./helpers.nix;
-in {
+{ lib, config, pkgs, ... }:
+let
+  helpers = import ./helpers.nix;
+  flake8-pyproject = pkgs.python312Packages.buildPythonPackage rec {
+    pname = "flake8_pyproject";
+    version = "1.2.3";
+    format = "wheel";
+
+    src = pkgs.fetchPypi {
+      inherit pname version format;
+
+      sha256 = "sha256-Ykn+U1RSBa9edoN2RNyAtMEAN+c6Dl24f/Vi11+1vUo=";
+      python = "py3";
+      platform = "any";
+      dist = "py3";
+    };
+
+    propagatedBuildInputs = [ ];
+
+    pythonImportsCheck = [ ];
+
+    meta = with lib; {
+      description = "Flake8 plug-in loading the configuration from pyproject.toml";
+      homepage = "https://github.com/john-hen/Flake8-pyproject";
+      license = lib.licenses.mit;
+      maintainers = with maintainers; [ enzoBrum ];
+    };
+  };
+in
+{
   programs.neovim = {
     withPython3 = true;
     withNodeJs = true;
@@ -43,9 +70,6 @@ in {
         name = "coc.nvim";
         extraConfig = /* lua */
           ''
-            vim.g.coc_root_patterns = {'.direnv'}
-
-            vim.cmd([[autocmd BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')]])
 
 
             function _G.check_back_space()
@@ -173,6 +197,7 @@ in {
       nil
       nixpkgs-fmt
       clang-tools
+      flake8-pyproject
     ];
   };
 
@@ -186,9 +211,9 @@ in {
         "diagnostic.virtualTextCurrentLineOnly": false,
         "diagnostic.virtualText": true,
         "workspace.rootPatterns": [
-          ".direnv"
+          ".git",
         ],
-        "workspace.ignoredFolders": ["**/iekuatiara/**/*", "**/iekuatiara"],
+        "workspace.ignoredFolders": ["**/iekuatiara/**/*", "**/labsec"],
         "languageserver": {
           "nix": {
             "command": "nil",
