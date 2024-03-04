@@ -70,7 +70,7 @@ in
         name = "coc.nvim";
         extraConfig = /* lua */
           ''
-
+            vim.cmd([[autocmd BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')]])
 
             function _G.check_back_space()
                 local col = vim.fn.col('.') - 1
