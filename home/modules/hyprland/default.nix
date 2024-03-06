@@ -127,9 +127,9 @@
           swallow_regex = ^(Alacritty|kitty|org.wezfurlong.wezterm|com.raggesilver.BlackBox)$
       }
 
-      Binds {
-          workspace_back_and_forth = true
-      }
+      # Binds {
+      #     workspace_back_and_forth = true
+      # }
 
 
       #windowrulev2 = opacity 0.9 ,class:^(Alacritty)$
