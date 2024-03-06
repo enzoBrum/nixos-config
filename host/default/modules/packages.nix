@@ -9,6 +9,7 @@ in
 {
   environment.systemPackages = with pkgs; [
     xorg.xhost
+    fd
     nix-search-cli
     tree
     eza
