@@ -165,6 +165,7 @@ with lib.hm.gvariant;
       '';
       restore-workspaces-only-on-primary = "true";
       show-workspace-indicator = false;
+      show-window-position-bar = false;
     };
 
     "org/gnome/shell/extensions/paperwm/keybindings" = {
