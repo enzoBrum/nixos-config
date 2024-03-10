@@ -49,4 +49,11 @@
     owner = config.users.users.erb.name;
     group = config.users.users.erb.group;
   };
+
+  sops.secrets.github_access_token = {
+    sopsFile = ../../../secrets.yaml;
+    mode = "0640";
+    owner = config.users.users.erb.name;
+    group = config.users.users.erb.group;
+  };
 }

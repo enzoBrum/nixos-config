@@ -15,6 +15,10 @@
     gc.automatic = true;
     gc.dates = "weekly";
     gc.options = "--delete-older-than 7d";
+
+    extraOptions = ''
+      !include ${config.sops.secrets.github_access_token.path}
+    '';
   };
 
   nixpkgs.config.allowUnfree = true;
