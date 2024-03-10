@@ -150,6 +150,10 @@ with lib.hm.gvariant;
       # whitelist = [ "com.raggesilver.BlackBox" ];
     };
 
+    "com/raggesilver/BlackBox" = {
+      scrollback-lines = mkUint32 10000;
+    };
+
     "org/gnome/shell/extensions/pano" = {
       global-shortcut = [ "<Super>v" ];
       paste-on-select = false;
@@ -166,6 +170,7 @@ with lib.hm.gvariant;
       restore-workspaces-only-on-primary = "true";
       show-workspace-indicator = false;
       show-window-position-bar = false;
+      winprops = lib.hm.gvariant.mkArray type.string [ ''{"wm_class":"com.raggesilver.BlackBox","preferredWidth":"50%"}'' ];
     };
 
     "org/gnome/shell/extensions/paperwm/keybindings" = {
