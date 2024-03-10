@@ -6,13 +6,18 @@ let
     version = "1.2.3";
     format = "wheel";
 
-    src = pkgs.fetchPypi {
-      inherit pname version format;
+    # src = pkgs.fetchPypi {
+    #   inherit pname version format;
+    #
+    #   sha256 = "sha256-Ykn+U1RSBa9edoN2RNyAtMEAN+c6Dl24f/Vi11+1vUo=";
+    #   python = "py3";
+    #   platform = "any";
+    #   dist = "py3";
+    # };
 
+    src = pkgs.fetchurl {
+      url = "https://files.pythonhosted.org/packages/5f/1d/635e86f9f3a96b7ea9e9f19b5efe17a987e765c39ca496e4a893bb999112/flake8_pyproject-1.2.3-py3-none-any.whl";
       sha256 = "sha256-Ykn+U1RSBa9edoN2RNyAtMEAN+c6Dl24f/Vi11+1vUo=";
-      python = "py3";
-      platform = "any";
-      dist = "py3";
     };
 
     propagatedBuildInputs = [ ];
@@ -23,7 +28,6 @@ let
       description = "Flake8 plug-in loading the configuration from pyproject.toml";
       homepage = "https://github.com/john-hen/Flake8-pyproject";
       license = lib.licenses.mit;
-      maintainers = with maintainers; [ enzoBrum ];
     };
   };
 in

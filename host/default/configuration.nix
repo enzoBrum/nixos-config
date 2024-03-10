@@ -96,6 +96,6 @@
   services.flatpak.enable = true;
   environment.systemPackages = with pkgs; [ plymouth breeze-plymouth sbctl ];
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "24.05";
 }
 

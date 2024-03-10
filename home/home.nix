@@ -5,7 +5,7 @@
   home.username = "erb";
   home.homeDirectory = "/home/erb";
 
-  home.stateVersion = "23.05";
+  home.stateVersion = "24.05";
 
   programs.home-manager.enable = true;
 

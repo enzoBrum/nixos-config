@@ -20,9 +20,6 @@
         gdb
         jdk21
         maven
-        nixd
-        nixpkgs-fmt
-        nil
         rustc
         cargo
         rust-analyzer
