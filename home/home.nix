@@ -20,6 +20,12 @@
       "Catppuccin-Macchiato-Standard-Blue-Dark"; # note to self, the name is important. If you do not know the name, use gnome-tweaks.
     cursorTheme.name = "Catppuccin-Macchiato-Blue-Cursors"; # rember to change this in hyprland config.
     cursorTheme.package = pkgs.catppuccin-cursors.macchiatoBlue;
+
+    iconTheme.name = "Papirus-Dark";
+    iconTheme.package = pkgs.catppuccin-papirus-folders.override {
+      accent = "blue";
+      flavor = "macchiato";
+    };
   };
 
   xdg.configFile."gdb/gdbinit".text = ''

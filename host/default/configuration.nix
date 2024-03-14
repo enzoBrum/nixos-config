@@ -43,7 +43,7 @@
       theme = "bgrt";
     };
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_latest;
     initrd.verbose = false;
     consoleLogLevel = 0;
     kernelParams = [
