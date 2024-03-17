@@ -12,6 +12,14 @@ with lib.hm.gvariant;
       logo-position = "bottom-left";
     };
 
+    "org/gnome/desktop/session" = {
+      idle-delay = mkUint32 0;
+    };
+    "org/gnome/settings-daemon/plugins/power" = {
+      sleep-inactive-battery-timeout = mkUint32 0;
+      sleep-inactive-ac-timeout = mkUint32 0;
+    };
+
     "org/gnome/control-center" = {
       last-panel = "power";
       window-state = mkTuple [ 656 1028 false ];
