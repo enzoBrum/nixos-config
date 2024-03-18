@@ -25,9 +25,9 @@
                 let
                   bg = pkgs.fetchurl {
                     url =
-                      "file:///home/erb/repos/nixos-config/assets/wallpaper/blurred";
+                      "https://github.com/enzoBrum/nixos-config/raw/main/assets/wallpaper/blurred";
                     sha256 =
-                      "";
+                      "sha256-U3nJ8AaAltSE3bIVYLwTm+vyV4Susg/5pl73lCTZbAk=";
                   };
                 in
                 pkgs.writeText "bg.patch" ''
