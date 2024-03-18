@@ -8,7 +8,7 @@ if [ $(hyprctl monitors -j | jq length) -eq "2" ]; then
     hyprctl dispatch focusmonitor 1
 else
     for number in {1..10}; do
-        hyprctl keyword workspace '$number, monitor:eDP-1' 
+        hyprctl keyword workspace "$number, monitor:eDP-1"
     done
     hyprctl dispatch workspace 1
 fi

@@ -17,6 +17,13 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland.url = "github:hyprwm/Hyprland/v0.37.1";
   };
 
   outputs =
@@ -31,6 +38,7 @@
         enzoPC = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = {
+            inherit inputs;
             pkgs-stable = import nixpkgs-stable {
               system = system;
               config.allowUnfree = true;
