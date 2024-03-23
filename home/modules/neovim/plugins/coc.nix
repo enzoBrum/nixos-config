@@ -212,6 +212,7 @@ in
         "coc.preferences.formatOnSave": true,
         "python.pythonPath": "nvim-python3",
         "python.analysis.typeCheckingMode": "off",
+        "python.linting.enabled": false,
         "java.jdt.ls.java.home": "${pkgs.jdk21}/lib/openjdk",
         "diagnostic.virtualTextCurrentLineOnly": false,
         "diagnostic.virtualText": true,

@@ -171,11 +171,6 @@ in
       }
 
       {
-        name = "forgit";
-        src = forgit.src;
-      }
-
-      {
         name = "done";
         src = done.src;
       }
