@@ -1,28 +1,34 @@
 { pkgs, ... }: {
-  nixpkgs.overlays = [
-    (final: prev: {
-      pythonPackagesExtensions =
-        prev.pythonPackagesExtensions
-        ++ [
-          (
-            python-final: python-prev: {
-              catppuccin = python-prev.catppuccin.overridePythonAttrs (oldAttrs: rec {
-                version = "1.3.2";
-                src = prev.fetchFromGitHub {
-                  owner = "catppuccin";
-                  repo = "python";
-                  rev = "refs/tags/v${version}";
-                  hash = "sha256-spPZdQ+x3isyeBXZ/J2QE6zNhyHRfyRQGiHreuXzzik=";
-                };
-
-                # can be removed next version
-                disabledTestPaths = [
-                  "tests/test_flavour.py" # would download a json to check correctness of flavours
-                ];
-              });
-            }
-          )
-        ];
-    })
-  ];
+  nixpkgs = {
+    overlays = [
+      (self: super: {
+        gnome = super.gnome.overrideScope' (selfg: superg: {
+          gnome-shell = superg.gnome-shell.overrideAttrs (old: {
+            patches = (old.patches or [ ]) ++ [
+              (
+                let
+                  bg = pkgs.fetchurl {
+                    url =
+                      "https://github.com/enzoBrum/nixos-config/raw/main/assets/wallpaper/blurred";
+                    sha256 =
+                      "sha256-U3nJ8AaAltSE3bIVYLwTm+vyV4Susg/5pl73lCTZbAk=";
+                  };
+                in
+                pkgs.writeText "bg.patch" ''
+                  --- a/data/theme/gnome-shell-sass/widgets/_login-lock.scss
+                  +++ b/data/theme/gnome-shell-sass/widgets/_login-lock.scss
+                  @@ -15,4 +15,5 @@ $_gdm_dialog_width: 23em;
+                   /* Login Dialog */
+                   .login-dialog {
+                     background-color: $_gdm_bg;
+                  +  background-image: url('file://${bg}');
+                   }
+                ''
+              )
+            ];
+          });
+        });
+      })
+    ];
+  };
 }
