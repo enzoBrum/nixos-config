@@ -37,6 +37,17 @@
     end
   '';
 
+
+  xdg.dataFile."flatpak/overrides/global".text = ''
+    [Context]
+    filesystems=/home/erb/.icons:ro;/home/erb/.themes:ro;/home/erb/.cursors:ro;
+
+    [Environment]
+    GTK_THEME=Catppuccin-Macchiato-Standard-Blue-Dark
+    ICON_THEME=Catppuccin-Macchiato-Blue-Cursors
+    XCURSOR_THEME=Catppuccin-Macchiato-Blue-Cursors
+  '';
+
   xdg.dataFile."blackbox/schemes/Catppuccin-Macchiato.json".text = /* json */
     ''
       {

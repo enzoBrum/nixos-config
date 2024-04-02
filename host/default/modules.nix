@@ -12,5 +12,6 @@
     ./modules/hyprland.nix
     ./modules/gnome.nix
     ./modules/steam.nix
+    ./modules/flatpak_themes.nix
   ];
 }

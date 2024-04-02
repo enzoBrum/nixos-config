@@ -167,6 +167,7 @@ with lib.hm.gvariant;
       paste-on-select = false;
       play-audio-on-copy = false;
       send-notification-on-copy = false;
+      history-length = 500;
     };
 
     "org/gnome/shell/extensions/paperwm" = {

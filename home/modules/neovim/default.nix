@@ -46,7 +46,6 @@ in
         vim.o.relativenumber = true;
 
         vim.o.expandtab = true;
-        vim.o.autoindent = true;
         vim.o.smartindent = true;
         vim.o.wrap = false;
         --vim.o.tabstop = 4

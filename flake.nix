@@ -24,6 +24,10 @@
     };
 
     hyprland.url = "github:hyprwm/Hyprland/v0.37.1";
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -32,17 +36,23 @@
     , home-manager
     , lanzaboote
     , sops-nix
+    , nix-vscode-extensions
     , ...
-    }@inputs: {
+    }@inputs:
+    let
+      pkgs-stable = system: import nixpkgs-stable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      vscode-extensions = system: nix-vscode-extensions.extensions.${system};
+    in
+    {
       nixosConfigurations = {
         enzoPC = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = {
             inherit inputs;
-            pkgs-stable = import nixpkgs-stable {
-              system = system;
-              config.allowUnfree = true;
-            };
+            pkgs-stable = pkgs-stable system;
           };
 
           modules = [
@@ -54,10 +64,8 @@
               home-manager.users.erb = import ./home/home.nix;
               home-manager.extraSpecialArgs = {
                 inherit inputs;
-                pkgs-stable = import nixpkgs-stable {
-                  system = system;
-                  config.allowUnfree = true;
-                };
+                pkgs-stable = pkgs-stable system;
+                vscode-extensions = vscode-extensions system;
               };
             }
             lanzaboote.nixosModules.lanzaboote
