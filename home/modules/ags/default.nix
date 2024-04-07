@@ -8,6 +8,10 @@
     configDir = ./config;
 
     # packages to add to gjs's runtime
-    extraPackages = [ pkgs.libsoup_3 ];
+    extraPackages = with pkgs; [
+      gtksourceview
+      webkitgtk
+      accountsservice
+    ];
   };
 }

@@ -70,6 +70,14 @@ in
         name = "coc-sqlfluff";
       })
       (helpers.notUsedByVSCode {
+        pkg = coc-tsserver;
+        name = "coc-tsserver";
+      })
+      (helpers.notUsedByVSCode {
+        pkg = coc-prettier;
+        name = "coc-prettier";
+      })
+      (helpers.notUsedByVSCode {
         pkg = coc-nvim;
         name = "coc.nvim";
         extraConfig = /* lua */
@@ -202,6 +210,7 @@ in
       nixpkgs-fmt
       clang-tools
       flake8-pyproject
+      nodejs
     ];
   };
 

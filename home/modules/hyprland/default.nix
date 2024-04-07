@@ -147,7 +147,7 @@
 
       bind = $mainMod, V, exec, $scripts/launch_fuzzel.py clipboard
       bind = $mainMod, A, toggleopaque
-      bind = $mainMod, Return, exec, blackbox
+      bind = $mainMod, Return, exec, alacritty
       bind = $mainMod, W, killactive, 
       bind = $mainMod_ALT, Q , exit, 
       bind = $mainMod, F , fullscreen, 0 

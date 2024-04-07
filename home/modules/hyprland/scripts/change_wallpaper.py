@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-import time
-import subprocess
 import os
 import random
 import socket
+import subprocess
+import time
 
 
 def change_wallpaper(base_path: str, used: set):
@@ -20,7 +20,7 @@ def change_wallpaper(base_path: str, used: set):
 def main():
     base_path = "/home/erb/repos/nixos-config/assets/wallpaper"
 
-    subprocess.run(["swww", "init"])
+    subprocess.run(["swww-daemon"])
 
     WALLPAPER_DURATION = 300
     used = {"randall-mackey-mural2.jpg"}

@@ -8,6 +8,6 @@
       let pkgs = nixpkgs.legacyPackages.${system};
       in {
         devShells.default =
-          pkgs.mkShell { buildInputs = with pkgs; [ typescript bun ]; };
+          pkgs.mkShell { buildInputs = with pkgs; [ typescript bun nodejs ]; };
       });
 }

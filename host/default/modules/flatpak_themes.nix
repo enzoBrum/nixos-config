@@ -23,7 +23,7 @@
     in
     {
       # Create an FHS mount to support flatpak host icons/fonts
-      "/home/erb/.icons" = mkRoSymBind "${aggregated}/share/icons";
+      # "/home/erb/.icons" = mkRoSymBind "${aggregated}/share/icons";
       "/home/erb/.themes" = mkRoSymBind "${aggregated}/share/themes";
     };
 }

@@ -1,0 +1,80 @@
+[
+  {
+    "battery": {
+      "bat": "BAT1",
+      "format": "{capacity}% {icon}",
+      "format-icons": ["", "", "", "", ""],
+      "interval": 60,
+      "max-length": 25,
+      "states": {
+        "critical": 15,
+        "warning": 30
+      }
+    },
+    "clock": {
+      "format": "{:%b %d    %R}  ",
+      "interval": 60
+    },
+    "custom/notification": {
+      "escape": true,
+      "exec": "swaync-client -swb",
+      "exec-if": "which swaync-client",
+      "format": "{icon}",
+      "format-icons": {
+        "dnd-inhibited-none": "",
+        "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+        "dnd-none": "",
+        "dnd-notification": "<span foreground='red'><sup></sup></span>",
+        "inhibited-none": "",
+        "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+        "none": "",
+        "notification": "<span foreground='red'><sup></sup></span>"
+      },
+      "on-click": "swaync-client -t -sw",
+      "on-click-right": "swaync-client -d -sw",
+      "return-type": "json",
+      "tooltip": false
+    },
+    "height": 30,
+    "hyprland/workspaces": {
+      "active-only": false,
+      "format": "{icon}",
+      "format-icons": {
+        "active": "",
+        "default": "",
+        "empty": ""
+      },
+      "persistent-workspaces": {
+        "eDP-1": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      }
+    },
+    "image": {
+      "path": "/home/erb/repos/nixos-config/assets/nix_logo.png",
+      "size": 20
+    },
+    "layer": "top",
+    "modules-center": ["clock"],
+    "modules-left": ["image", "hyprland/workspaces"],
+    "modules-right": [
+      "pulseaudio",
+      "battery",
+      "network",
+      "custom/notification"
+    ],
+    "network": {
+      "format-ethernet": " {ipaddr}",
+      "format-wifi": "     {essid}",
+      "tooltip": false
+    },
+    "output": ["eDP-1", "HDMI-A-1"],
+    "position": "top",
+    "pulseaudio": {
+      "format": "{icon} {volume}%",
+      "format-icons": {
+        "default": ["", "", ""]
+      },
+      "scroll-step": 5,
+      "tooltip": false
+    }
+  }
+]

@@ -11,6 +11,7 @@
     ./modules/alacritty.nix
     ./modules/bat.nix
     ./modules/neovim/default.nix
+    ./modules/zellij.nix
     ./modules/wezterm.nix
     # ./modules/ags/default.nix
   ];

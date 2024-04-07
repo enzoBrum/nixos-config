@@ -6,11 +6,13 @@ scripts=$config/scripts
 
 if [ $(hyprctl monitors -j | jq length) -eq "2" ]; then
     hyprctl dispatch focusmonitor 1
+    waybar &
 else
     for number in {1..10}; do
         hyprctl keyword workspace "$number, monitor:eDP-1"
     done
     hyprctl dispatch workspace 1
+    waybar -c "$config/waybar_one_monitor.json" &
 fi
 
 # clipboard manager
@@ -27,11 +29,9 @@ blackbox &
 
 $scripts/change_color.py &
 $scripts/change_wallpaper.py &
-$scripts/change_workspace.py &
 $scripts/battery_notifier.py &
 
 hyprctl setcursor Catppuccin-Macchiato-Blue-Cursors 26 &
-waybar &
 
 eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=ssh) &
 

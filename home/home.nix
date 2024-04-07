@@ -9,6 +9,12 @@
 
   programs.home-manager.enable = true;
 
+  home.pointerCursor = {
+    name = "Catppuccin-Macchiato-Blue-Cursors"; # rember to change this in hyprland config.
+    package = pkgs.catppuccin-cursors.macchiatoBlue;
+    size = 26;
+    gtk.enable = true;
+  };
   gtk = {
     enable = true;
     theme.package = pkgs.catppuccin-gtk.override {
@@ -18,8 +24,8 @@
     };
     theme.name =
       "Catppuccin-Macchiato-Standard-Blue-Dark"; # note to self, the name is important. If you do not know the name, use gnome-tweaks.
-    cursorTheme.name = "Catppuccin-Macchiato-Blue-Cursors"; # rember to change this in hyprland config.
-    cursorTheme.package = pkgs.catppuccin-cursors.macchiatoBlue;
+    # cursorTheme.name = "Catppuccin-Macchiato-Blue-Cursors"; # rember to change this in hyprland config.
+    # cursorTheme.package = pkgs.catppuccin-cursors.macchiatoBlue;
 
     iconTheme.name = "Papirus-Dark";
     iconTheme.package = pkgs.catppuccin-papirus-folders.override {

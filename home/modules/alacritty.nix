@@ -2,7 +2,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      window.opacity = 1;
+      window.opacity = 0.8;
       colors = {
         primary = {
           background = "#24273A";
