@@ -25,7 +25,7 @@ swww init &
 swaync &
 
 # terminal
-blackbox &
+alacritty &
 
 $scripts/change_color.py &
 $scripts/change_wallpaper.py &

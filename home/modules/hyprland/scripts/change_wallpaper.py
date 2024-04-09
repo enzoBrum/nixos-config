@@ -58,7 +58,7 @@ def main():
             )
             sock.connect("/tmp/color_server.sock")
             sock.sendall(b"wallpaper changed")
-            time.sleep(WALLPAPER_DURATION)
+        time.sleep(WALLPAPER_DURATION)
 
 
 if __name__ == "__main__":

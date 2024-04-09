@@ -135,6 +135,7 @@ in
                    --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796'';
 
     SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh";
+    # ZELLIJ_AUTO_ATTACH = "true";
   };
 
   programs.fish = {
