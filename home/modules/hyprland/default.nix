@@ -136,7 +136,7 @@
       windowrulev2 = noblur, class:^(?!.*(Alacritty|kitty|org.wezfurlong.wezterm|com.raggesilver.BlackBox)).*$ 
       # windowrulev2 = opaque, class:^(?!.*(Alacritty|kitty)).*$
       windowrulev2 = float, class:^(.*(copyq|iwgtk|pavucontrol|MEGAsync)).*$
-      windowrulev2 = tile, class:^(.*(Mars)).*$
+      windowrulev2 = float, title:New monitor added!
       windowrulev2 = workspace 11, class:^(.*(Rocket.Chat)).*$
       windowrulev2 = workspace 12, class:^(.*(Spotify)).*$
 

@@ -30,6 +30,7 @@ alacritty &
 $scripts/change_color.py &
 $scripts/change_wallpaper.py &
 $scripts/battery_notifier.py &
+$scripts/handle_events.py &
 
 hyprctl setcursor Catppuccin-Macchiato-Blue-Cursors 26 &
 

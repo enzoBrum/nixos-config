@@ -204,7 +204,7 @@ in
     ];
 
     extraPackages = with pkgs; [
-      (python3.withPackages (ps: with ps; [ black flake8 pylint isort ]))
+      (python312.withPackages (ps: with ps; [ black flake8 pylint isort ]))
       jdk21
       nil
       nixpkgs-fmt
@@ -219,7 +219,6 @@ in
       {
         "python.formatting.provider": "black",
         "coc.preferences.formatOnSave": true,
-        "python.pythonPath": "nvim-python3",
         "python.analysis.typeCheckingMode": "off",
         "python.linting.enabled": false,
         "java.jdt.ls.java.home": "${pkgs.jdk21}/lib/openjdk",
