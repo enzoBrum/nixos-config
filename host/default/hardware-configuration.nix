@@ -19,7 +19,7 @@
   };
 
   boot.initrd.luks.devices."root".device =
-    "/dev/sda2";
+    "/dev/disk/by-label/CRYPT";
 
   fileSystems."/home" = {
     device = "/dev/disk/by-label/NIX";

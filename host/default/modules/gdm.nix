@@ -1,11 +1,11 @@
 { config, pkgs, pkgs-stable, ... }: {
+  services.displayManager.defaultSession = "hyprland";
   services = {
     xserver = {
       enable = true;
       displayManager = {
         gdm.enable = true;
         gdm.wayland = true;
-        defaultSession = "gnome";
 
         # autoLogin = {
         #   enable = true;

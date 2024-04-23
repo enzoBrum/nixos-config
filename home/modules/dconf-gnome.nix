@@ -6,23 +6,9 @@ with lib.hm.gvariant;
 {
   dconf.enable = true;
   dconf.settings = {
-    "org/fedorahosted/background-logo-extension" = {
-      logo-always-visible = true;
-      logo-border = mkUint32 50;
-      logo-position = "bottom-left";
-    };
-
-    "org/gnome/desktop/session" = {
-      idle-delay = mkUint32 0;
-    };
     "org/gnome/settings-daemon/plugins/power" = {
       sleep-inactive-battery-timeout = mkUint32 0;
       sleep-inactive-ac-timeout = mkUint32 0;
-    };
-
-    "org/gnome/control-center" = {
-      last-panel = "power";
-      window-state = mkTuple [ 656 1028 false ];
     };
 
     "org/gnome/desktop/background" = {
@@ -51,15 +37,6 @@ with lib.hm.gvariant;
     "org/gnome/desktop/peripherals/touchpad" = {
       tap-to-click = true;
       two-finger-scrolling-enabled = true;
-    };
-
-    "org/gnome/desktop/screensaver" = {
-      color-shading-type = "solid";
-      picture-options = "zoom";
-      picture-uri =
-        "file:///home/erb/repos/nixos-config/assets/wallpaper/wallhaven-7pm1qy_1920x1080.png";
-      primary-color = "#000000000000";
-      secondary-color = "#000000000000";
     };
 
     "org/gnome/desktop/wm/keybindings" = {
