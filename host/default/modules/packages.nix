@@ -9,15 +9,16 @@ in
 {
   environment.systemPackages = with pkgs; [
     xorg.xhost
+    obsidian
     fd
+    libreoffice
     nix-search-cli
     tree
     eza
     jq
     firefox-bin
-    google-chrome
+    chromium
     tldr
-    obs-studio
     wget
     ripgrep
     kitty
@@ -41,9 +42,7 @@ in
     vulkan-tools
     lutris
     fastfetch
-    libsForQt5.kdenlive
     acpi
-    swaylock
     libnotify
     unzip
     xfce.thunar

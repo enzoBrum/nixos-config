@@ -42,6 +42,10 @@ in
         name = "coc-pyright";
       })
       (helpers.notUsedByVSCode {
+        pkg = coc-tsserver;
+        name = "coc-tsserver";
+      })
+      (helpers.notUsedByVSCode {
         pkg = coc-clangd;
         name = "coc-clangd";
       })

@@ -140,13 +140,15 @@ in
 
   programs.fish = {
     enable = true;
+
+    # to run zellij on start.
+    # eval (zellij setup --generate-auto-start fish | string collect)
     interactiveShellInit = /* fish */ ''
       if status is-interactive
         set fish_greeting
         set -gx XDG_DATA_DIRS $XDG_DATA_DIRS /usr/share /var/lib/flatpak/exports/share $HOME/.local/share/flatpak/exports/share
         fzf_configure_bindings --directory=\cf
 
-        eval (zellij setup --generate-auto-start fish | string collect)
         fastfetch
       end
     '';
