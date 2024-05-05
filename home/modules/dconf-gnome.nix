@@ -97,7 +97,7 @@ with lib.hm.gvariant;
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
       {
         binding = "<Super>Return";
-        command = "blackbox";
+        command = "contour";
         name = "terminal";
       };
 
@@ -156,7 +156,7 @@ with lib.hm.gvariant;
       restore-workspaces-only-on-primary = "true";
       show-workspace-indicator = false;
       show-window-position-bar = false;
-      winprops = lib.hm.gvariant.mkArray type.string [ ''{"wm_class":"com.raggesilver.BlackBox","preferredWidth":"50%"}'' ];
+      winprops = lib.hm.gvariant.mkArray type.string [ ''{"wm_class":"contour","preferredWidth":"50%"}'' ];
     };
 
     "org/gnome/shell/extensions/paperwm/keybindings" = {

@@ -23,6 +23,7 @@ in
     ripgrep
     kitty
     blackbox-terminal
+    contour
     home-manager
     python312
     networkmanagerapplet
