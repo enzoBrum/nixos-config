@@ -13,7 +13,6 @@
     ./modules/neovim/default.nix
     ./modules/zellij.nix
     ./modules/wezterm.nix
-    ./modules/contour.nix
     # ./modules/ags/default.nix
   ];
 }

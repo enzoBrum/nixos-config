@@ -62,7 +62,6 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.erb = import ./home/home.nix;
-              home-manager.backupFileExtension = "backup";
               home-manager.extraSpecialArgs = {
                 inherit inputs;
                 pkgs-stable = pkgs-stable system;
