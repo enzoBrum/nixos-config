@@ -231,7 +231,7 @@ in
         "workspace.rootPatterns": [
           ".git",
         ],
-        "workspace.ignoredFolders": ["**/iekuatiara/**/*", "**/labsec"],
+        "workspace.ignoredFolders": ["**/iekuatiara/**/*", "**/labsec", "**/computacao-distribuida/**/*"],
         "languageserver": {
           "nix": {
             "command": "nil",
