@@ -18,12 +18,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ags = {
-      url = "github:Aylur/ags/v1.8.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # ags = {
+    #   url = "github:Aylur/ags/v1.8.0";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
-    hyprland.url = "github:hyprwm/Hyprland/v0.39.1";
+    hyprland.url = "github:hyprwm/Hyprland/v0.40.0";
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";

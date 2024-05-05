@@ -3,5 +3,5 @@
   security.pam.services.erb.enableGnomeKeyring = true;
 
   environment.systemPackages = with pkgs.gnomeExtensions;
-    [ paperwm vitals caffeine pano blur-my-shell user-themes ];
+    [ paperwm vitals caffeine clipboard-indicator blur-my-shell user-themes ];
 }
