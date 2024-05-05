@@ -48,7 +48,7 @@ for monitor in monitors:
         break
 
 with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as sock:
-    sock.connect(f"/tmp/hypr/{os.getenv("HYPRLAND_INSTANCE_SIGNATURE")}/.socket2.sock")
+    sock.connect(f"/{os.getenv('XDG_RUNTIME_DIR')}/hypr/{os.getenv("HYPRLAND_INSTANCE_SIGNATURE")}/.socket2.sock")
 
     file = sock.makefile()
     while True:
