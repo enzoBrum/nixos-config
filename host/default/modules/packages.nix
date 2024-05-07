@@ -9,7 +9,6 @@ in
 {
   environment.systemPackages = with pkgs; [
     xorg.xhost
-    wl-clipboard
     obsidian
     fd
     libreoffice

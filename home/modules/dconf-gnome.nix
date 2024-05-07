@@ -119,7 +119,6 @@ with lib.hm.gvariant;
         "paperwm@paperwm.github.com"
         "blur-my-shell@aunetx"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
-        "clipboard-indicator@tudmotu.com"
       ];
       favorite-apps = [
         "org.gnome.Calendar.desktop"
@@ -128,11 +127,6 @@ with lib.hm.gvariant;
         "org.mozilla.firefox.desktop"
       ];
       welcome-dialog-last-shown-version = "45.0";
-    };
-
-    "org/gnome/shell/extensions/clipboard-indicator" = {
-      history-size = mkUint32 200;
-      toggle-menu = [ "<Super>v" ];
     };
 
     "org/gnome/shell/extensions/blur-my-shell/applications" = {
