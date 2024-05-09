@@ -9,6 +9,7 @@ in
 {
   environment.systemPackages = with pkgs; [
     xorg.xhost
+    thunderbird
     obsidian
     fd
     libreoffice

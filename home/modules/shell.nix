@@ -4,9 +4,9 @@ let
   aliases = {
     cat = "bat --theme catppuccin-macchiato --style=plain";
     update =
-      "sudo nix-channel --update && cd /home/erb/repos/nixos-config && nix flake update && cd - && rebuild";
+      "sudo nix-channel --update && nh os switch --update";
     rebuild =
-      "sudo nixos-rebuild switch --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
+      "nh os switch";
     ls = "eza --icons=always";
     screenshoot = ''grim -g "$(slurp -d)" - | swappy -f -'';
     rebuild-test =

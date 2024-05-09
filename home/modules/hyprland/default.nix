@@ -152,7 +152,7 @@
       bind = $mainMod_ALT, Q , exit, 
       bind = $mainMod, F , fullscreen, 0 
       bind = $mainMod,TAB  , fullscreen, 1 
-      bind = $mainMod, Z, exec, firefox
+      bind = $mainMod, Z, exec, chromium
       bind = $mainMod, X, exec, code
       bind = $mainMod_SHIFT,SPACE , togglefloating, 
       bind = $mainMod,SPACE, exec, playerctl play-pause
