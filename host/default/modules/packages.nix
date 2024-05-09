@@ -22,7 +22,7 @@ in
     wget
     ripgrep
     kitty
-    blackbox-terminal
+    #blackbox-terminal
     home-manager
     python312
     networkmanagerapplet

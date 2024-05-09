@@ -28,6 +28,8 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    waybar.url = "github:Alexays/Waybar/0.10.3";
   };
 
   outputs =

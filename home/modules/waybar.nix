@@ -1,5 +1,7 @@
-{ config, pkgs, ... }: {
+{ inputs, pkgs, ... }: {
   programs.waybar.enable = true;
+  programs.waybar.package = inputs.waybar.packages.${pkgs.system}.waybar;
+
   programs.waybar.settings = {
     mainBar = {
       layer = "top";
