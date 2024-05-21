@@ -22,19 +22,19 @@
     "/dev/disk/by-label/CRYPT";
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-label/NIX";
+    device = "/dev/disk/by-label/CRYPT";
     fsType = "btrfs";
     options = [ "subvol=@home" ];
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-label/NIX";
+    device = "/dev/disk/by-label/CRYPT";
     fsType = "btrfs";
     options = [ "subvol=@nix" ];
   };
 
   fileSystems."/swap" = {
-    device = "/dev/disk/by-label/NIX";
+    device = "/dev/disk/by-label/CRYPT";
     fsType = "btrfs";
     options = [ "subvol=@swap" ];
   };
