@@ -30,6 +30,17 @@
     };
 
     waybar.url = "github:Alexays/Waybar/0.10.3";
+
+    coc-nvim = { url = "github:neoclide/coc.nvim"; flake = false; };
+    coc-pyright = { url = "github:fannheyward/coc-pyright"; flake = false; };
+    coc-clangd = { url = "github:clangd/coc-clangd"; flake = false; };
+    coc-docker = { url = "github:josa42/coc-docker"; flake = false; };
+    coc-java = { url = "github:neoclide/coc-java"; flake = false; };
+    coc-sumneko-lua = { url = "github:xiyaowong/coc-sumneko-lua"; flake = false; };
+    coc-yaml = { url = "github:neoclide/coc-yaml"; flake = false; };
+    coc-json = { url = "github:neoclide/coc-json"; flake = false; };
+    coc-tsserver = { url = "github:neoclide/coc-tsserver"; flake = false; };
+    coc-prettier = { url = "github:neoclide/coc-prettier"; flake = false; };
   };
 
   outputs =
@@ -47,6 +58,29 @@
         config.allowUnfree = true;
       };
       vscode-extensions = system: nix-vscode-extensions.extensions.${system};
+      coc-extensions = (system:
+        let
+          pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
+        in
+        builtins.listToAttrs (
+          map
+            (
+              name: {
+                inherit name;
+                value = builtins.getAttr name;
+              }
+            )
+            (
+              builtins.filter
+                (
+                  name: pkgs.lib.strings.hasPreffix "coc-" name
+                )
+                (
+                  builtins.attrNames inputs
+                )
+            )
+        )
+      );
     in
     {
       nixosConfigurations = {
@@ -54,6 +88,7 @@
           system = "x86_64-linux";
           specialArgs = {
             inherit inputs;
+            inherit coc-extensions;
             pkgs-stable = pkgs-stable system;
           };
 

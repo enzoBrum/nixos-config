@@ -18,7 +18,7 @@ in
     eza
     jq
     firefox-bin
-    chromium
+    google-chrome
     tldr
     wget
     ripgrep

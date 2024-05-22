@@ -1,5 +1,5 @@
 { config, pkgs, pkgs-stable, lib, ... }: {
-  imports = [ ./hardware-configuration.nix ./modules.nix ];
+  imports = [ ./hardware-configuration.nix ./modules.nix ./overlays.nix ];
 
   programs.nix-ld.enable = true;
   nix = {
