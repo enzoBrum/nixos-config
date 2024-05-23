@@ -1,18 +1,7 @@
 { pkgs, ... }:
-let
-  flash-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "flash-nvim";
-    src = pkgs.fetchFromGitHub {
-      owner = "folke";
-      repo = "flash.nvim";
-      rev = "48817af25f51c0590653bbc290866e4890fe1cbe";
-      sha256 = "sha256-j917u46PaOG6RmsKKoUQHuBMfXfGDD/uOBzDGhKlwTE=";
-    };
-  };
-in
 {
   programs.neovim.plugins = [{
-    plugin = flash-nvim;
+    plugin = pkgs.vimPlugins.flash-nvim;
     type = "lua";
     config = /* lua */
       ''
