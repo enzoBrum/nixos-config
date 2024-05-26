@@ -52,6 +52,14 @@
     vim-ext-lualine-nvim = { url = "github:nvim-lualine/lualine.nvim"; flake = false; };
     vim-ext-nvim-surround = { url = "github:kylechui/nvim-surround"; flake = false; };
     vim-ext-nvim-tree-lua = { url = "github:kylechui/nvim-surround"; flake = false; };
+    vim-ext-ReplaceWithRegister = { url = "github:vim-scripts/ReplaceWithRegister"; flake = false; };
+    vim-ext-telescope-fzf-native-nvim = { url = "github:nvim-telescope/telescope-fzf-native.nvim"; flake = false; };
+    vim-ext-plenary-nvim = { url = "github:nvim-lua/plenary.nvim"; flake = false; };
+    vim-ext-nvim-treesitter = { url = "github:nvim-treesitter/nvim-treesitter"; flake = false; };
+    vim-ext-nvim-treesitter-textobjects = { url = "github:nvim-treesitter/nvim-treesitter-textobjects"; flake = false; };
+    vim-ext-undotree = { url = "github:mbbill/undotree"; flake = false; };
+    vim-ext-vim-sleuth = { url = "github:tpope/vim-sleuth"; flake = false; };
+    vim-ext-which-key-nvim = { url = "github:folke/which-key.nvim"; flake = false; };
   };
 
   outputs =
