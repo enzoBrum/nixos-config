@@ -9,21 +9,16 @@ in
 {
   environment.systemPackages = with pkgs; [
     xorg.xhost
-    thunderbird
-    obsidian
     fd
     libreoffice
     nix-search-cli
     tree
     eza
     jq
-    firefox-bin
     google-chrome
     tldr
     wget
     ripgrep
-    kitty
-    #blackbox-terminal
     home-manager
     python312
     networkmanagerapplet
@@ -31,7 +26,6 @@ in
     fzf
     grc
     killall
-    discord
     webcord
     run
     spotify
@@ -46,10 +40,12 @@ in
     acpi
     libnotify
     unzip
+    zip
     xfce.thunar
     neovim
     p7zip
     lazydocker
     lazygit
+    gcc
   ];
 }
