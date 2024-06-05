@@ -10,7 +10,7 @@
   programs.home-manager.enable = true;
 
   home.pointerCursor = {
-    name = "Catppuccin-Macchiato-Blue-Cursors"; # rember to change this in hyprland config.
+    name = "catppuccin-macchiato-blue-cursors"; # rember to change this in hyprland config.
     package = pkgs.catppuccin-cursors.macchiatoBlue;
     size = 26;
     gtk.enable = true;
