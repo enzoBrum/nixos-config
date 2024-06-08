@@ -8,6 +8,7 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    firefox
     thunderbird
     xorg.xhost
     fd
