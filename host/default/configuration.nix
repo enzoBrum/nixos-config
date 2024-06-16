@@ -22,6 +22,8 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+  powerManagement.cpuFreqGovernor = "performance";
+  powerManagement.enable = true;
 
   boot = {
     tmp.cleanOnBoot = true;

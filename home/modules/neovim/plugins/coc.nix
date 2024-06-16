@@ -70,10 +70,6 @@ in
         name = "coc-json";
       })
       (helpers.notUsedByVSCode {
-        pkg = coc-sqlfluff;
-        name = "coc-sqlfluff";
-      })
-      (helpers.notUsedByVSCode {
         pkg = coc-tsserver;
         name = "coc-tsserver";
       })
