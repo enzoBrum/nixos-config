@@ -10,28 +10,19 @@
   programs.home-manager.enable = true;
 
   home.pointerCursor = {
-    name = "catppuccin-macchiato-blue-cursors"; # rember to change this in hyprland config.
-    package = pkgs.catppuccin-cursors.macchiatoBlue;
-    size = 26;
+    name = "Dracula";
+    package = pkgs.dracula-icon-theme;
+    size = 24;
     gtk.enable = true;
   };
   gtk = {
     enable = true;
-    theme.package = pkgs.catppuccin-gtk.override {
-      accents = [ "blue" ];
-      size = "standard";
-      variant = "macchiato";
-    };
+    theme.package = pkgs.dracula-theme;
     theme.name =
-      "Catppuccin-Macchiato-Standard-Blue-Dark"; # note to self, the name is important. If you do not know the name, use gnome-tweaks.
-    # cursorTheme.name = "Catppuccin-Macchiato-Blue-Cursors"; # rember to change this in hyprland config.
-    # cursorTheme.package = pkgs.catppuccin-cursors.macchiatoBlue;
+      "Dracula"; # note to self, the name is important. If you do not know the name, use gnome-tweaks.
 
-    iconTheme.name = "Papirus-Dark";
-    iconTheme.package = pkgs.catppuccin-papirus-folders.override {
-      accent = "blue";
-      flavor = "macchiato";
-    };
+    iconTheme.name = "Dracula";
+    iconTheme.package = pkgs.dracula-icon-theme;
   };
 
   xdg.configFile."gdb/gdbinit".text = ''
@@ -49,49 +40,10 @@
     filesystems=/home/erb/.icons:ro;/home/erb/.themes:ro;/home/erb/.cursors:ro;
 
     [Environment]
-    GTK_THEME=Catppuccin-Macchiato-Standard-Blue-Dark
-    ICON_THEME=Catppuccin-Macchiato-Blue-Cursors
-    XCURSOR_THEME=Catppuccin-Macchiato-Blue-Cursors
+    GTK_THEME=Dracula
+    ICON_THEME=Dracula
+    XCURSOR_THEME=Dracula
   '';
-
-  xdg.dataFile."blackbox/schemes/Catppuccin-Macchiato.json".text = /* json */
-    ''
-      {
-        "name": "Catppuccin-Macchiato",
-        "comment": "Soothing pastel theme for the high-spirited!",
-        "background-color": "#24273A",
-        "foreground-color": "#CAD3F5",
-        "badge-color": "#5B6078",
-        "bold-color": "#5B6078",
-        "cursor-background-color": "#F4DBD6",
-        "cursor-foreground-color": "#24273A",
-        "highlight-background-color": "#F4DBD6",
-        "highlight-foreground-color": "#24273A",
-        "palette": [
-          "#494D64",
-          "#ED8796",
-          "#A6DA95",
-          "#EED49F",
-          "#8AADF4",
-          "#F5BDE6",
-          "#8BD5CA",
-          "#B8C0E0",
-          "#5B6078",
-          "#ED8796",
-          "#A6DA95",
-          "#EED49F",
-          "#8AADF4",
-          "#F5BDE6",
-          "#8BD5CA",
-          "#A5ADCB"
-        ],
-        "use-badge-color": false,
-        "use-bold-color": false,
-        "use-cursor-color": true,
-        "use-highlight-color": true,
-        "use-theme-colors": false
-      }
-    '';
 
   # bluetooth-related settings
   services.mpris-proxy.enable = true;

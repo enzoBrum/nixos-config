@@ -6,6 +6,6 @@
 
   xdg.configFile."zellij/config.kdl".text = /* kdl */ ''
     copy_command "wl-copy"
-    theme "catppuccin-macchiato"
+    theme "dracula"
   '';
 }

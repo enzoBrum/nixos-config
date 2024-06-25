@@ -102,11 +102,11 @@ with lib.hm.gvariant;
       };
 
     "org/gnome/shell/extensions/user-theme" = {
-      name = "Catppuccin-Macchiato-Standard-Blue-Dark";
+      name = "Dracula";
     };
 
     "org/gnome/desktop/interface" = {
-      gtk-theme = "Catppuccin-Macchiato-Standard-Blue-Dark";
+      gtk-theme = "Dracula";
     };
 
     "org/gnome/shell" = {
@@ -126,7 +126,6 @@ with lib.hm.gvariant;
         "org.gnome.Software.desktop"
         "org.mozilla.firefox.desktop"
       ];
-      welcome-dialog-last-shown-version = "45.0";
     };
 
     "org/gnome/shell/extensions/blur-my-shell/applications" = {

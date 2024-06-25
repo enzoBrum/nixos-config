@@ -8,6 +8,7 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    rocketchat-desktop
     firefox
     thunderbird
     xorg.xhost
@@ -37,7 +38,6 @@ in
     wineWowPackages.waylandFull
     winetricks
     vulkan-tools
-    lutris
     fastfetch
     acpi
     libnotify

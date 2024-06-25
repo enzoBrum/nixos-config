@@ -31,6 +31,11 @@
 
     waybar.url = "github:Alexays/Waybar/0.10.3";
 
+    dracula-alacritty = {
+      url = "github:dracula/alacritty";
+      flake = false;
+    };
+
     # Completelly broken LOL
     # vim-ext-coc-nvim = { url = "github:neoclide/coc.nvim/release"; flake = false; };
     # vim-ext-coc-pyright = { url = "github:fannheyward/coc-pyright"; flake = false; };

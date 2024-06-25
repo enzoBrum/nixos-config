@@ -2,7 +2,7 @@
 let
   p10kTheme = "/home/erb/repos/nixos-config/scripts/.p10k.zsh";
   aliases = {
-    cat = "bat --theme catppuccin-macchiato --style=plain";
+    cat = "bat --theme Dracula --style=plain";
     update =
       "sudo nix-channel --update && nh os switch --update";
     rebuild =
@@ -54,14 +54,21 @@ in
         "$character"
       ];
 
-      palette = "catppuccin_${flavour}";
-    } // builtins.fromTOML (builtins.readFile (pkgs.fetchFromGitHub
-      {
-        owner = "catppuccin";
-        repo = "starship";
-        rev = "5629d2356f62a9f2f8efad3ff37476c19969bd4f";
-        sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0=";
-      } + /palettes/${flavour}.toml));
+      aws.style = "bold #ffb86c";
+      cmd_duration.style = "bold #f1fa8c";
+      directory.style = "bold #50fa7b";
+      hostname.style = "bold #ff5555";
+      git_branch.style = "bold #ff79c6";
+      git_status.style = "bold #ff5555";
+      username = {
+        format = "[$user]($style) on ";
+        style_user = "bold #bd93f9";
+      };
+      character = {
+        success_symbol = "[λ](bold #f8f8f2)";
+        error_symbol = "[λ](bold #ff5555)";
+      };
+    };
   };
   programs.zsh = {
     enable = true;
@@ -74,11 +81,7 @@ in
     sessionVariables = {
       EDITOR = "nvim";
       NIXOS_OZONE_WL = 1;
-      FZF_DEFAULT_OPTS = ''
-        \
-                     --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
-                     --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
-                     --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796'';
+      FZF_DEFAULT_OPTS = ''--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'';
     };
 
     initExtra =
