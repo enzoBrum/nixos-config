@@ -29,7 +29,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    waybar.url = "github:Alexays/Waybar/0.10.3";
+    #waybar.url = "github:Alexays/Waybar/0.10.3";
 
     dracula-alacritty = {
       url = "github:dracula/alacritty";
