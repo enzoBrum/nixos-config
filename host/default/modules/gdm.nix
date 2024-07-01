@@ -1,5 +1,5 @@
 { config, pkgs, pkgs-stable, ... }: {
-  services.displayManager.defaultSession = "gdm";
+  services.displayManager.defaultSession = "gnome";
   services = {
     xserver = {
       enable = true;
