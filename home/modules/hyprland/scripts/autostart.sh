@@ -32,7 +32,7 @@ $scripts/change_wallpaper.py &
 $scripts/battery_notifier.py &
 $scripts/handle_events.py &
 
-hyprctl setcursor Dracula 24 &
+hyprctl setcursor Dracula-cursors 24 &
 
 eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=ssh) &
 

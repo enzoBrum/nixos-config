@@ -178,6 +178,7 @@
       bind = $mainMod_SHIFT, j, movewindow, d
 
       # Switch workspaces with mainMod + [0-9]
+      bind = $mainMod, backslash, exec, $scripts/toggle_vpn.sh
       bind = $mainMod, 0, workspace, 10
       bind = $mainMod, 1, workspace, 1
       bind = $mainMod, 2, workspace, 2

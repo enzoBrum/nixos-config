@@ -227,6 +227,9 @@ in
         "workspace.rootPatterns": [
           ".git",
         ],
+        "[python]": {
+          "inlayHint.enable": false
+        },
         "workspace.ignoredFolders": ["**/iekuatiara/**/*", "**/labsec", "**/computacao-distribuida/**/*"],
         "languageserver": {
           "nix": {

@@ -10,8 +10,8 @@
   programs.home-manager.enable = true;
 
   home.pointerCursor = {
-    name = "Dracula";
-    package = pkgs.dracula-icon-theme;
+    name = "Dracula-cursors";
+    package = pkgs.dracula-theme;
     size = 24;
     gtk.enable = true;
   };
