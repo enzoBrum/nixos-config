@@ -10,26 +10,26 @@ return {
       { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
-        vim.api.nvim_create_autocmd("InsertEnter", {
-            pattern = "*",
-            callback = function()
-              vim.lsp.inlay_hint.enable(false)
-            end,
-        })
+      vim.api.nvim_create_autocmd("InsertEnter", {
+        pattern = "*",
+        callback = function()
+          vim.lsp.inlay_hint.enable(false)
+        end,
+      })
 
-        -- Trigger on leaving insert mode
-        vim.api.nvim_create_autocmd("InsertLeave", {
-            pattern = "*",
-            callback = function()
-              vim.lsp.inlay_hint.enable(true)
-            end,
-        })
-        vim.api.nvim_create_autocmd('LspAttach', {
-          group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
-          callback = function(event)
-              local map = function(keys, func, desc)
-                vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
-            end
+      -- Trigger on leaving insert mode
+      vim.api.nvim_create_autocmd("InsertLeave", {
+        pattern = "*",
+        callback = function()
+          vim.lsp.inlay_hint.enable(true)
+        end,
+      })
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
+        callback = function(event)
+          local map = function(keys, func, desc)
+            vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          end
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
@@ -51,7 +51,7 @@ return {
           --  Symbols are things like variables, functions, types, etc.
           map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
 
-                    -- Fuzzy find all the symbols in your current workspace.
+          -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
           map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
@@ -132,7 +132,7 @@ return {
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 
       -- For docker-compose files
-      vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+      vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
         pattern = "docker-compose*.yml",
         callback = function()
           vim.bo.filetype = "yaml.docker-compose"
@@ -150,7 +150,7 @@ return {
         callback = function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
           if client ~= nil and client.name == "basedpyright" then
-            local settings = client.config.settings and client.config.settings or {basedpyright = {analysis = {}}}
+            local settings = client.config.settings and client.config.settings or { basedpyright = { analysis = {} } }
             local root_dir = client.root_dir
             if root_dir == nil or string.find(root_dir, "iekuatiara") == nil then
               settings.basedpyright.analysis.extraPaths = {}
@@ -159,11 +159,11 @@ return {
             end
 
             settings.basedpyright.analysis.extraPaths = {
-              "./misc/python-common";
-              "./base/front-end";
-              "./base/document-verifier";
-              "./base/immutable-storage-registry";
-              "./misc/python-oid";
+              "./misc/python-common",
+              "./base/front-end",
+              "./base/document-verifier",
+              "./base/immutable-storage-registry",
+              "./misc/python-oid",
             }
             client.notify("workspace/didChangeConfiguration", settings)
           end
@@ -172,21 +172,21 @@ return {
 
       local util = require 'lspconfig.util'
       require("lspconfig").basedpyright.setup({
-          root_dir = function(fname)
-            local path = util.root_pattern("pyproject.toml", "setup.py", "requirementx.txt", ".git")(fname)
-            local idx = string.find(path, "iekuatiara")
-            if idx then
-              path = string.sub(path, 1, idx + string.len("iekuatiara") - 1)
-            end
-            return path
-          end,
-          settings = {
-            basedpyright = {
-              analysis = {
-                typeCheckingMode = "off";
-              }
+        root_dir = function(fname)
+          local path = util.root_pattern("pyproject.toml", "setup.py", "requirementx.txt", ".git")(fname)
+          local idx = string.find(path, "iekuatiara")
+          if idx then
+            path = string.sub(path, 1, idx + string.len("iekuatiara") - 1)
+          end
+          return path
+        end,
+        settings = {
+          basedpyright = {
+            analysis = {
+              typeCheckingMode = "off",
             }
           }
+        }
       })
       require("lspconfig").clangd.setup({})
       require("lspconfig").dockerls.setup({})
@@ -204,7 +204,7 @@ return {
       {
         '<leader>fb',
         function()
-          require('conform').format { async = true, lsp_fallback = true }
+          require('conform').format { async = false, lsp_fallback = true }
         end,
         mode = '',
         desc = '[F]ormat [b]uffer',
@@ -216,7 +216,7 @@ return {
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true, lua = true }
+        local disable_filetypes = {}
         return {
           timeout_ms = 2000,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
@@ -319,16 +319,16 @@ return {
           --
           -- <c-l> will move you to the right of each of the expansion locations.
           -- <c-h> is similar, except moving you backwards.
-          ['<C-l>'] = cmp.mapping(function()
-            if luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            end
-          end, { 'i', 's' }),
-          ['<C-h>'] = cmp.mapping(function()
-            if luasnip.locally_jumpable(-1) then
-              luasnip.jump(-1)
-            end
-          end, { 'i', 's' }),
+          --['<C-l>'] = cmp.mapping(function()
+          --  if luasnip.expand_or_locally_jumpable() then
+          --    luasnip.expand_or_jump()
+          --  end
+          --end, { 'i', 's' }),
+          --['<C-h>'] = cmp.mapping(function()
+          --  if luasnip.locally_jumpable(-1) then
+          --    luasnip.jump(-1)
+          --  end
+          --end, { 'i', 's' }),
 
           -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -376,11 +376,11 @@ return {
         },
         -- you can enable a preset for easier configuration
         presets = {
-          bottom_search = true, -- use a classic bottom cmdline for search
-          command_palette = true, -- position the cmdline and popupmenu together
+          bottom_search = true,         -- use a classic bottom cmdline for search
+          command_palette = true,       -- position the cmdline and popupmenu together
           long_message_to_split = true, -- long messages will be sent to a split
-          inc_rename = false, -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = false, -- add a border to hover docs and signature help
+          inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false,       -- add a border to hover docs and signature help
         },
       })
     end
@@ -388,9 +388,9 @@ return {
   {
     "mfussenegger/nvim-lint",
     event = "VeryLazy",
-    config = function() 
+    config = function()
       require('lint').linters_by_ft = {
-        python = {'pylint', 'flake8'}
+        python = { 'pylint', 'flake8' }
       }
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         callback = function()
@@ -414,13 +414,13 @@ return {
     "ray-x/lsp_signature.nvim",
     event = "VeryLazy",
     opts = {},
-    config = function() 
+    config = function()
       require "lsp_signature".setup()
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
           local bufnr = args.buf
           local client = vim.lsp.get_client_by_id(args.data.client_id)
-          if vim.tbl_contains({ 'null-ls' }, client.name) then  -- blacklist lsp
+          if client == nil or vim.tbl_contains({ 'null-ls' }, client.name) then -- blacklist lsp
             return
           end
           require("lsp_signature").on_attach({
