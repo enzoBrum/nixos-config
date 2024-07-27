@@ -30,12 +30,14 @@ nix-shell -p sbctl --run 'sbctl enroll-keys --microsoft'
 cp -r /etc/secureboot /mnt/etc
 
 mkdir -p /mnt/home/erb/repos
+
 cd /mnt/home/erb/repos
 git clone https://github.com/enzoBrum/nixos-config.git
 
 read -sp "Age private key: " key
 echo $key > /mnt/etc/keys.txt
 mkdir -p /mnt/home/erb/.config/sops/age
+mkdir -p /mnt/home/erb/.config/nvim
 cp /mnt/etc/age-keys.txt /mnt/home/erb/.config/sops/age/
 
 nixos-install --root /mnt --flake "github:enzoBrum/nixos-config"#enzoPC

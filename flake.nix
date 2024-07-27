@@ -23,13 +23,11 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.41.2";
+    #hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.41.2";
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    waybar.url = "github:Alexays/Waybar/0.10.3";
 
     dracula-alacritty = {
       url = "github:dracula/alacritty";
