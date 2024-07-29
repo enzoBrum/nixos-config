@@ -6,6 +6,11 @@ return {
     config = function()
         require("nvim-surround").setup({
             -- Configuration here, or leave empty to use defaults
+                keymaps = {
+                    normal = "<leader>z",
+                    delete = "<leader>x",
+                    change = "<leader>c",
+                },
         })
     end
   }

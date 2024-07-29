@@ -10,12 +10,12 @@ return {
       { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
-      vim.api.nvim_create_autocmd("InsertEnter", {
-        pattern = "*",
-        callback = function()
-          vim.lsp.inlay_hint.enable(false)
-        end,
-      })
+      --vim.api.nvim_create_autocmd("InsertEnter", {
+      --  pattern = "*",
+      --  callback = function()
+      --    vim.lsp.inlay_hint.enable(false)
+      --  end,
+      --})
 
       -- Trigger on leaving insert mode
       vim.api.nvim_create_autocmd("InsertLeave", {
@@ -174,6 +174,9 @@ return {
       require("lspconfig").basedpyright.setup({
         root_dir = function(fname)
           local path = util.root_pattern("pyproject.toml", "setup.py", "requirementx.txt", ".git")(fname)
+          if path == nil then
+            return path
+          end
           local idx = string.find(path, "iekuatiara")
           if idx then
             path = string.sub(path, 1, idx + string.len("iekuatiara") - 1)
@@ -194,6 +197,7 @@ return {
       require("lspconfig").html.setup({})
       require("lspconfig").jsonls.setup({})
       require("lspconfig").lua_ls.setup({})
+      require("lspconfig").tsserver.setup({})
     end
   },
   { -- Autoformat

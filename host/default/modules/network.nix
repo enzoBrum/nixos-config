@@ -8,6 +8,9 @@
     libimobiledevice
     ifuse
   ];
+  networking.firewall = {
+    allowedTCPPorts = [ 80 3000 8080 8000 ];
+  };
   users.users.erb.extraGroups = [ "networkmanager" ];
   services.openvpn.servers = {
     labsec = {

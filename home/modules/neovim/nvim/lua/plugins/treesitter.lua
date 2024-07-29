@@ -4,6 +4,9 @@ return {
     main = "nvim-treesitter.configs",
     dev = true,
     opts = {
+        indent = {
+            enable = true
+        },
         autotag = {
             enable = true
         },
@@ -15,11 +18,12 @@ return {
         incremental_selection = {
             enable = true,
             keymaps = {
-                init_selection = "<CR>",
-                node_incremental = "<CR>",
-                scope_incremental = "<S-CR>",
-                node_decremental = "<BS>",
+                init_selection = '<leader>n',
+                node_incremental = '<leader>n',
+                scope_incremental = '<leader>s',
+                node_decremental = '<leader>r',
             },
+
         },
     }
 

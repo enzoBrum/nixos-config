@@ -1,5 +1,6 @@
 { config, pkgs, pkgs-stable, ... }: {
   virtualisation.docker.enable = true;
+  virtualisation.docker.package = pkgs.docker_27;
   virtualisation.docker.storageDriver = "btrfs";
   virtualisation.podman.enable = true;
   virtualisation.libvirtd.enable = true;

@@ -22,6 +22,8 @@ in
       fzf
       fd
       lua-language-server
+      typescript-language-server
+      typescript
     ];
     plugins = with pkgs.vimPlugins; [
       treesitter
