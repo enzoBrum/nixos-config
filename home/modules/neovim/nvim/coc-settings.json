@@ -9,7 +9,8 @@
   "python.analysis.typeCheckingMode": "off",
   "workspace.ignoredFolders": [
     "**/iekuatiara/**/*",
-    "**/computacao-distribuida/**/*"
+    "**/computacao-distribuida/**/*",
+    "**/labsec"
   ],
   "workspace.workspaceFolderCheckCwd": false
 }

@@ -24,6 +24,9 @@ in
       lua-language-server
       typescript-language-server
       typescript
+      jdt-language-server
+      nodejs_22
+      nil
     ];
     plugins = with pkgs.vimPlugins; [
       treesitter

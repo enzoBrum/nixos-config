@@ -1,21 +1,19 @@
-{ pkgs, coc-extensions, ... }:
-let
-  coc-packages = (super: builtins.listToAttrs (
-    map
-      (name: {
-        name = name;
-        value = super.vimUtils.buildVimPlugin { inherit name; src = builtins.getAttr name coc-extensions; };
-      })
-      (builtins.attrNames { coc-pyright = super.coc-pyright.src; coc-basedpyright = coc-extensions.coc-basedpyright; })));
-in
+{ pkgs, ... }:
 {
-  # nixpkgs = {
-  #   overlays = [
-  #     (self: super: {
-  #       vimPlugins = super.vimPlugins // (coc-packages super);
-  #       # inherit coc-packages;
-  #       # coc-basedpyright = pkgs.vimUtils.buildVimPlugin { name = "coc-basedpyright"; src = coc-extensions.coc-basedpyright; };
-  #     })
-  #   ];
-  # };
+   nixpkgs = {
+     overlays = [
+       (self: super: {
+        python3Packages = super.python3Packages // {pykeepass = super.python3Packages.pykeepass.overrideAttrs (_: rec {
+            version = "4.1.0.post1";
+            src = pkgs.fetchFromGitHub {
+              owner = "libkeepass";
+              repo = "pykeepass";
+              rev = "refs/tags/v${version}";
+              hash = "sha256-64is/XoRF/kojqd4jQIAQi1od8TRhiv9uR+WNIGvP2A=";
+            };
+          }
+        );}; 
+      })
+     ];
+   };
 }
