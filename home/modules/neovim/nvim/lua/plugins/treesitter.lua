@@ -2,6 +2,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     event = { "BufReadPost", "BufNewFile" },
     main = "nvim-treesitter.configs",
+    code = not vim.g.vscode,
     dev = true,
     opts = {
         indent = {

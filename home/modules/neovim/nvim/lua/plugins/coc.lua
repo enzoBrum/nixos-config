@@ -3,7 +3,6 @@ return {
     "neoclide/coc.nvim",
     branch = "release",
     cond = not vim.g.vscode,
-    enable = false,
     config = function ()
       vim.cmd([[autocmd BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')]])
       function _G.check_back_space()
