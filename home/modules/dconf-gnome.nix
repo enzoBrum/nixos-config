@@ -38,6 +38,10 @@ with lib.hm.gvariant;
       tap-to-click = true;
       two-finger-scrolling-enabled = true;
     };
+    "org/gnome/desktop/peripherals/keyboard" = {
+      repeat-interval = mkUint32 35;
+      delay = mkUint32 300;
+    };
 
     "org/gnome/desktop/wm/keybindings" = {
       maximize = [ "<Super>Up" ];
@@ -99,6 +103,12 @@ with lib.hm.gvariant;
         binding = "<Super>Return";
         command = "alacritty --option window.opacity=1";
         name = "terminal";
+      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" =
+      {
+        binding = "<Super>backslash";
+        command = "/home/erb/repos/nixos-config/scripts/toggle_vpn.sh";
+        name = "vpn";
       };
 
     "org/gnome/shell/extensions/user-theme" = {
