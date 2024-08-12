@@ -4,8 +4,11 @@
 with lib.hm.gvariant;
 
 {
-  dconf.enable = true;
+ dconf.enable = true;
   dconf.settings = {
+    "org/gnome/shell" = {
+      last-selected-power-profile = "performance";
+    };
     "org/gnome/settings-daemon/plugins/power" = {
       sleep-inactive-battery-timeout = mkUint32 0;
       sleep-inactive-ac-timeout = mkUint32 0;
@@ -89,6 +92,7 @@ with lib.hm.gvariant;
       control-center = [ "<Super>e" ];
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
       ];
       logout = [ "<Alt><Super>q" ];
       next = [ "<Shift><Super>space" ];
@@ -125,16 +129,16 @@ with lib.hm.gvariant;
         "focus-changer@heartmire"
         "Vitals@CoreCoding.com"
         "caffeine@patapon.info"
-        "pano@elhan.io"
-        "paperwm@paperwm.github.com"
+        "clipboard-indicator@tudmotu.com"
         "blur-my-shell@aunetx"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
+        "paperwm@paperwm.github.com"
       ];
       favorite-apps = [
         "org.gnome.Calendar.desktop"
         "org.gnome.Nautilus.desktop"
         "org.gnome.Software.desktop"
-        "org.mozilla.firefox.desktop"
+        "com.google.google-chrome.desktop"
       ];
     };
 
@@ -221,7 +225,5 @@ with lib.hm.gvariant;
       switch-to-application-2 = [ ];
       toggle-message-tray = [ ];
     };
-
-    "org/gnome/system/location" = { enabled = true; };
   };
 }
