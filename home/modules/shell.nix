@@ -177,12 +177,6 @@ in
         name = "fzf-fish";
         src = fzf-fish.src;
       }
-
-      {
-        name = "done";
-        src = done.src;
-      }
-
     ];
   };
 
