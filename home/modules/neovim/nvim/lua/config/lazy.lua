@@ -13,9 +13,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- load plugins
-require("lazy").setup("plugins", {
-   dev = {
-      path = "~/.local/share/nvim/nix",
-      fallback = false,
-   }
-})
+if not vim.g.vscode then
+   require("lazy").setup("plugins", {
+      dev = {
+         path = "~/.local/share/nvim/nix",
+         fallback = false,
+      }
+   })
+else
+   require("lazy").setup("plugins")
+end

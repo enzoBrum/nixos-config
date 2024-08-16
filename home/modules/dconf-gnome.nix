@@ -6,6 +6,12 @@ with lib.hm.gvariant;
 {
  dconf.enable = true;
   dconf.settings = {
+    "org/shell/extensions/clipboard-indicator" = {
+      history-size = mkUint32 200;
+      cache-size = mkUint32 256;
+      toggle-menu = ["<Super>v"];
+    };
+
     "org/gnome/shell" = {
       last-selected-power-profile = "performance";
     };

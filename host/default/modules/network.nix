@@ -31,7 +31,7 @@
 
   networking.hosts = {
     "127.0.0.1" =
-      [ "keycloak" "keycloak-carc" "keycloak-assinador" "satosa" "localhost" ];
+      [ "keycloak" "keycloak-carc" "keycloak-assinador" "satosa" "localhost" "keycloak-ades" ];
   };
   # networking.nameservers = [ "127.0.0.1" "::1" "1.1.1.1" "8.8.8.8" ];
   # networking.networkmanager.dns = "dnsmasq";

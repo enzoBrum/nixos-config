@@ -44,7 +44,10 @@ in
       require("config.options")
       require("config.mappings")
       require("config.lazy")
-      vim.opt.runtimepath:append("${treesitter-parsers}")
+
+      if not vim.g.vscode then
+        vim.opt.runtimepath:append("${treesitter-parsers}")
+      end
   '';
   home.file."./.local/share/nvim/nix/nvim-treesitter/" = {
     recursive = true;
