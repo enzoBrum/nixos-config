@@ -1,11 +1,11 @@
 { pkgs, ... }: {
   programs.wezterm = {
-    enable = true;
+    enable = false;
     extraConfig = /* lua */
       ''
         config = {
           -- ...your existing config
-          color_scheme = "Catppuccin Macchiato", -- or Macchiato, Frappe, Latte
+          color_scheme = "Dracula",
           use_fancy_tab_bar = false,
         }
 

@@ -1,11 +1,9 @@
 { config, pkgs, pkgs-stable, ... }: {
   networking.hostName = "enzoPC";
   networking.networkmanager.enable = true;
-  services.usbmuxd.enable = true;
   environment.systemPackages = with pkgs; [
     networkmanagerapplet
     socat
-    libimobiledevice
     ifuse
   ];
   networking.firewall = {

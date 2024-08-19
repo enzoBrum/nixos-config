@@ -2,9 +2,24 @@
   programs.helix = {
     enable = true;
     defaultEditor = false;
-    extraPackages = with pkgs; [ python311Packages.python-lsp-server nil ];
+    extraPackages = with pkgs; [ pkgs.pyright nil ];
+    languages = {
+      language-server = {
+        pyright = {
+          command = "pyright-langserver";
+          args = ["--stdio"];
+          config = {};
+        };
+      };
+      language = [
+        {
+          name = "python";
+          language-servers = ["pyright"];
+        }
+      ];
+    };
     settings = {
-      theme = "catppuccin_macchiato";
+      theme = "dracula";
       editor = {
         line-number = "relative";
         lsp.display-messages = true;

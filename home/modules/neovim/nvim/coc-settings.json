@@ -12,5 +12,20 @@
     "**/computacao-distribuida/**/*",
     "**/labsec"
   ],
-  "workspace.workspaceFolderCheckCwd": false
+  "workspace.workspaceFolderCheckCwd": false,
+  "signature.floatConfig": {
+    "border": true,
+    "rounded": true,
+    "shadow": true
+  },
+  "hover.floatConfig": {
+    "border": true,
+    "rounded": true,
+    "shadow": true
+  },
+  "suggest.floatConfig": {
+    "border": true,
+    "rounded": true,
+    "shadow": true
+  },
 }

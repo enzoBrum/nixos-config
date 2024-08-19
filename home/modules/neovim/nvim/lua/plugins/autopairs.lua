@@ -4,9 +4,6 @@ return {
     cond = not vim.g.vscode,
     event = "InsertEnter",
     config = function()
-      local remap = vim.api.nvim_set_keymap
-      local npairs = require('nvim-autopairs')
-      npairs.setup({map_cr=false})
       --require("nvim-autopairs").setup {}
       --local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       --local cmp = require('cmp')
@@ -15,6 +12,9 @@ return {
       --  cmp_autopairs.on_confirm_done()
       --)
       -- skip it, if you use another global object
+      local remap = vim.api.nvim_set_keymap
+      local npairs = require('nvim-autopairs')
+      npairs.setup({map_cr=false})
       _G.MUtils= {}
 
       ---- new version for custom pum
@@ -30,3 +30,4 @@ return {
     end
   }
 }
+
