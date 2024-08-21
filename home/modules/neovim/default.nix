@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-small, ... }:
 let
   treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
   treesitter-parsers = pkgs.symlinkJoin {
@@ -16,7 +16,7 @@ in
       dockerfile-language-server-nodejs
       docker-compose-language-service
       clang-tools
-      nodePackages_latest.vscode-langservers-extracted
+      pkgs-small.nodePackages_latest.vscode-langservers-extracted
       (python312.withPackages (ps: with ps; [ black flake8 pylint isort ]))
       ripgrep
       fzf

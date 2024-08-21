@@ -216,11 +216,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1724031032,
-        "narHash": "sha256-nr5UsMemoNTd/17RYf4T+WOaV3A4DRZKpU4ezEa8CF8=",
+        "lastModified": 1724203795,
+        "narHash": "sha256-AQfv0Nk7x8ZAhppNHiXR9La3ug1Lny+vlwzEKS4U1W8=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "2410e61d988b9a1e24a1baca6d191560c4eab0ab",
+        "rev": "279f805aa44ea29c349615770d476aad14d9ddb1",
         "type": "github"
       },
       "original": {
@@ -231,16 +231,32 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1723637854,
-        "narHash": "sha256-med8+5DSWa2UnOqtdICndjDAEjxr5D7zaIiK4pn0Q7c=",
+        "lastModified": 1723991338,
+        "narHash": "sha256-Grh5PF0+gootJfOJFenTTxDTYPidA3V28dqJ/WV7iis=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c3aa7b8938b17aebd2deecf7be0636000d62a2b9",
+        "rev": "8a3354191c0d7144db9756a74755672387b702ba",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-small": {
+      "locked": {
+        "lastModified": 1724221631,
+        "narHash": "sha256-zf3gNf0nX2yOb++h4jW9l4iG8R/LfazWZD+KhmW6fcc=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "ac2df85f4d5c580786c7b4db031c199554152681",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable-small",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -263,11 +279,11 @@
     },
     "nixpkgs-stable_2": {
       "locked": {
-        "lastModified": 1723938990,
-        "narHash": "sha256-9tUadhnZQbWIiYVXH8ncfGXGvkNq3Hag4RCBEMUk7MI=",
+        "lastModified": 1724098845,
+        "narHash": "sha256-D5HwjQw/02fuXbR4LCTo64koglP2j99hkDR79/3yLOE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c42fcfbdfeae23e68fc520f9182dde9f38ad1890",
+        "rev": "f1bad50880bae73ff2d82fafc22010b4fc097a9c",
         "type": "github"
       },
       "original": {
@@ -331,6 +347,7 @@
         "lanzaboote": "lanzaboote",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-small": "nixpkgs-small",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "sops-nix": "sops-nix"
       }

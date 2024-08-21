@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -70,6 +71,7 @@
   outputs =
     { nixpkgs
     , nixpkgs-stable
+    , nixpkgs-small
     , home-manager
     , lanzaboote
     , sops-nix
@@ -81,30 +83,8 @@
         inherit system;
         config.allowUnfree = true;
       };
+      pkgs-small = system: import nixpkgs-small { inherit system; config.allowUnfree = true; };
       vscode-extensions = system: nix-vscode-extensions.extensions.${system};
-      coc-extensions = (system:
-        let
-          pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-        in
-        builtins.listToAttrs (
-          map
-            (
-              name: {
-                name = pkgs.lib.strings.removePrefix "vim-ext-" name;
-                value = builtins.getAttr name inputs;
-              }
-            )
-            (
-              builtins.filter
-                (
-                  name: (pkgs.lib.strings.hasPrefix "vim-ext-" name)
-                )
-                (
-                  builtins.attrNames inputs
-                )
-            )
-        )
-      );
     in
     {
       nixosConfigurations = {
@@ -112,8 +92,8 @@
           system = "x86_64-linux";
           specialArgs = {
             inherit inputs;
-            coc-extensions = coc-extensions system;
             pkgs-stable = pkgs-stable system;
+            pkgs-small = pkgs-small system;
           };
 
           modules = [
@@ -125,6 +105,7 @@
               home-manager.users.erb = import ./home/home.nix;
               home-manager.extraSpecialArgs = {
                 inherit inputs;
+                pkgs-small = pkgs-small system;
                 pkgs-stable = pkgs-stable system;
                 vscode-extensions = vscode-extensions system;
               };
