@@ -3,9 +3,7 @@
   "coc.preferences.formatOnSave": true,
   "diagnostic.virtualTextCurrentLineOnly": false,
   "diagnostic.virtualText": true,
-  "workspace.rootPatterns": [
-    ".git"
-  ],
+  "workspace.rootPatterns": [".git"],
   "python.analysis.typeCheckingMode": "off",
   "workspace.ignoredFolders": [
     "**/iekuatiara/**/*",
@@ -28,4 +26,11 @@
     "rounded": true,
     "shadow": true
   },
+  "languageserver": {
+    "nix": {
+      "command": "nil",
+      "filetypes": ["nix"],
+      "rootPatterns": ["flake.nix"]
+    }
+  }
 }

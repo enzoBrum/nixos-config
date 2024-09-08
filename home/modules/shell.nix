@@ -5,6 +5,8 @@ let
     cat = "bat --theme Dracula --style=plain";
     update =
       "sudo nix-channel --update && nh os switch --update";
+    update-boot =
+      "sudo nix-channel --update && nh os boot --update";
     rebuild =
       "nh os switch";
     ls = "eza --icons=always";

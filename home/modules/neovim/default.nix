@@ -1,11 +1,11 @@
-{ config, lib, pkgs, pkgs-small, ... }:
-let
-  treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
-  treesitter-parsers = pkgs.symlinkJoin {
-    name = "treesitter-parsers";
-    paths = treesitter.dependencies;
-  };
-in
+{inputs, config, lib, pkgs, pkgs-small, ... }:
+#let
+#  treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+#  treesitter-parsers = pkgs.symlinkJoin {
+#    name = "treesitter-parsers";
+#    paths = treesitter.dependencies;
+#  };
+#in
 {
   programs.neovim = {
     enable = true;
@@ -27,9 +27,12 @@ in
       jdt-language-server
       nodejs_22
       nil
-    ];
-    plugins = with pkgs.vimPlugins; [
-      treesitter
+      libxml2
+      curl
+      gcc
+      jq
+      gnumake
+      nodejs_22
     ];
   };
 
@@ -44,14 +47,10 @@ in
       require("config.options")
       require("config.mappings")
       require("config.lazy")
-
-      if not vim.g.vscode then
-        vim.opt.runtimepath:append("${treesitter-parsers}")
-      end
   '';
-  home.file."./.local/share/nvim/nix/nvim-treesitter/" = {
-    recursive = true;
-    source = treesitter;
-  };
+  #home.file."./.local/share/nvim/nix/nvim-treesitter/" = {
+  #  recursive = true;
+  #  source = treesitter;
+  #};
 
 }

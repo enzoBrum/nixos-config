@@ -50,7 +50,7 @@ return {
             vim.keymap.set("n", "gd", "<Plug>(coc-definition)", { silent = true })
             vim.keymap.set("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
             vim.keymap.set("n", "gi", "<Plug>(coc-implementation)", { silent = true })
-            vim.keymap.set("n", "gr", "<Plug>(coc-references)", { silent = true })
+            vim.keymap.set("n", "gR", "<Plug>(coc-references)", { silent = true })
 
             -- Use K to show documentation in preview window
             function _G.show_docs()

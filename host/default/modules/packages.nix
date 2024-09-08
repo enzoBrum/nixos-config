@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-stable, ... }:
+{ inputs, config, pkgs, pkgs-stable, ... }:
 let
   run = pkgs.writeScriptBin "run" ''
     #!/usr/bin/env bash
@@ -8,6 +8,7 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    wl-clipboard
     rocketchat-desktop
     firefox
     thunderbird

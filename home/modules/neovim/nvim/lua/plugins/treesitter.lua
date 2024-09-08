@@ -1,36 +1,77 @@
-if not vim.g.vscode then
-    return {
-        'nvim-treesitter/nvim-treesitter',
-        event = { "BufReadPost", "BufNewFile" },
-        enable = not vim.g.vscode,
-        main = "nvim-treesitter.configs",
-        code = not vim.g.vscode,
-        dev = true,
-        opts = {
-            indent = {
-                enable = true
+local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
+vim.fn.mkdir(parser_install_dir, "p")
+vim.opt.runtimepath:append(parser_install_dir)
+return {
+  {
+    -- Highlight, edit, and navigate code
+    'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+      { 'nvim-treesitter/nvim-treesitter-textobjects', cond = not vim.g.vscode },
+    },
+    build = ':TSUpdate',
+    cond = not vim.g.vscode,
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'java', 'dockerfile', 'json', 'yaml', 'lua', 'luadoc', 'markdown', 'regex', 'markdown_inline', 'jsdoc', "http", "comment" },
+        auto_install = false,
+        sync_install = false,
+        highlight = { enable = true },
+        indent = { enable = true },
+        parser_install_dir = parser_install_dir,
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = '<leader>n',
+            node_incremental = '<leader>n',
+            scope_incremental = '<leader>s',
+            node_decremental = '<leader>r',
+          },
+        },
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+            keymaps = {
+              -- You can use the capture groups defined in textobjects.scm
+              ['aa'] = '@parameter.outer',
+              ['ia'] = '@parameter.inner',
+              ['af'] = '@function.outer',
+              ['if'] = '@function.inner',
+              ['ac'] = '@class.outer',
+              ['ic'] = '@class.inner',
             },
-            autotag = {
-                enable = true
+          },
+          move = {
+            enable = true,
+            set_jumps = true, -- whether to set jumps in the jumplist
+            goto_next_start = {
+              [']m'] = '@function.outer',
+              [']]'] = '@class.outer',
             },
-            highlight = {
-                -- `false` will disable the whole extension
-                enable = true,
-                additional_vim_regex_highlighting = false,
+            goto_next_end = {
+              [']M'] = '@function.outer',
+              [']['] = '@class.outer',
             },
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = '<leader>n',
-                    node_incremental = '<leader>n',
-                    scope_incremental = '<leader>s',
-                    node_decremental = '<leader>r',
-                },
-
+            goto_previous_start = {
+              ['[m'] = '@function.outer',
+              ['[['] = '@class.outer',
             },
-        }
-
-    }
-else
-    return {}
-end
+            goto_previous_end = {
+              ['[M'] = '@function.outer',
+              ['[]'] = '@class.outer',
+            },
+          },
+          swap = {
+            enable = true,
+            swap_next = {
+              ['<leader>a'] = '@parameter.inner',
+            },
+            swap_previous = {
+              ['<leader>A'] = '@parameter.inner',
+            },
+          },
+        },
+      }
+    end
+  }
+}
