@@ -16,7 +16,7 @@
       dockerfile-language-server-nodejs
       docker-compose-language-service
       clang-tools
-      pkgs-small.nodePackages_latest.vscode-langservers-extracted
+      pkgs.nodePackages_latest.vscode-langservers-extracted
       (python312.withPackages (ps: with ps; [ black flake8 pylint isort ]))
       ripgrep
       fzf

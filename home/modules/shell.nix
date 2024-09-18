@@ -14,7 +14,6 @@ let
     rebuild-test =
       "sudo nixos-rebuild test --flake /home/erb/repos/nixos-config -I nixos-config=/home/erb/repos/nixos-config/configuration.nix -L";
   };
-  flavour = "macchiato";
 in
 {
   programs.starship = {
@@ -117,7 +116,11 @@ in
         src = pkgs.zsh-powerlevel10k;
         file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       }
-
+      {
+        name = "fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+        file = "share/fzf-tab/fzf-tab.plugin.zsh";
+      }
       {
         name = "nix-shell";
         src = pkgs.zsh-nix-shell;

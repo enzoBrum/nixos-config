@@ -36,6 +36,8 @@ hyprctl setcursor Dracula-cursors 24 &
 
 eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=ssh) &
 
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
 # # other
 # /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
