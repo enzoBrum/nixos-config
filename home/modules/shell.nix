@@ -17,7 +17,7 @@ let
 in
 {
   programs.starship = {
-    enable = true;
+    enable = false;
     enableTransience = true;
     settings = {
       format = lib.concatStrings [
