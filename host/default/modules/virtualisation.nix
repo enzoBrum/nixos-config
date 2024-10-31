@@ -1,6 +1,9 @@
 { config, pkgs, pkgs-stable, ... }: {
   virtualisation.docker.enable = true;
   virtualisation.docker.package = pkgs.docker_27;
+  virtualisation.docker.daemon.settings = {
+    dns = [ "8.8.8.8" "1.1.1.1" ];
+  };
   virtualisation.docker.storageDriver = "btrfs";
   virtualisation.podman.enable = true;
   virtualisation.libvirtd.enable = true;

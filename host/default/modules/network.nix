@@ -32,8 +32,7 @@
       [ "keycloak" "keycloak-carc" "keycloak-assinador" "satosa" "localhost" "keycloak-ades" ];
   };
   # networking.nameservers = [ "127.0.0.1" "::1" "1.1.1.1" "8.8.8.8" ];
-  # networking.networkmanager.dns = "dnsmasq";
-  # services.dnsmasq.enable = true;
+  services.dnsmasq.enable = true;
   services.resolved.enable = true;
   services.avahi.enable = true;
 }
