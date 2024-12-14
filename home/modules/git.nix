@@ -4,7 +4,7 @@
     userName = "Enzo Brum";
     userEmail = "darosabrumenzo@gmail.com";
 
-    signing.key = "7FBB0AB79B22FE13";
+    signing.key = "059117239D4087B1";
     signing.signByDefault = true;
   };
 }

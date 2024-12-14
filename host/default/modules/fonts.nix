@@ -1,8 +1,7 @@
 { config, pkgs, pkgs-stable, ... }: {
   fonts.packages = with pkgs; [
-    nerdfonts
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     liberation_ttf
     fira-code
@@ -10,7 +9,6 @@
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
-    nerdfonts
     meslo-lgs-nf
   ];
 }
