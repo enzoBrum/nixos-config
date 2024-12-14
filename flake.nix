@@ -70,13 +70,13 @@
           };
 
           modules = [
-            ./host/default/configuration.nix
+            ./host/notebook/configuration.nix
             inputs.nixos-cosmic.nixosModules.default
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.erb = import ./home/home.nix;
+              home-manager.users.erb = import ./home/notebook/home.nix;
               home-manager.extraSpecialArgs = {
                 inherit inputs;
                 pkgs-small = pkgs-small system;

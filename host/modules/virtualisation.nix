@@ -1,6 +1,5 @@
 { config, pkgs, pkgs-stable, ... }: {
   virtualisation.docker.enable = true;
-  virtualisation.docker.package = pkgs.docker_27;
   virtualisation.docker.daemon.settings = {
     dns = [ "8.8.8.8" "1.1.1.1" ];
   };

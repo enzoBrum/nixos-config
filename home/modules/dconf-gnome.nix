@@ -6,6 +6,11 @@ with lib.hm.gvariant;
 {
  dconf.enable = true;
   dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = [ "qemu:///system" ];
+      uris = [ "qemu:///system" ];
+    };
+
     "org/shell/extensions/clipboard-indicator" = {
       history-size = mkUint32 200;
       cache-size = mkUint32 256;

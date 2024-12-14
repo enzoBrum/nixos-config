@@ -24,7 +24,7 @@ in
     wget
     ripgrep
     home-manager
-    python312
+    python313
     networkmanagerapplet
     htop
     fzf

@@ -12,7 +12,7 @@ return {
     cond = not vim.g.vscode,
     config = function()
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'java', 'dockerfile', 'json', 'yaml', 'lua', 'luadoc', 'markdown', 'regex', 'markdown_inline', 'jsdoc', "http", "comment" },
+        ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'java', 'dockerfile', 'json', 'yaml', 'lua', 'luadoc', 'markdown', 'regex', 'markdown_inline', 'jsdoc', "http", "comment", "nix" },
         auto_install = false,
         sync_install = false,
         highlight = { enable = true },
