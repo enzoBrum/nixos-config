@@ -1,5 +1,5 @@
 { config, pkgs, pkgs-stable, ... }: {
-  networking.hostName = "enzoPC";
+  networking.hostName = config.custom.hostName;
   networking.networkmanager.enable = true;
   environment.systemPackages = with pkgs; [
     networkmanagerapplet

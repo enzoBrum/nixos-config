@@ -1,7 +1,7 @@
 { vscode-extensions, pkgs, ... }: {
   programs.vscode = {
-    enable = true;
-    package = pkgs.vscode.fhsWithPackages (ps: with ps; [ gdb (python312.withPackages (python-pkgs: [ python-pkgs.requests python-pkgs.lxml ]) ) gcc clang-tools neovim zlib openssl.dev pkg-config jdk21 maven ]);
+    #enable = true;
+    #package = pkgs.vscode.fhsWithPackages (ps: with ps; [ gdb (python312.withPackages (python-pkgs: [ python-pkgs.requests python-pkgs.lxml ]) ) gcc clang-tools neovim zlib openssl.dev pkg-config jdk21 maven ]);
 
     # extensions = with vscode-extensions.vscode-marketplace; [
     #   arrterian.nix-env-selector

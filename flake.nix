@@ -58,6 +58,24 @@
       };
       pkgs-small = system: import nixpkgs-small { inherit system; config.allowUnfree = true; };
       vscode-extensions = system: nix-vscode-extensions.extensions.${system};
+      default-modules = name: system: [
+            (./host + "/${name}" + /configuration.nix)
+            inputs.nixos-cosmic.nixosModules.default
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.erb = import (./home + "/${name}" + /home.nix);
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                pkgs-small = pkgs-small system;
+                pkgs-stable = pkgs-stable system;
+                vscode-extensions = vscode-extensions system;
+              };
+            }
+            lanzaboote.nixosModules.lanzaboote
+            sops-nix.nixosModules.sops
+      ];
     in
     {
       nixosConfigurations = {
@@ -69,24 +87,17 @@
             pkgs-small = pkgs-small system;
           };
 
-          modules = [
-            ./host/notebook/configuration.nix
-            inputs.nixos-cosmic.nixosModules.default
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.erb = import ./home/notebook/home.nix;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                pkgs-small = pkgs-small system;
-                pkgs-stable = pkgs-stable system;
-                vscode-extensions = vscode-extensions system;
-              };
-            }
-            lanzaboote.nixosModules.lanzaboote
-            sops-nix.nixosModules.sops
-          ];
+          modules = (default-modules "notebook" system) ++ [];
+        };
+        enzoDesktop = nixpkgs.lib.nixosSystem rec {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit inputs;
+            pkgs-stable = pkgs-stable system;
+            pkgs-small = pkgs-small system;
+          };
+
+          modules = (default-modules "desktop" system) ++ [];
         };
       };
     };

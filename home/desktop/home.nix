@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 {
-  imports = [ ./modules.nix ./vars.nix];
+  imports = [ ./modules.nix ./vars.nix ];
 
   home.username = "erb";
   home.homeDirectory = "/home/erb";

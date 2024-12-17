@@ -1,5 +1,6 @@
 { config, pkgs, pkgs-stable, lib, ... }: {
-  imports = [ ./hardware-configuration.nix ./modules.nix ./overlays.nix ];
+  imports = [ ./hardware-configuration.nix ./modules.nix ./overlays.nix ./vars.nix ];
+
 
   powerManagement.cpuFreqGovernor = "performance";
   powerManagement.enable = true;
@@ -32,7 +33,6 @@
       "quiet"
       "splash"
       "vt.global_cursor_default=0"
-      "intel_pstate=active"
     ];
   };
 
@@ -45,20 +45,20 @@
     "/swap".options = [ "noatime" "subvol=swap" ];
   };
 
-  swapDevices = [{
-    device = "/swap/swapfile";
-    size = 10 * 1024;
-  }];
   zramSwap.enable = true;
 
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      intel-vaapi-driver
-      libvdpau-va-gl
-    ];
+  services.xserver.videoDrivers = ["nvidia"];
+  hardware.nvidia = {
+  	package = config.boot.kernelPackages.nvidiaPackages.beta;
+	modesetting.enable = true;
+	powerManagement.enable = false;
+
+	open = true;
+	nvidiaSettings = true;
   };
+  hardware.graphics.enable = true;
+  hardware.opengl.extraPackages = with pkgs; [vaapiVdpau nvidia-vaapi-driver];
+  hardware.opengl.enable = true;
 
   programs.zsh.enable = true;
   programs.fish.enable = true;

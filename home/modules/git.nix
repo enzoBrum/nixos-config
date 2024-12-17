@@ -4,7 +4,7 @@
     userName = "Enzo Brum";
     userEmail = "darosabrumenzo@gmail.com";
 
-    signing.key = "059117239D4087B1";
+    signing.key = config.custom.gitKey;
     signing.signByDefault = true;
   };
 }
