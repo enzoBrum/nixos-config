@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,6 +36,11 @@
 
     dracula-alacritty = {
       url = "github:dracula/alacritty";
+      flake = false;
+    };
+
+    netbootxyz = {
+      url = "https://github.com/netbootxyz/netboot.xyz/releases/download/2.0.83/netboot.xyz.efi";
       flake = false;
     };
 

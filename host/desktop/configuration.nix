@@ -1,20 +1,45 @@
-{ config, pkgs, pkgs-stable, lib, ... }: {
-  imports = [ ./hardware-configuration.nix ./modules.nix ./overlays.nix ./vars.nix ];
+{ config, pkgs, inputs, pkgs-stable, lib, ... }: {
+  imports = [ ./hardware-configuration.nix ./modules.nix ./overlays.nix ./vars.nix ./games.nix ];
 
 
   powerManagement.cpuFreqGovernor = "performance";
   powerManagement.enable = true;
 
   boot = {
+    supportedFilesystems = ["ntfs"];
     tmp.cleanOnBoot = true;
-    bootspec.enable = true;
     loader = {
-      systemd-boot.enable = false;
+      #systemd-boot.enable = false;
+      #systemd-boot.netbootxyz.enable = false;
       efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/efi";
+      grub = {
+	enable = true;
+	efiSupport = true;
+	useOSProber = true;
+	device = "nodev";
+	#extraFiles = {
+	#  "netboot.xyz.efi" = inputs.netbootxyz;
+	#};
+	extraEntries = ''
+	  menuentry "Reboot" {
+	    reboot 
+	  }
+	  menuentry "Fedora Iso" {
+	    search --fs-uuid --no-floppy --set=root 07D9-262E
+	      insmod part_gpt
+	      insmod ntfs
+	      insmod chain
+	      chainloader /EFI/BOOT/BOOTX64.EFI
+	  }
+	  menuentry "Netboot" {
+	      chainloader /netboot.xyz.efi
+	  }
+	'';
+      };
+      efi.efiSysMountPoint = "/boot/efi";
     };
     lanzaboote = {
-      enable = true;
+      enable = false;
       pkiBundle = "/etc/secureboot";
     };
     initrd.luks.devices."root".preLVM = true;
@@ -25,7 +50,7 @@
       theme = "bgrt";
     };
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    #kernelPackages = pkgs.linuxPackages_latest;
     initrd.verbose = false;
     consoleLogLevel = 0;
     kernelParams = [
@@ -47,18 +72,18 @@
 
   zramSwap.enable = true;
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
-  	package = config.boot.kernelPackages.nvidiaPackages.beta;
+	package = config.boot.kernelPackages.nvidiaPackages.latest;
 	modesetting.enable = true;
-	powerManagement.enable = false;
-
+	powerManagement.enable = true;
 	open = true;
 	nvidiaSettings = true;
   };
   hardware.graphics.enable = true;
-  hardware.opengl.extraPackages = with pkgs; [vaapiVdpau nvidia-vaapi-driver];
-  hardware.opengl.enable = true;
+  hardware.graphics.extraPackages = with pkgs; [vaapiVdpau nvidia-vaapi-driver];
+  hardware.graphics.enable32Bit = true;
 
   programs.zsh.enable = true;
   programs.fish.enable = true;
@@ -71,9 +96,27 @@
 
   };
 
+
   services.fstrim.enable = true;
   services.flatpak.enable = true;
-  environment.systemPackages = with pkgs; [ plymouth breeze-plymouth sbctl ];
+  environment.systemPackages = with pkgs; [ plymouth breeze-plymouth sbctl 
+    gfxreconstruct
+    glslang
+    spirv-cross
+    spirv-headers
+    spirv-tools
+    vulkan-extension-layer
+    vulkan-headers
+    vulkan-loader
+    vulkan-tools
+    vulkan-tools-lunarg
+    vulkan-utility-libraries
+    vulkan-validation-layers
+    vkdisplayinfo
+    vkd3d
+    vkd3d-proton
+    vk-bootstrap
+  ];
 
   system.stateVersion = "24.05";
 }
