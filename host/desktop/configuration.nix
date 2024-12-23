@@ -12,8 +12,13 @@
       #systemd-boot.enable = false;
       #systemd-boot.netbootxyz.enable = false;
       efi.canTouchEfiVariables = true;
+      systemd-boot = {
+	enable = false;
+	netbootxyz.enable = true;
+
+      };
       grub = {
-	enable = true;
+	enable = false;
 	efiSupport = true;
 	useOSProber = true;
 	device = "nodev";
@@ -24,22 +29,15 @@
 	  menuentry "Reboot" {
 	    reboot 
 	  }
-	  menuentry "Fedora Iso" {
-	    search --fs-uuid --no-floppy --set=root 07D9-262E
-	      insmod part_gpt
-	      insmod ntfs
-	      insmod chain
-	      chainloader /EFI/BOOT/BOOTX64.EFI
-	  }
 	  menuentry "Netboot" {
 	      chainloader /netboot.xyz.efi
 	  }
 	'';
       };
-      efi.efiSysMountPoint = "/boot/efi";
+      efi.efiSysMountPoint = "/efi";
     };
     lanzaboote = {
-      enable = false;
+      enable = true;
       pkiBundle = "/etc/secureboot";
     };
     initrd.luks.devices."root".preLVM = true;
@@ -92,7 +90,7 @@
 
   users.users.erb = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "input" ];
 
   };
 
@@ -116,6 +114,9 @@
     vkd3d
     vkd3d-proton
     vk-bootstrap
+    lutris
+    steam
+    steam-devices-udev-rules
   ];
 
   system.stateVersion = "24.05";

@@ -148,6 +148,10 @@ in
 
   programs.fish = {
     enable = true;
+    shellInitLast = /* fish */
+    ''
+    set -x EDITOR nvim
+    '';
 
     # to run zellij on start.
     # eval (zellij setup --generate-auto-start fish | string collect)

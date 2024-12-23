@@ -14,39 +14,33 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/319358a0-32db-4766-8126-f85482bf2d83";
+    { device = "/dev/disk/by-uuid/a28a5f05-26fa-4e1c-9b38-bbd47d2d0c7a";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
-  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/93097ecc-a5b7-46ce-9d05-2458282b9b67";
+  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/90f14c64-da85-4073-838d-ce5f740a3445";
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/319358a0-32db-4766-8126-f85482bf2d83";
+    { device = "/dev/disk/by-uuid/a28a5f05-26fa-4e1c-9b38-bbd47d2d0c7a";
       fsType = "btrfs";
       options = [ "subvol=@nix" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/319358a0-32db-4766-8126-f85482bf2d83";
+    { device = "/dev/disk/by-uuid/a28a5f05-26fa-4e1c-9b38-bbd47d2d0c7a";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
 
   fileSystems."/swap" =
-    { device = "/dev/disk/by-uuid/319358a0-32db-4766-8126-f85482bf2d83";
+    { device = "/dev/disk/by-uuid/a28a5f05-26fa-4e1c-9b38-bbd47d2d0c7a";
       fsType = "btrfs";
       options = [ "subvol=@swap" ];
     };
 
-  fileSystems."/var/lib/docker/btrfs" =
-    { device = "/swap/@/var/lib/docker/btrfs";
-      fsType = "none";
-      options = [ "bind" ];
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/1638-C7BA";
+  fileSystems."/efi" =
+    { device = "/dev/disk/by-uuid/12CE-A600";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
@@ -58,10 +52,9 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.br-35f1e568809e.useDHCP = lib.mkDefault true;
-  # networking.interfaces.br-3b667a67459b.useDHCP = lib.mkDefault true;
-  # networking.interfaces.br-631d5641b2f5.useDHCP = lib.mkDefault true;
-  # networking.interfaces.br-a7ce67da34b7.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-9cf1eecd1042.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-ce7400264c29.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-e926ba2977c5.useDHCP = lib.mkDefault true;
   # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp42s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;

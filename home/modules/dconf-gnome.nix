@@ -11,7 +11,7 @@ with lib.hm.gvariant;
       uris = [ "qemu:///system" ];
     };
 
-    "org/shell/extensions/clipboard-indicator" = {
+    "org/gnome/shell/extensions/clipboard-indicator" = {
       history-size = mkUint32 200;
       cache-size = mkUint32 256;
       toggle-menu = ["<Super>v"];
