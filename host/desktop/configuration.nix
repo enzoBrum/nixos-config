@@ -9,36 +9,10 @@
     supportedFilesystems = ["ntfs"];
     tmp.cleanOnBoot = true;
     loader = {
-      #systemd-boot.enable = false;
+      systemd-boot.enable = false;
       #systemd-boot.netbootxyz.enable = false;
       efi.canTouchEfiVariables = true;
-      systemd-boot = {
-	enable = false;
-	netbootxyz.enable = true;
-
-      };
-      grub = {
-	enable = false;
-	efiSupport = true;
-	useOSProber = true;
-	device = "nodev";
-	#extraFiles = {
-	#  "netboot.xyz.efi" = inputs.netbootxyz;
-	#};
-	extraEntries = ''
-	  menuentry "Reboot" {
-	    reboot 
-	  }
-	  menuentry "Netboot" {
-	      chainloader /netboot.xyz.efi
-	  }
-	'';
-      };
       efi.efiSysMountPoint = "/efi";
-    };
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/etc/secureboot";
     };
     initrd.luks.devices."root".preLVM = true;
     initrd.systemd.enable = true;
@@ -46,6 +20,10 @@
     plymouth = {
       enable = true;
       theme = "bgrt";
+    };
+    lanzaboote = {
+	enable = true;
+	pkiBundle = "/var/lib/sbctl";
     };
 
     #kernelPackages = pkgs.linuxPackages_latest;

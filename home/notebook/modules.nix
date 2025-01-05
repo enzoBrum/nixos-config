@@ -16,6 +16,7 @@
     ../modules/gdb.nix
     ../modules/bluetooth.nix
     ../modules/gtk.nix
+    ../modules/ghostty.nix
     ../modules/cfg.nix
     # ../modules/ags/default.nix
   ];
