@@ -1,3 +1,3 @@
 {config, pkgs, ...}: {
-  config.custom.gitKey = "AF59CC699335CFFF";
+  config.custom.gitKey = "0DE9E1CE5B06CA4B";
 }

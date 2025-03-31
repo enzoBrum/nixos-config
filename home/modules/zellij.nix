@@ -1,8 +1,7 @@
 { pkgs, ... }: {
-  programs.zellij = {
-    enable = true;
-  };
-
+  home.packages = [
+    pkgs.zellij
+  ];
   xdg.configFile."zellij/config.kdl".text = /* kdl */ ''
     copy_command "wl-copy"
     theme "dracula"

@@ -73,7 +73,7 @@
 
   services.fstrim.enable = true;
   services.flatpak.enable = true;
-  environment.systemPackages = with pkgs; [ plymouth breeze-plymouth sbctl ];
+  environment.systemPackages = with pkgs; [ plymouth kdePackages.breeze-plymouth sbctl ];
 
   system.stateVersion = "24.05";
 }

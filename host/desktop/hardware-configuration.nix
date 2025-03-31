@@ -14,33 +14,27 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/2b8afa01-5b48-4bd1-a546-5febc3a4f751";
+    { device = "/dev/disk/by-uuid/9357300c-bfe0-41da-897f-ef6cb2cf8b50";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
-  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/39f39fb5-84bb-438b-b906-f3c4c6bea911";
+  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/f73fe5e6-7242-4c4c-838f-0159e4dc6dec";
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/2b8afa01-5b48-4bd1-a546-5febc3a4f751";
+    { device = "/dev/disk/by-uuid/9357300c-bfe0-41da-897f-ef6cb2cf8b50";
       fsType = "btrfs";
       options = [ "subvol=@nix" ];
     };
 
-  fileSystems."/swap" =
-    { device = "/dev/disk/by-uuid/2b8afa01-5b48-4bd1-a546-5febc3a4f751";
-      fsType = "btrfs";
-      options = [ "subvol=@swap" ];
-    };
-
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/2b8afa01-5b48-4bd1-a546-5febc3a4f751";
+    { device = "/dev/disk/by-uuid/9357300c-bfe0-41da-897f-ef6cb2cf8b50";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
 
   fileSystems."/efi" =
-    { device = "/dev/disk/by-uuid/B123-1AEA";
+    { device = "/dev/disk/by-uuid/8420-CE51";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
@@ -52,6 +46,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp42s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 

@@ -8,6 +8,10 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    texlive.combined.scheme-full
+    zathura
+    pkgs-stable.texpresso
+    pkgs-stable.tectonic
     wl-clipboard
     rocketchat-desktop
     firefox

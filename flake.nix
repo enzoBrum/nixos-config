@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
 
     home-manager = {
@@ -13,11 +13,6 @@
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.1";
     };
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -66,7 +61,6 @@
       vscode-extensions = system: nix-vscode-extensions.extensions.${system};
       default-modules = name: system: [
             (./host + "/${name}" + /configuration.nix)
-            inputs.nixos-cosmic.nixosModules.default
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;

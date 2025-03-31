@@ -149,7 +149,7 @@ with lib.hm.gvariant;
         "org.gnome.Calendar.desktop"
         "org.gnome.Nautilus.desktop"
         "org.gnome.Software.desktop"
-        "com.google.google-chrome.desktop"
+        "org.mozilla.firefox"
       ];
     };
 
@@ -180,7 +180,7 @@ with lib.hm.gvariant;
       restore-workspaces-only-on-primary = "true";
       show-workspace-indicator = false;
       show-window-position-bar = false;
-      winprops = lib.hm.gvariant.mkArray type.string [ ''{"wm_class":"Alacritty","preferredWidth":"50%"}'' ];
+      winprops = lib.hm.gvariant.mkArray type.string [ ''{"wm_class":"com.google.Chrome","preferredWidth":"50%"}'' ''{"wm_class":"Alacritty","preferredWidth":"50%"}'' ''{"wm_class":"com.mitchellh.ghostty","preferredWidth":"50%"}''];
     };
 
     "org/gnome/shell/extensions/paperwm/keybindings" = {

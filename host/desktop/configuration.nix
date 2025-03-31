@@ -9,7 +9,7 @@
     supportedFilesystems = ["ntfs"];
     tmp.cleanOnBoot = true;
     loader = {
-      systemd-boot.enable = false;
+      systemd-boot.enable = true;
       #systemd-boot.netbootxyz.enable = false;
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/efi";
@@ -22,7 +22,7 @@
       theme = "bgrt";
     };
     lanzaboote = {
-	enable = true;
+	enable = false;
 	pkiBundle = "/var/lib/sbctl";
     };
 
@@ -43,7 +43,6 @@
       [ "compress=zstd" "subvol=@home" "noatime" "discard=async" ];
     "/nix".options =
       [ "compress=zstd" "subvol=@nix" "noatime" "discard=async" ];
-    "/swap".options = [ "noatime" "subvol=swap" ];
   };
 
   zramSwap.enable = true;
@@ -75,7 +74,7 @@
 
   services.fstrim.enable = true;
   services.flatpak.enable = true;
-  environment.systemPackages = with pkgs; [ plymouth breeze-plymouth sbctl 
+  environment.systemPackages = with pkgs; [ plymouth kdePackages.breeze-plymouth sbctl 
     gfxreconstruct
     glslang
     spirv-cross

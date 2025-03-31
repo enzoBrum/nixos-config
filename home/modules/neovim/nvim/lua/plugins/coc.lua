@@ -133,7 +133,7 @@ return {
             -- provide custom statusline: lightline.vim, vim-airline
             vim.opt.statusline:prepend("%{coc#status()}%{get(b:,'coc_current_function',\"\")}")
             local coc_ext = { "coc-json", "coc-yaml", "coc-pyright", "coc-java", "coc-clangd", "coc-tsserver",
-                "coc-docker", "coc-lua" }
+                "coc-docker", "coc-lua", "coc-vimtex" }
             vim.g.coc_global_extensions = coc_ext
         end
     }
