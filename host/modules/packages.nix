@@ -8,6 +8,7 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    anki
     texlive.combined.scheme-full
     zathura
     pkgs-stable.texpresso

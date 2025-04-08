@@ -26,6 +26,16 @@
       '';
     };
   };
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      AllowUsers = ["erb"];
+      UseDns = true;
+      PermitRootLogin = "prohibit-password";
+    };
+    openFirewall = true;
+  };
 
   networking.hosts = {
     "127.0.0.1" =
