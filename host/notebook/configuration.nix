@@ -8,12 +8,12 @@
     tmp.cleanOnBoot = true;
     bootspec.enable = true;
     loader = {
-      systemd-boot.enable = false;
+      systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/efi";
     };
     lanzaboote = {
-      enable = true;
+      enable = false;
       pkiBundle = "/etc/secureboot";
     };
     initrd.luks.devices."root".preLVM = true;
