@@ -33,7 +33,7 @@
       options = [ "subvol=@home" ];
     };
 
-  fileSystems."/efi" =
+  fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/8420-CE51";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
@@ -46,8 +46,14 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-2ad728fd29f7.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-3c25ebf87bd6.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-71ba1d10f038.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-cfa20e59af1f.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-f48d64b3fe96.useDHCP = lib.mkDefault true;
   # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp42s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.tun0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

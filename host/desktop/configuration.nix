@@ -9,10 +9,8 @@
     supportedFilesystems = ["ntfs"];
     tmp.cleanOnBoot = true;
     loader = {
-      systemd-boot.enable = true;
-      #systemd-boot.netbootxyz.enable = false;
+      systemd-boot.enable = false;
       efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/efi";
     };
     initrd.luks.devices."root".preLVM = true;
     initrd.systemd.enable = true;
@@ -22,7 +20,7 @@
       theme = "bgrt";
     };
     lanzaboote = {
-	enable = false;
+	enable = true;
 	pkiBundle = "/var/lib/sbctl";
     };
 
