@@ -3,6 +3,7 @@
 
   security.rtkit.enable = true;
   security.polkit.enable = true;
+  services.gnome.gcr-ssh-agent.enable = false;
 
   programs.gnupg.agent.enable = true;
   programs.gnupg.agent.enableSSHSupport = false;
@@ -31,7 +32,7 @@
     groups = [ "wheel" ];
   }];
 
-  environment.systemPackages = with pkgs; [ gnome-secrets openssl sops ];
+  environment.systemPackages = with pkgs; [ openssl sops ];
 
   sops.age.keyFile = "/etc/age-keys.txt";
   sops.defaultSopsFile = ./secrets.yaml;

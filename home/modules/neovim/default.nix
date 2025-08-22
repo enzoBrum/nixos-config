@@ -1,4 +1,11 @@
-{inputs, config, lib, pkgs, pkgs-small, ... }:
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  pkgs-small,
+  ...
+}:
 #let
 #  treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
 #  treesitter-parsers = pkgs.symlinkJoin {
@@ -10,6 +17,7 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
     extraPackages = with pkgs; [
       basedpyright
       nodePackages_latest.vscode-json-languageserver
@@ -17,7 +25,14 @@
       docker-compose-language-service
       clang-tools
       pkgs.nodePackages_latest.vscode-langservers-extracted
-      (python312.withPackages (ps: with ps; [ black flake8 pylint isort ]))
+      (python312.withPackages (
+        ps: with ps; [
+          black
+          flake8
+          pylint
+          isort
+        ]
+      ))
       ripgrep
       fzf
       fd
@@ -33,21 +48,26 @@
       jq
       gnumake
       nodejs_22
+      openjdk21
     ];
   };
 
   # TODO: do this programatically.
-  xdg.configFile."nvim/coc-settings.json".source = config.lib.file.mkOutOfStoreSymlink /home/erb/repos/nixos-config/home/modules/neovim/nvim/coc-settings.json;
-  xdg.configFile."nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink /home/erb/repos/nixos-config/home/modules/neovim/nvim/lazy-lock.json;
+  xdg.configFile."nvim/coc-settings.json".source =
+    config.lib.file.mkOutOfStoreSymlink /home/erb/repos/nixos-config/home/modules/neovim/nvim/coc-settings.json;
+  xdg.configFile."nvim/lazy-lock.json".source =
+    config.lib.file.mkOutOfStoreSymlink /home/erb/repos/nixos-config/home/modules/neovim/nvim/lazy-lock.json;
   xdg.configFile."nvim/lua" = {
     source = config.lib.file.mkOutOfStoreSymlink /home/erb/repos/nixos-config/home/modules/neovim/nvim/lua;
     recursive = true;
   };
-  xdg.configFile."nvim/init.lua".source = pkgs.writeText "init.lua" /* lua */ ''
-      require("config.options")
-      require("config.mappings")
-      require("config.lazy")
-  '';
+  xdg.configFile."nvim/init.lua".source =
+    pkgs.writeText "init.lua" # lua
+      ''
+        require("config.options")
+        require("config.mappings")
+        require("config.lazy")
+      '';
   #home.file."./.local/share/nvim/nix/nvim-treesitter/" = {
   #  recursive = true;
   #  source = treesitter;

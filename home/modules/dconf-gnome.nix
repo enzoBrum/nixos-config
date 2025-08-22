@@ -29,9 +29,9 @@ with lib.hm.gvariant;
       color-shading-type = "solid";
       picture-options = "zoom";
       picture-uri =
-        "file:///home/erb/repos/nixos-config/assets/wallpaper/wallhaven-858vpj_1920x1080.png";
+        "file:///home/erb/repos/nixos-config/assets/wallpaper/randall-mackey-mural2.png";
       picture-uri-dark =
-        "file:///home/erb/repos/nixos-config/assets/wallpaper/wallhaven-858vpj_1920x1080.png";
+        "file:///home/erb/repos/nixos-config/assets/wallpaper/randall-mackey-mural2.png";
       primary-color = "#000000000000";
       secondary-color = "#000000000000";
     };

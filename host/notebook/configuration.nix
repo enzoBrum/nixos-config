@@ -1,8 +1,20 @@
-{ config, pkgs, pkgs-stable, lib, ... }: {
-  imports = [ ./hardware-configuration.nix ./modules.nix ./overlays.nix ];
+{
+  config,
+  pkgs,
+  pkgs-stable,
+  lib,
+  ...
+}:
+{
+  imports = [
+    ./hardware-configuration.nix
+    ./modules.nix
+    ./overlays.nix
+  ];
 
   powerManagement.cpuFreqGovernor = "performance";
   powerManagement.enable = true;
+  services.usbmuxd.enable = true;
 
   boot = {
     tmp.cleanOnBoot = true;
@@ -37,18 +49,36 @@
   };
 
   fileSystems = {
-    "/".options = [ "compress=zstd" "subvol=@" "noatime" "discard=async" ];
-    "/home".options =
-      [ "compress=zstd" "subvol=@home" "noatime" "discard=async" ];
-    "/nix".options =
-      [ "compress=zstd" "subvol=@nix" "noatime" "discard=async" ];
-    "/swap".options = [ "noatime" "subvol=swap" ];
+    "/".options = [
+      "compress=zstd"
+      "subvol=@"
+      "noatime"
+      "discard=async"
+    ];
+    "/home".options = [
+      "compress=zstd"
+      "subvol=@home"
+      "noatime"
+      "discard=async"
+    ];
+    "/nix".options = [
+      "compress=zstd"
+      "subvol=@nix"
+      "noatime"
+      "discard=async"
+    ];
+    "/swap".options = [
+      "noatime"
+      "subvol=swap"
+    ];
   };
 
-  swapDevices = [{
-    device = "/swap/swapfile";
-    size = 10 * 1024;
-  }];
+  swapDevices = [
+    {
+      device = "/swap/swapfile";
+      size = 10 * 1024;
+    }
+  ];
   zramSwap.enable = true;
 
   hardware.graphics = {
@@ -73,8 +103,17 @@
 
   services.fstrim.enable = true;
   services.flatpak.enable = true;
-  environment.systemPackages = with pkgs; [ plymouth kdePackages.breeze-plymouth sbctl ];
+  services.usbmuxd.user = "erb";
+  environment.systemPackages = with pkgs; [
+    plymouth
+    kdePackages.breeze-plymouth
+    sbctl
+
+    libimobiledevice
+    usbmuxd
+    ifuse
+    idevicerestore
+  ];
 
   system.stateVersion = "24.05";
 }
-
