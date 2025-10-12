@@ -12,8 +12,8 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell/extensions/clipboard-indicator" = {
-      history-size = mkUint32 200;
-      cache-size = mkUint32 256;
+      history-size = 10000;
+      cache-size = 1024;
       toggle-menu = ["<Super>v"];
     };
 
@@ -52,9 +52,14 @@ with lib.hm.gvariant;
       tap-to-click = true;
       two-finger-scrolling-enabled = true;
     };
+
+    "org/gnome/desktop/session" = {
+      idle-delay = mkUint32 0;
+
+    }
     "org/gnome/desktop/peripherals/keyboard" = {
-      repeat-interval = mkUint32 35;
-      delay = mkUint32 300;
+      repeat-interval = mkUint32 25;
+      delay = mkUint32 200;
     };
 
     "org/gnome/desktop/wm/keybindings" = {
@@ -186,6 +191,7 @@ with lib.hm.gvariant;
     "org/gnome/shell/extensions/paperwm/keybindings" = {
       close-window = [ "<Super>w" ];
       live-alt-tab = [ "" ];
+      center-vertically = [ "" ];
       move-down = [ "<Shift><Super>j" ];
       move-down-workspace = [
         "<Control><Super>Page_Down"
