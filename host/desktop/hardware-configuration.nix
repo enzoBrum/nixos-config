@@ -14,27 +14,33 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/9357300c-bfe0-41da-897f-ef6cb2cf8b50";
+    { device = "/dev/disk/by-uuid/1df633b6-93c4-47b1-98a9-f304dbf89d47";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
-  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/f73fe5e6-7242-4c4c-838f-0159e4dc6dec";
-
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/9357300c-bfe0-41da-897f-ef6cb2cf8b50";
-      fsType = "btrfs";
-      options = [ "subvol=@nix" ];
-    };
+  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/5e4b0139-a56b-4669-9074-e96f25a065d2";
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/9357300c-bfe0-41da-897f-ef6cb2cf8b50";
+    { device = "/dev/disk/by-uuid/1df633b6-93c4-47b1-98a9-f304dbf89d47";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
 
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/1df633b6-93c4-47b1-98a9-f304dbf89d47";
+      fsType = "btrfs";
+      options = [ "subvol=@nix" ];
+    };
+
+  fileSystems."/swap" =
+    { device = "/dev/disk/by-uuid/1df633b6-93c4-47b1-98a9-f304dbf89d47";
+      fsType = "btrfs";
+      options = [ "subvol=@swap" ];
+    };
+
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/8420-CE51";
+    { device = "/dev/disk/by-uuid/12CE-A600";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
@@ -46,14 +52,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.br-2ad728fd29f7.useDHCP = lib.mkDefault true;
-  # networking.interfaces.br-3c25ebf87bd6.useDHCP = lib.mkDefault true;
-  # networking.interfaces.br-71ba1d10f038.useDHCP = lib.mkDefault true;
-  # networking.interfaces.br-cfa20e59af1f.useDHCP = lib.mkDefault true;
-  # networking.interfaces.br-f48d64b3fe96.useDHCP = lib.mkDefault true;
-  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp42s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.tun0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

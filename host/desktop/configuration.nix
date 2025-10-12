@@ -73,7 +73,6 @@
   services.fstrim.enable = true;
   services.flatpak.enable = true;
   environment.systemPackages = with pkgs; [ plymouth kdePackages.breeze-plymouth sbctl 
-    gfxreconstruct
     glslang
     spirv-cross
     spirv-headers

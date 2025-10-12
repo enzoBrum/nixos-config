@@ -6,7 +6,7 @@
 
   programs.gnupg.agent.enable = true;
   programs.gnupg.agent.enableSSHSupport = false;
-  programs.ssh.startAgent = true;
+  #programs.ssh.startAgent = true;
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
         if (action.id == "org.freedesktop.systemd1.manage-units" &&
