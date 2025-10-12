@@ -1,13 +1,25 @@
-{ config, pkgs, pkgs-stable, ... }: {
+{
+  config,
+  pkgs,
+  pkgs-stable,
+  ...
+}:
+{
   networking.hostName = config.custom.hostName;
   networking.networkmanager.enable = true;
   environment.systemPackages = with pkgs; [
     networkmanagerapplet
     socat
     ifuse
+    networkmanager-openvpn
   ];
   networking.firewall = {
-    allowedTCPPorts = [ 80 3000 8080 8000 ];
+    allowedTCPPorts = [
+      80
+      3000
+      8080
+      8000
+    ];
   };
   users.users.erb.extraGroups = [ "networkmanager" ];
   services.openvpn.servers = {
@@ -30,7 +42,7 @@
     enable = true;
     settings = {
       PasswordAuthentication = false;
-      AllowUsers = ["erb"];
+      AllowUsers = [ "erb" ];
       UseDns = true;
       PermitRootLogin = "prohibit-password";
     };
@@ -38,10 +50,16 @@
   };
 
   networking.hosts = {
-    "127.0.0.1" =
-      [ "keycloak" "keycloak-carc" "keycloak-assinador" "satosa" "localhost" "keycloak-ades" ];
+    "127.0.0.1" = [
+      "keycloak"
+      "keycloak-carc"
+      "keycloak-assinador"
+      "satosa"
+      "localhost"
+      "keycloak-ades"
+    ];
   };
-  networking.nameservers = [ "127.0.0.1" "::1" "1.1.1.1" "8.8.8.8" ];
+  #networking.nameservers = [ "127.0.0.1" "::1" "1.1.1.1" "8.8.8.8" ];
   services.dnsmasq.enable = true;
   #services.resolved.enable = true;
   services.avahi.enable = true;

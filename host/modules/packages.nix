@@ -1,4 +1,10 @@
-{ inputs, config, pkgs, pkgs-stable, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  pkgs-stable,
+  ...
+}:
 let
   run = pkgs.writeScriptBin "run" ''
     #!/usr/bin/env bash
@@ -8,6 +14,8 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    azure-cli
+    moonlight-qt
     anki
     zathura
     pkgs-stable.texpresso
@@ -49,7 +57,7 @@ in
     unzip
     zip
     xfce.thunar
-    neovim
+    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
     p7zip
     lazydocker
     lazygit
