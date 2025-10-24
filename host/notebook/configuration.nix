@@ -20,15 +20,14 @@
     tmp.cleanOnBoot = true;
     bootspec.enable = true;
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot.enable = false;
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/efi";
     };
     lanzaboote = {
-      enable = false;
-      pkiBundle = "/etc/secureboot";
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
     };
-    initrd.luks.devices."root".preLVM = true;
     initrd.systemd.enable = true;
 
     plymouth = {
@@ -45,31 +44,6 @@
       "splash"
       "vt.global_cursor_default=0"
       "intel_pstate=active"
-    ];
-  };
-
-  fileSystems = {
-    "/".options = [
-      "compress=zstd"
-      "subvol=@"
-      "noatime"
-      "discard=async"
-    ];
-    "/home".options = [
-      "compress=zstd"
-      "subvol=@home"
-      "noatime"
-      "discard=async"
-    ];
-    "/nix".options = [
-      "compress=zstd"
-      "subvol=@nix"
-      "noatime"
-      "discard=async"
-    ];
-    "/swap".options = [
-      "noatime"
-      "subvol=swap"
     ];
   };
 

@@ -97,3 +97,25 @@ vim.api.nvim_create_autocmd("InsertLeave", {
         vim.o.relativenumber = true
     end
 })
+
+-- Add this to your init.lua or a separate lua file
+function OpenNewFileSameDir()
+    local current_file = vim.api.nvim_buf_get_name(0)
+    if current_file == "" then
+        vim.notify("No file currently open", vim.log.levels.WARN)
+        return
+    end
+
+    local dir = vim.fn.fnamemodify(current_file, ":h") -- get directory of current file
+    local new_filename = vim.fn.input("New file name: ", dir .. "/", "file")
+
+    if new_filename == "" then
+        vim.notify("Canceled", vim.log.levels.INFO)
+        return
+    end
+
+    vim.cmd("edit " .. vim.fn.fnameescape(new_filename))
+end
+
+-- Optional: create a keybinding
+vim.api.nvim_set_keymap("n", "<leader>of", ":lua OpenNewFileSameDir()<CR>", { noremap = true, silent = true })

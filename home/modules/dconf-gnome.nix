@@ -56,7 +56,7 @@ with lib.hm.gvariant;
     "org/gnome/desktop/session" = {
       idle-delay = mkUint32 0;
 
-    }
+    };
     "org/gnome/desktop/peripherals/keyboard" = {
       repeat-interval = mkUint32 25;
       delay = mkUint32 200;
