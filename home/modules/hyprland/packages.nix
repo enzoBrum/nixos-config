@@ -17,7 +17,7 @@ in
 {
   home.packages = with pkgs; [
     chwall
-    hyprpolkit
+    hyprpolkitagent
     wl-clipboard
     swaynotificationcenter
     mako
