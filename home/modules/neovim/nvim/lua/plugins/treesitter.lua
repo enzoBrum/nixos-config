@@ -1,23 +1,19 @@
-local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
-vim.fn.mkdir(parser_install_dir, "p")
-vim.opt.runtimepath:append(parser_install_dir)
 return {
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
-      { 'nvim-treesitter/nvim-treesitter-textobjects', cond = not vim.g.vscode },
+      {'nvim-treesitter/nvim-treesitter-textobjects', cond = not vim.g.vscode },
     },
     build = ':TSUpdate',
     cond = not vim.g.vscode,
     config = function()
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'java', 'dockerfile', 'json', 'yaml', 'lua', 'luadoc', 'markdown', 'regex', 'markdown_inline', 'jsdoc', "http", "comment", "nix" },
+        ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'java', 'dockerfile', 'json' ,'yaml', 'lua', 'luadoc', 'markdown', 'regex', 'markdown_inline', 'jsdoc', "http", "comment"},
         auto_install = false,
         sync_install = false,
         highlight = { enable = true },
         indent = { enable = true },
-        parser_install_dir = parser_install_dir,
         incremental_selection = {
           enable = true,
           keymaps = {

@@ -18,6 +18,7 @@
     ../modules/gtk.nix
     ../modules/ghostty.nix
     ../modules/cfg.nix
+    ../modules/kitty/default.nix
     # ../modules/ags/default.nix
   ];
 }

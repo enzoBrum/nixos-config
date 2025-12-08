@@ -94,7 +94,7 @@
     ],
     "position": "top",
     "pulseaudio": {
-      "format": "{icon} {volume}%",
+      "format": "{icon}  {volume}%",
       "format-icons": {
         "default": [
           "",

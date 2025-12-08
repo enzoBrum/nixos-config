@@ -1,20 +1,22 @@
-#! /usr/bin/env nix-shell
-#! nix-shell -i python -p python312Packages.tkinter python312Packages.sv-ttk
-
 import json
 import os
-from pathlib import Path
 import socket
 import subprocess
+from pathlib import Path
 from time import sleep
 from uuid import uuid4
 
 dir = Path("/tmp/waybar-configs")
 dir.mkdir(exist_ok=True)
+
+
 def handle_monitor_added(name: str):
     proc = subprocess.run(
-        ["python", "/home/erb/repos/nixos-config/home/modules/hyprland/scripts/ask_monitor_position.py"],
-        stdout=subprocess.PIPE
+        [
+            "python",
+            "/home/erb/repos/nixos-config/home/modules/hyprland/scripts/ask_monitor_position.py",
+        ],
+        stdout=subprocess.PIPE,
     )
 
     sleep(0.3)
@@ -33,11 +35,18 @@ def handle_monitor_added(name: str):
     subprocess.run(["hyprctl", "--batch", ";".join(commands)])
     subprocess.run(["pkill", "waybar"])
 
-    config = Path("/home/erb/.config/waybar/config").read_text().replace("HDMI-A-1", name)
+    config = (
+        Path("/home/erb/.config/waybar/config").read_text().replace("HDMI-A-1", name)
+    )
     new_config = dir / uuid4().hex
     new_config.write_text(config)
 
-    subprocess.Popen(["waybar", "-c", str(new_config)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.Popen(
+        ["waybar", "-c", str(new_config)],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+
 
 proc = subprocess.run(["hyprctl", "monitors", "-j"], stdout=subprocess.PIPE)
 monitors = json.loads(proc.stdout.decode().strip())
@@ -48,7 +57,9 @@ for monitor in monitors:
         break
 
 with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as sock:
-    sock.connect(f"/{os.getenv('XDG_RUNTIME_DIR')}/hypr/{os.getenv("HYPRLAND_INSTANCE_SIGNATURE")}/.socket2.sock")
+    sock.connect(
+        f"/{os.getenv('XDG_RUNTIME_DIR')}/hypr/{os.getenv("HYPRLAND_INSTANCE_SIGNATURE")}/.socket2.sock"
+    )
 
     file = sock.makefile()
     while True:
@@ -56,14 +67,18 @@ with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as sock:
 
         match event:
             case "monitoradded":
-                handle_monitor_added(data)           
-                    
+                handle_monitor_added(data)
+
             case "monitorremoved":
                 subprocess.run(["pkill", "waybar"])
                 subprocess.Popen(
-                    ["waybar", "-c", "/home/erb/repos/nixos-config/home/modules/hyprland/waybar_one_monitor.json"],
+                    [
+                        "waybar",
+                        "-c",
+                        "/home/erb/repos/nixos-config/home/modules/hyprland/waybar_one_monitor.json",
+                    ],
                     stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL
+                    stderr=subprocess.DEVNULL,
                 )
 
                 commands = []
@@ -73,4 +88,3 @@ with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as sock:
                 subprocess.run(["hyprctl", "--batch", ";".join(commands)])
             case _:
                 continue
-

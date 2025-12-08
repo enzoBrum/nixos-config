@@ -17,12 +17,14 @@ in
 {
   home.packages = with pkgs; [
     chwall
+    hyprpolkit
     wl-clipboard
     swaynotificationcenter
     mako
     dmenu
     playerctl
     swww
+    kitty
     python312Packages.pywal
     fuzzel
     dunst

@@ -11,6 +11,7 @@
     loader = {
       systemd-boot.enable = false;
       efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/efi";
     };
     initrd.luks.devices."root".preLVM = true;
     initrd.systemd.enable = true;
@@ -55,7 +56,7 @@
 	nvidiaSettings = true;
   };
   hardware.graphics.enable = true;
-  hardware.graphics.extraPackages = with pkgs; [vaapiVdpau nvidia-vaapi-driver];
+  hardware.graphics.extraPackages = with pkgs; [libva-vdpau-driver nvidia-vaapi-driver];
   hardware.graphics.enable32Bit = true;
 
   programs.zsh.enable = true;

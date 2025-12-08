@@ -5,7 +5,7 @@
     userEmail = "darosabrumenzo@gmail.com";
 
     signing.key = config.custom.gitKey;
-    signing.signByDefault = true;
+    signing.signByDefault = false;
 
     extraConfig = {
       column.ui = "auto";

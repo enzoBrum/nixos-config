@@ -8,52 +8,44 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "uas" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/1df633b6-93c4-47b1-98a9-f304dbf89d47";
+    { device = "/dev/mapper/root";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
-  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/5e4b0139-a56b-4669-9074-e96f25a065d2";
+  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/9f7384b0-926e-4525-aaf6-036a49e7d0a5";
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/1df633b6-93c4-47b1-98a9-f304dbf89d47";
+    { device = "/dev/mapper/root";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
 
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/1df633b6-93c4-47b1-98a9-f304dbf89d47";
-      fsType = "btrfs";
-      options = [ "subvol=@nix" ];
-    };
-
   fileSystems."/swap" =
-    { device = "/dev/disk/by-uuid/1df633b6-93c4-47b1-98a9-f304dbf89d47";
+    { device = "/dev/mapper/root";
       fsType = "btrfs";
       options = [ "subvol=@swap" ];
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/12CE-A600";
+  fileSystems."/nix" =
+    { device = "/dev/mapper/root";
+      fsType = "btrfs";
+      options = [ "subvol=@nix" ];
+    };
+
+  fileSystems."/efi" =
+    { device = "/dev/disk/by-uuid/5FC4-2E56";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
   swapDevices = [ ];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp42s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

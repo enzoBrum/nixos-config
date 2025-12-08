@@ -85,62 +85,63 @@
   };
 
   programs.waybar.style = ''
-    #workspaces button {
-         color: #a7cad2;
-         font-size: 15px;
-    }
-     #workspaces button.empty {
-         color: #3f717c ;
-         font-size: 9px;
-    }
-     #workspaces button.active {
-         color: #a7cad2;
-         font-size: 15px;
-    }
-     #battery {
-         margin-left: 8px;
-         padding-left: 16px;
-         padding-right: 16px;
-    }
-     #network {
-         margin-left: 8px;
-         padding-left: 16px;
-         padding-right: 16px;
-    }
-     #pulseaudio {
-         margin-left: 8px;
-         padding-left: 16px;
-         padding-right: 16px;
-    }
+window#waybar {
+    background: transparent;
+}
 
-    
-       #custom-notification {
-           margin-left: 8px;
-           padding-right: 16px;
-      }
-     .modules-right {
-         color: #4d4d4d;
-         margin-left: 8px;
-         padding-left: 16px;
-         padding-right: 16px;
-         background: #a7cad2;
-         border-radius: 13px;
-    }
-     .modules-center {
-         color: #4d4d4d;
-         margin-left: 8px;
-         padding-left: 16px;
-         padding-right: 16px;
-         background: #bd93f9;
-         border-radius: 13px;
-    }
-     .modules-left {
-         margin-left: 8px;
-         padding-left: 16px;
-         padding-right: 16px;
-         background: #424242;
-         border-radius: 13px;
-    }
+#workspaces button {
+    color: #f9c5a7;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
 
+#workspaces button.empty {
+    color: #8a6a5a;
+    font-size: 10px;
+    opacity: 0.6;
+}
+
+#workspaces button.active {
+    color: #ffd9bf;
+    font-size: 16px;
+}
+
+#workspaces button:hover {
+    color: #ffd4b3;
+}
+
+#battery,
+#network,
+#pulseaudio,
+#custom-notification {
+    margin-left: 8px;
+    padding: 0 16px;
+}
+
+.modules-right {
+    color: #2d2d2d;
+    margin-left: 8px;
+    padding: 4px 16px;
+    background: linear-gradient(135deg, #7ec8a3 0%, #6ab58f 100%);
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.modules-center {
+    color: #2d2d2d;
+    margin-left: 8px;
+    padding: 4px 16px;
+    background: linear-gradient(135deg, #ff9a76 0%, #ff7f59 100%);
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.modules-left {
+    margin-left: 8px;
+    padding: 4px 16px;
+    background: linear-gradient(135deg, #5a5a5a 0%, #454545 100%);
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
   '';
 }

@@ -1,24 +1,23 @@
 {
   "python.formatting.provider": "black",
-  "coc.preferences.formatOnSave": true,
+  "coc.preferences.formatOnSave": false,
   "diagnostic.virtualTextCurrentLineOnly": false,
   "diagnostic.virtualText": true,
   "workspace.rootPatterns": [
     ".git"
   ],
   "python.analysis.typeCheckingMode": "off",
-  "workspace.ignoredFolders": [
-    "**/iekuatiara/**/*",
-    "**/computacao-distribuida/**/*",
-    "**/labsec"
-  ],
-  "workspace.workspaceFolderCheckCwd": false,
-  "signature.floatConfig": {
-    "border": true,
-    "rounded": true,
-    "shadow": true
+  "[python]": {
+    "inlayHint.enable": false
   },
-  "hover.floatConfig": {
+  "Lua.workspace.checkThirdParty": false,
+  "workspace.ignoredFolders": [
+    "**/*iekuatiara/**/*",
+    "**/ufsc-sigiloso-assinador/**/*",
+    "**/private-signing/**/*",
+    "**/computacao-distribuida/**/*"
+  ],
+  "floatFactory.floatConfig": {
     "border": true,
     "rounded": true,
     "shadow": true
@@ -28,18 +27,5 @@
     "rounded": true,
     "shadow": true
   },
-  "[python]": {
-    "inlayHint.enable": false
-  },
-  "languageserver": {
-    "nix": {
-      "command": "nil",
-      "filetypes": [
-        "nix"
-      ],
-      "rootPatterns": [
-        "flake.nix"
-      ]
-    }
-  }
+  "workspace.workspaceFolderCheckCwd": false
 }
