@@ -42,7 +42,6 @@ in
     fzf
     grc
     killall
-    webcord
     run
     spotify
     slurp
@@ -57,7 +56,8 @@ in
     unzip
     zip
     xfce.thunar
-    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+    #inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+    neovim
     p7zip
     lazydocker
     lazygit

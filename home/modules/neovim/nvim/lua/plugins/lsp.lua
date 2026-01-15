@@ -299,7 +299,7 @@ else
         {
           '<leader>fb',
           function()
-            require('conform').format { async = false, lsp_fallback = true }
+            require('conform').format { async = false, lsp_fallback = true, timeout = 2000, timeout_ms = 2000 }
           end,
           mode = '',
           desc = '[F]ormat [b]uffer',
@@ -313,7 +313,6 @@ else
           -- languages here or re-enable it for the disabled ones.
           local disable_filetypes = { c = true, cpp = true, lua = true, xml = true }
           return {
-            timeout_ms = 2000,
             lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
           }
         end,

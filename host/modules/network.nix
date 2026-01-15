@@ -7,12 +7,15 @@
 {
   networking.hostName = config.custom.hostName;
   networking.networkmanager.enable = true;
+  networking.networkmanager.plugins = [  pkgs.networkmanager-strongswan];
+  services.strongswan.enable = true;
   environment.systemPackages = with pkgs; [
     networkmanagerapplet
     socat
     ifuse
     networkmanager-openvpn
   ];
+  programs.openvpn3.enable = true;
   networking.firewall = {
     allowedTCPPorts = [
       80
@@ -60,7 +63,7 @@
     ];
   };
   #networking.nameservers = [ "127.0.0.1" "::1" "1.1.1.1" "8.8.8.8" ];
-  services.dnsmasq.enable = true;
-  #services.resolved.enable = true;
+  services.dnsmasq.enable = false;
+  services.resolved.enable = true;
   services.avahi.enable = true;
 }

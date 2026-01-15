@@ -7,12 +7,12 @@
   };
   gtk = {
     enable = true;
-    theme.package = pkgs.dracula-theme;
-    theme.name =
-      "Dracula"; # note to self, the name is important. If you do not know the name, use gnome-tweaks.
+    #theme.package = pkgs.dracula-theme;
+    #theme.name =
+    #  "Dracula"; # note to self, the name is important. If you do not know the name, use gnome-tweaks.
 
-    iconTheme.name = "Dracula";
-    iconTheme.package = pkgs.dracula-icon-theme;
+    #iconTheme.name = "Dracula";
+    #iconTheme.package = pkgs.dracula-icon-theme;
   };
   xdg.dataFile."flatpak/overrides/global".text = ''
     [Context]

@@ -5,13 +5,14 @@
   powerManagement.cpuFreqGovernor = "performance";
   powerManagement.enable = true;
 
+  documentation.man.generateCaches = false;
   boot = {
     supportedFilesystems = ["ntfs"];
     tmp.cleanOnBoot = true;
     loader = {
       systemd-boot.enable = false;
       efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/efi";
+      efi.efiSysMountPoint = "/boot";
     };
     initrd.luks.devices."root".preLVM = true;
     initrd.systemd.enable = true;
@@ -90,8 +91,9 @@
     vkd3d-proton
     vk-bootstrap
     lutris
-    steam
-    steam-devices-udev-rules
+    #steam
+    #steam-devices-udev-rules
+    #proton-ge-bin
   ];
 
   system.stateVersion = "24.05";

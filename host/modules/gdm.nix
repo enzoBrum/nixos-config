@@ -1,5 +1,5 @@
 { config, pkgs, pkgs-stable, ... }: {
-  services.displayManager.defaultSession = "hyprland";
+  services.displayManager.defaultSession = "gnome";
   services = {
     xserver = {
       enable = true;
@@ -7,10 +7,10 @@
         gdm.enable = true;
         gdm.wayland = true;
 
-        # autoLogin = {
-        #   enable = true;
-        #   user = "erb";
-        # };
+        autoLogin = {
+           enable = true;
+           user = "erb";
+        };
       };
     };
   };

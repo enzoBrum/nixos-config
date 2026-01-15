@@ -1,8 +1,23 @@
 if not vim.g.vscode then
   local home = vim.fn.expand("$HOME") -- or os.getenv("HOME")
   local jdtls_path = home .. "/.local/share/nvim/mason/packages/jdtls"
-  local workspace = home .. "/.cache/jdtls_dir"
+
+  local path = vim.fn.getcwd()
+
+  local _, end_idx = string.find(path, "worktrees")
+  if end_idx then
+    local idx = string.find(path ,"/", end_idx + 2)
+    if not idx then
+      idx = string.len(path)
+    end
+    path = string.sub(path, 1, idx)
+  end
+
+  local workspace = home .. "/.cache/jdtls_nvim" .. path
+
   vim.fn.mkdir(workspace, "p")
+
+
   -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
   local config = {
     -- The command that starts the language server
@@ -26,7 +41,7 @@ if not vim.g.vscode then
 
       -- 💀
       '-jar',
-      jdtls_path .. "/plugins/org.eclipse.equinox.launcher_1.7.0.v20250519-0528.jar",
+      jdtls_path .. "/plugins/org.eclipse.equinox.launcher_1.7.100.v20251111-0406.jar",
       -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
       -- Must point to the                                                     Change this to
       -- eclipse.jdt.ls installation                                           the actual version
@@ -90,7 +105,7 @@ if not vim.g.vscode then
         format = {
           enabled = true,
           settings = {
-            url = "/home/erb/containers/labsec/iekuatiara/.vscode/java-formatter.xml",
+            url = path .. "/.vscode/java-formatter.xml",
             --profile = "JavaConventions", -- profile name inside XML
           },
         },

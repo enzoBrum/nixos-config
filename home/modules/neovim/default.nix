@@ -17,7 +17,7 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    #package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
     extraPackages = with pkgs; [
       basedpyright
       nodePackages_latest.vscode-json-languageserver
@@ -59,6 +59,11 @@
     config.lib.file.mkOutOfStoreSymlink /home/erb/repos/nixos-config/home/modules/neovim/nvim/lazy-lock.json;
   xdg.configFile."nvim/lua" = {
     source = config.lib.file.mkOutOfStoreSymlink /home/erb/repos/nixos-config/home/modules/neovim/nvim/lua;
+    recursive = true;
+  };
+
+  xdg.configFile."nvim/ftplugin" = {
+    source = config.lib.file.mkOutOfStoreSymlink /home/erb/repos/nixos-config/home/modules/neovim/nvim/ftplugin;
     recursive = true;
   };
   xdg.configFile."nvim/init.lua".source =
