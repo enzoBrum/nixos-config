@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "uas" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
@@ -19,18 +19,12 @@
       options = [ "subvol=@" ];
     };
 
-  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/9f7384b0-926e-4525-aaf6-036a49e7d0a5";
+  boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/2f35a247-56e7-4667-9702-e40a55f0754f";
 
   fileSystems."/nix" =
     { device = "/dev/mapper/root";
       fsType = "btrfs";
       options = [ "subvol=@nix" ];
-    };
-
-  fileSystems."/swap" =
-    { device = "/dev/mapper/root";
-      fsType = "btrfs";
-      options = [ "subvol=@swap" ];
     };
 
   fileSystems."/home" =
@@ -39,8 +33,14 @@
       options = [ "subvol=@home" ];
     };
 
+  fileSystems."/swap" =
+    { device = "/dev/mapper/root";
+      fsType = "btrfs";
+      options = [ "subvol=@swap" ];
+    };
+
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/5FC4-2E56";
+    { device = "/dev/disk/by-uuid/12CE-A600";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
