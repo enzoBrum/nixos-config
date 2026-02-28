@@ -4,10 +4,10 @@
     ../modules/shell.nix
     ../modules/hyprland/default.nix
     ../modules/dconf-gnome.nix
+    ../modules/zed/default.nix
     ../modules/vscode.nix
     ../modules/direnv.nix
     ../modules/waybar.nix
-    ../modules/helix.nix
     ../modules/alacritty.nix
     ../modules/bat.nix
     ../modules/neovim/default.nix

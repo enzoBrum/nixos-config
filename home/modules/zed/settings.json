@@ -1,0 +1,256 @@
+{
+        "terminal": {
+                "font_family": "MesloLGS NF",
+        },
+        "relative_line_numbers": "enabled",
+        "vim_mode": true,
+        "gutter": {
+                "line_numbers": true,
+        },
+        "theme": "Catppuccin Macchiato (Blue Blur+)",
+        "inlay_hints": {
+                "enabled": true,
+        },
+        "diagnostics": {
+                "inline": {
+                        "enabled": true,
+                },
+        },
+        "soft_wrap": "editor_width",
+        "lsp": {
+                "texlab": {
+                        "settings": {
+                                "texlab": {
+                                        // ...
+                                        "build": {
+                                                "onSave": true,
+                                                "forwardSearchAfter": true,
+                                        },
+                                        "forwardSearch": {
+                                                "executable": "zathura",
+                                                "args": [
+                                                        "--synctex-forward",
+                                                        "%l:1:%f",
+                                                        "-x",
+                                                        "zed %%{input}:%%{line}",
+                                                        "%p",
+                                                ],
+                                        },
+                                },
+                        },
+                },
+                "basedpyright": {
+                        "settings": {
+                                "basedpyright.analysis": {
+                                        "typeCheckingMode": "off",
+                                        "extra_paths": [
+                                                "./submodules/services/document-signer",
+                                                "./submodules/services/document-manager",
+                                                "./submodules/services/front-end",
+                                                "./submodules/services/immutable-storage-registry",
+                                                "./submodules/services/pki",
+                                                "./submodules/services/document-verifier",
+                                                "./submodules/utils/kkmip",
+                                                "./submodules/utils/python-common",
+                                                "./submodules/utils/python-oid",
+                                        ],
+                                },
+                        },
+                },
+                "pylsp": {
+                        "settings": {
+                                "plugins": {
+                                        "pylint": {
+                                                "enabled": true,
+                                                "args": [
+                                                        "--rcfile=pyproject.toml"
+                                                ],
+                                        },
+                                        "mypy": {
+                                                "enabled": false
+                                        },
+                                        "pycodestyle": {
+                                                "enabled": false
+                                        },
+                                        "pyflakes": {
+                                                "enabled": false
+                                        },
+                                        "mccabe": {
+                                                "enabled": false
+                                        },
+                                        "flake8": {
+                                                "enabled": false
+                                        },
+                                        "jedi": {
+                                                "enabled": false
+                                        },
+                                        "rope": {
+                                                "enabled": false
+                                        },
+                                        "autopep8": {
+                                                "enabled": false
+                                        },
+                                        "yapf": {
+                                                "enabled": false
+                                        },
+                                        "black": {
+                                                "enabled": false
+                                        },
+                                        "preload": {
+                                                "enabled": false
+                                        },
+                                        "symbols": {
+                                                "enabled": false
+                                        },
+                                        "folding": {
+                                                "enabled": false
+                                        },
+                                },
+                        },
+                },
+                "pyrefly": {
+                        "binary": {
+                                "path": "pyrefly",
+                                "arguments": [
+                                        "lsp"
+                                ],
+                        },
+                        "settings": {
+                                "pyrefly": {
+                                        "project_includes": [
+                                                "**/*.py"
+                                        ],
+                                        "search_path": [
+                                                "."
+                                        ],
+                                        "python_interpreter": ".venv/bin/python",
+                                },
+                        },
+                },
+                "jdtls": {
+                        "settings": {
+                                "java_home": "/usr/lib/jvm/java-25-openjdk",
+                                "lombok_support": true,
+                                "jdk_auto_download": false,
+                                // Controls when to check for updates for JDTLS, Lombok, and Debugger
+                                // - "always" (default): Always check for and download the latest version
+                                // - "once": Check for updates only if no local installation exists
+                                // - "never": Never check for updates, only use existing local installations (errors if missing)
+                                //
+                                // Note: Invalid values will default to "always"
+                                // If custom paths (below) are provided, check_updates is IGNORED for that component
+                                "check_updates": "once",
+                                "initialization_options": {
+                                        "bundles": [],
+                                        "settings": {
+                                                "java": {
+                                                        "home": "/usr/lib/jvm/java-25-openjdk",
+                                                        "errors": {
+                                                                "incompleteClasspath": {
+                                                                        "severity": "warning",
+                                                                },
+                                                        },
+                                                        "configuration": {
+                                                                "updateBuildConfiguration": "interactive",
+                                                                "maven": {
+                                                                        "userSettings": null,
+                                                                },
+                                                        },
+                                                        "trace": {
+                                                                "server": "verbose",
+                                                        },
+                                                        "import": {
+                                                                "gradle": {
+                                                                        "enabled": true,
+                                                                },
+                                                                "maven": {
+                                                                        "enabled": true,
+                                                                },
+                                                                "exclusions": [
+                                                                        "**/node_modules/**",
+                                                                        "**/.metadata/**",
+                                                                        "**/archetype-resources/**",
+                                                                        "**/META-INF/maven/**",
+                                                                        "/**/test/**",
+                                                                ],
+                                                        },
+                                                        "jdt": {
+                                                                "ls": {
+                                                                        "lombokSupport": {
+                                                                                "enabled": true, // Set this to true to enable lombok support
+                                                                        },
+                                                                },
+                                                        },
+                                                        "referencesCodeLens": {
+                                                                "enabled": false,
+                                                        },
+                                                        "signatureHelp": {
+                                                                "enabled": false,
+                                                        },
+                                                        "implementationsCodeLens": {
+                                                                "enabled": false,
+                                                        },
+                                                        "saveActions": {
+                                                                "organizeImports": false,
+                                                        },
+                                                        "contentProvider": {
+                                                                "preferred": null,
+                                                        },
+                                                        "autobuild": {
+                                                                "enabled": false,
+                                                        },
+                                                        "completion": {
+                                                                "favoriteStaticMembers": [
+                                                                        "org.junit.Assert.*",
+                                                                        "org.junit.Assume.*",
+                                                                        "org.junit.jupiter.api.Assertions.*",
+                                                                        "org.junit.jupiter.api.Assumptions.*",
+                                                                        "org.junit.jupiter.api.DynamicContainer.*",
+                                                                        "org.junit.jupiter.api.DynamicTest.*",
+                                                                ],
+                                                                "importOrder": [
+                                                                        "java",
+                                                                        "javax",
+                                                                        "com",
+                                                                        "org"
+                                                                ],
+                                                        },
+                                                },
+                                        },
+                                },
+                        },
+                },
+        },
+        "languages": {
+                "Python": {
+                        "language_servers": [
+                                "!ty",
+                                "basedpyright",
+                                "pylsp"
+                        ],
+                        "formatter": {
+                                "external": {
+                                        "command": "bash",
+                                        "arguments": [
+                                                "-c",
+                                                "black --quiet --stdin-filename {buffer_path} - | isort --filename {buffer_path} -",
+                                        ],
+                                },
+                        },
+                },
+                "Java": {
+                        "format_on_save": "on",
+                        "formatter": "language_server",
+                },
+        },
+        "vim": {
+                "use_system_clipboard": "on_yank",
+        },
+        "experimental.theme_overrides": {
+                "elevated_surface.background": "#1e203090",
+                "border.variant": "#586d61",
+                "panel.overlay_background": "#24273a",
+                "border": "#586d6190",
+                "tab.active_background": "#1e203090",
+        },
+}

@@ -14,9 +14,8 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
-    azure-cli
     moonlight-qt
-    anki
+    anki-bin
     zathura
     pkgs-stable.texpresso
     pkgs-stable.tectonic
@@ -36,7 +35,7 @@ in
     wget
     ripgrep
     home-manager
-    python313
+    python314
     networkmanagerapplet
     htop
     fzf
@@ -47,8 +46,6 @@ in
     slurp
     grim
     brightnessctl
-    wineWowPackages.waylandFull
-    winetricks
     vulkan-tools
     fastfetch
     acpi

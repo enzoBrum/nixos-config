@@ -1,10 +1,10 @@
 #!/bin/sh
 
-if  systemctl status openvpn-labsec.service | grep running;  then
-    systemctl stop openvpn-labsec.service 
+if  nmcli c show --active | grep "labsec">/dev/null;  then
     echo -n "vpn-down" | socat - UNIX-CONNECT:/tmp/color_server.sock
+    nmcli c down labsec
 else
-    systemctl start openvpn-labsec.service 
+    nmcli c up labsec
     echo -n "vpn-up" | socat - UNIX-CONNECT:/tmp/color_server.sock
 fi
 

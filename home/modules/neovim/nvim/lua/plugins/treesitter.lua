@@ -5,6 +5,7 @@ return {
     dependencies = {
       {'nvim-treesitter/nvim-treesitter-textobjects', cond = not vim.g.vscode },
     },
+    branch = 'master',
     build = ':TSUpdate',
     cond = not vim.g.vscode,
     config = function()

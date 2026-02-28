@@ -1,0 +1,42 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+        {
+                "bindings": {
+                        "ctrl-j": "terminal_panel::ToggleFocus",
+                        "alt-n": "pane::SplitRight",
+                        "alt-w": "pane::CloseActiveItem",
+                        "alt-h": "workspace::ActivatePaneLeft",
+                        "alt-l": "workspace::ActivatePaneRight",
+                        "alt-p": "file_finder::Toggle",
+                },
+        },
+        {
+                "context": "!Terminal",
+                "bindings": {
+                        "alt-w": "pane::CloseActiveItem",
+                        "ctrl-f": "project_symbols::Toggle",
+                        "alt-j": "terminal_panel::ToggleFocus",
+                },
+        },
+        {
+                "context": "Editor && vim_mode == normal",
+                "bindings": {
+                        "space v": "pane::SplitRight",
+                        "space w": "pane::CloseActiveItem",
+                },
+        },
+        {
+                "context": "Terminal",
+                "bindings": {
+                        "ctrl-t": "workspace::NewTerminal",
+                        "alt-t": "workspace::NewTerminal",
+                        "alt-k": "terminal_panel::ToggleFocus",
+                },
+        },
+]

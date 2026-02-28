@@ -7,7 +7,7 @@
 {
   networking.hostName = config.custom.hostName;
   networking.networkmanager.enable = true;
-  networking.networkmanager.plugins = [  pkgs.networkmanager-strongswan];
+  networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn  pkgs.networkmanager-strongswan];
   services.strongswan.enable = true;
   environment.systemPackages = with pkgs; [
     networkmanagerapplet
@@ -63,7 +63,8 @@
     ];
   };
   #networking.nameservers = [ "127.0.0.1" "::1" "1.1.1.1" "8.8.8.8" ];
-  services.dnsmasq.enable = false;
-  services.resolved.enable = true;
+  services.dnsmasq.enable = true;
+  services.dnsmasq.settings.server = [ "1.1.1.1" "8.8.8.8" "127.0.0.1" ];
+  services.resolved.enable = false;
   services.avahi.enable = true;
 }
