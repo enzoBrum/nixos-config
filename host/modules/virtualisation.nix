@@ -12,8 +12,9 @@
       "8.8.8.8"
       "1.1.1.1"
     ];
+    mtu = 1300;
   };
-  virtualisation.docker.storageDriver = "btrfs";
+  #virtualisation.docker.storageDriver = "btrfs";
   virtualisation.podman.enable = true;
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu.swtpm.enable = true;

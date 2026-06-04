@@ -10,9 +10,9 @@
     supportedFilesystems = ["ntfs"];
     tmp.cleanOnBoot = true;
     loader = {
-      systemd-boot.enable = false;
+      systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot";
+      efi.efiSysMountPoint = "/efi";
     };
     initrd.luks.devices."root".preLVM = true;
     initrd.systemd.enable = true;
@@ -22,7 +22,7 @@
       theme = "bgrt";
     };
     lanzaboote = {
-	enable = true;
+	enable = false;
 	pkiBundle = "/var/lib/sbctl";
     };
 
@@ -90,7 +90,6 @@
     vkd3d
     vkd3d-proton
     vk-bootstrap
-    lutris
     #steam
     #steam-devices-udev-rules
     #proton-ge-bin

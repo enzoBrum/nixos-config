@@ -34,12 +34,13 @@
       flake = false;
     };
 
-    netbootxyz = {
-      url = "https://github.com/netbootxyz/netboot.xyz/releases/download/2.0.83/netboot.xyz.efi";
-      flake = false;
-    };
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    ignis = {
+      url = "github:ignis-sh/ignis";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -50,6 +51,7 @@
     , lanzaboote
     , sops-nix
     , nix-vscode-extensions
+    , ignis
     , ...
     }@inputs:
     let

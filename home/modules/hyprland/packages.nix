@@ -8,7 +8,7 @@ let
         echo "Usage: chwall <path-to-wallpaper>"
         exit 1
       fi
-      swww img $1
+      awww img $1
       wal -s -n -i $1
       ln -sf $(realpath $1) /home/erb/.current_image.png
       echo "wallpaper changed" | socat - UNIX-CONNECT:/tmp/color_server.sock
@@ -21,9 +21,10 @@ in
     wl-clipboard
     swaynotificationcenter
     mako
+    imagemagick
     dmenu
     playerctl
-    swww
+    awww
     kitty
     python312Packages.pywal
     fuzzel

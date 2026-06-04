@@ -13,6 +13,7 @@
     networkmanagerapplet
     socat
     ifuse
+    strongswan
     networkmanager-openvpn
   ];
   programs.openvpn3.enable = true;
@@ -44,7 +45,7 @@
   services.openssh = {
     enable = true;
     settings = {
-      PasswordAuthentication = false;
+      PasswordAuthentication = true;
       AllowUsers = [ "erb" ];
       UseDns = true;
       PermitRootLogin = "prohibit-password";
@@ -63,8 +64,8 @@
     ];
   };
   #networking.nameservers = [ "127.0.0.1" "::1" "1.1.1.1" "8.8.8.8" ];
-  services.dnsmasq.enable = true;
-  services.dnsmasq.settings.server = [ "1.1.1.1" "8.8.8.8" "127.0.0.1" ];
-  services.resolved.enable = false;
+  #services.dnsmasq.enable = true;
+  #services.dnsmasq.settings.server = [ "1.1.1.1" "8.8.8.8" "127.0.0.1" ];
+  services.resolved.enable = true;
   services.avahi.enable = true;
 }

@@ -16,10 +16,12 @@ in
   environment.systemPackages = with pkgs; [
     moonlight-qt
     anki-bin
+    git-lfs
     zathura
     pkgs-stable.texpresso
     pkgs-stable.tectonic
     wl-clipboard
+    kitty
     rocketchat-desktop
     firefox
     thunderbird

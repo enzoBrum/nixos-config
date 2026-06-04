@@ -20,7 +20,7 @@ def change_wallpaper(base_path: str, used: set):
 def main():
     base_path = "/home/erb/repos/nixos-config/assets/wallpaper/preferred"
 
-    subprocess.Popen(["swww-daemon"])
+    subprocess.Popen(["awww-daemon"])
 
     WALLPAPER_DURATION = 300
     used = {"randall-mackey-mural2.jpg"}
@@ -38,7 +38,7 @@ def main():
                 wallpaper = change_wallpaper(base_path, used)
 
                 subprocess.run(
-                    ["swww", "img", wallpaper],
+                    ["awww", "img", wallpaper],
                     stdout=subprocess.DEVNULL,
                     stderr=subprocess.DEVNULL,
                 )

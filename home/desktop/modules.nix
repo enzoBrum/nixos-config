@@ -2,7 +2,7 @@
   imports = [
     ../modules/git.nix
     ../modules/shell.nix
-    ../modules/hyprland/default.nix
+    #../modules/hyprland/default.nix
     ../modules/dconf-gnome.nix
     ../modules/zed/default.nix
     ../modules/vscode.nix
@@ -14,6 +14,7 @@
     ../modules/zellij.nix
     ../modules/wezterm.nix
     ../modules/gdb.nix
+    ../modules/ignis/default.nix
     ../modules/bluetooth.nix
     ../modules/gtk.nix
     ../modules/ghostty.nix

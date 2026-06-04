@@ -1,11 +1,8 @@
 { config, pkgs, pkgs-stable, ... }: {
   services.displayManager.defaultSession = "gnome";
   services = {
-    xserver = {
-      enable = true;
       displayManager = {
         gdm.enable = true;
-        gdm.wayland = true;
 
         autoLogin = {
            enable = true;
@@ -13,7 +10,6 @@
         };
       };
     };
-  };
 
 
   # see: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229

@@ -20,11 +20,11 @@
     #package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
     extraPackages = with pkgs; [
       basedpyright
-      nodePackages_latest.vscode-json-languageserver
+      vscode-json-languageserver
       dockerfile-language-server-nodejs
       docker-compose-language-service
       clang-tools
-      pkgs.nodePackages_latest.vscode-langservers-extracted
+      vscode-langservers-extracted
       (python312.withPackages (
         ps: with ps; [
           black

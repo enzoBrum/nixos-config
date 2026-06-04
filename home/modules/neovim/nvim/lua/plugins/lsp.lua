@@ -178,15 +178,14 @@ else
               end
 
               settings.basedpyright.analysis.extraPaths = {
-                path .. "/submodules/services/document-signer",
-                path .. "/submodules/services/document-manager",
-                path .. "/submodules/services/front-end",
-                path .. "/submodules/services/immutable-storage-registry",
-                path .. "/submodules/services/pki",
-                path .. "/submodules/services/document-verifier",
+                path .. "/libs/services/document-signer",
+                path .. "/libs/services/document-manager",
+                path .. "/libs/services/front-end",
+                path .. "/libs/services/immutable-storage-registry",
+                path .. "/libs/services/pki",
+                path .. "/libs/services/document-verifier",
                 path .. "/submodules/utils/kkmip",
-                path .. "/submodules/utils/python-common",
-                path .. "/submodules/utils/python-oid"
+                path .. "/libs/utils/python-common",
               }
               client.notify("workspace/didChangeConfiguration", settings)
             end
