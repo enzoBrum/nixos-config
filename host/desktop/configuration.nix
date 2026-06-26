@@ -1,5 +1,5 @@
 { config, pkgs, inputs, pkgs-stable, lib, ... }: {
-  imports = [ ./hardware-configuration.nix ./modules.nix ./overlays.nix ./vars.nix];
+  imports = [ ./hardware-configuration.nix ./games.nix ./modules.nix ./overlays.nix ./vars.nix];
 
 
   powerManagement.cpuFreqGovernor = "performance";
