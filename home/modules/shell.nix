@@ -151,6 +151,7 @@ in
     shellInitLast = /* fish */
     ''
     set -x EDITOR nvim
+    set -x PATH $HOME/.local/bin/ $PATH
     '';
 
     # to run zellij on start.
