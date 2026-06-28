@@ -45,7 +45,7 @@
   services.openssh = {
     enable = true;
     settings = {
-      PasswordAuthentication = false;
+      PasswordAuthentication = true;
       AllowUsers = [ "erb" ];
       UseDns = true;
       PermitRootLogin = "prohibit-password";

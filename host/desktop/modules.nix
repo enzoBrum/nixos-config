@@ -9,8 +9,8 @@
     ../modules/packages.nix
     ../modules/virtualisation.nix
     ../modules/gdm.nix
-    #../modules/hyprland.nix
-    ../modules/gnome.nix
+    ../modules/hyprland.nix
+    #../modules/gnome.nix
     ../modules/flatpak_themes.nix
     ../modules/nh.nix
     ../modules/cfg.nix
