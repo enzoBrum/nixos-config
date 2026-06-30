@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -eux
-
 # variables
 config=$HOME/repos/nixos-config/home/modules/hyprland
 scripts=$config/scripts
@@ -22,8 +20,6 @@ ignis init
 wl-paste --watch cliphist store &
 
 
-bash -c "
-sleep 5
 python $scripts/change_color.py &
 sleep 0.1
 python $scripts/change_wallpaper.py &
@@ -31,7 +27,6 @@ sleep 0.1
 python $scripts/battery_notifier.py &
 sleep 0.1
 python $scripts/handle_events.py &
-" &
 
 hyprctl setcursor Dracula-cursors 24 &
 
