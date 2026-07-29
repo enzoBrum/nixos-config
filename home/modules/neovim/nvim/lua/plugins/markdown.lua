@@ -6,4 +6,5 @@ return {
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {},
+    cond = not vim.g.vscode
 }

@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-
+# #!/usr/bin/env bash
 # variables
 config=$HOME/repos/nixos-config/home/modules/hyprland
 scripts=$config/scripts

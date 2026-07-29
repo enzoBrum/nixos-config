@@ -11,7 +11,7 @@
     ../modules/gdm.nix
     #../modules/hyprland.nix
     ../modules/gnome.nix
-    ../modules/flatpak_themes.nix
+    #../modules/flatpak_themes.nix
     ../modules/nh.nix
     ../modules/cfg.nix
     ../modules/nix-config.nix

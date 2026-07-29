@@ -36,7 +36,6 @@ vim.o.relativenumber = true;
 vim.o.expandtab = true;
 vim.o.autoindent = true;
 vim.o.smartindent = true;
-vim.o.wrap = false;
 
 -- Turn on line wrap for TeX files, off otherwise
 vim.api.nvim_create_autocmd("FileType", {

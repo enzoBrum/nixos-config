@@ -26,7 +26,6 @@ in
     playerctl
     awww
     kitty
-    python312Packages.pywal
     fuzzel
     dunst
     cliphist

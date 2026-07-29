@@ -14,8 +14,10 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    uv
     moonlight-qt
     anki-bin
+    discord
     git-lfs
     zathura
     pkgs-stable.texpresso
@@ -27,7 +29,6 @@ in
     thunderbird
     xorg.xhost
     fd
-    libreoffice
     nix-search-cli
     tree
     eza

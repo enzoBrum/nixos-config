@@ -25,19 +25,6 @@ else
       config = function()
         vim.diagnostic.config({ update_in_insert = true, virtual_lines = true, virtual_text = true, underline = true })
 
-        --vim.api.nvim_create_autocmd("InsertEnter", {
-        --  pattern = "*",
-        --  callback = function()
-        --    vim.lsp.inlay_hint.enable(false)
-        --  end,
-        --})
-        --vim.api.nvim_create_autocmd("InsertLeave", {
-        --  pattern = "*",
-        --  callback = function()
-        --    vim.lsp.inlay_hint.enable(true)
-        --  end,
-        --})
-
         vim.api.nvim_create_autocmd('LspAttach', {
           group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
           callback = function(event)
@@ -80,8 +67,8 @@ else
 
             -- Opens a popup that displays documentation about the word under your cursor
             --  See `:help K` for why this keymap.
-            map('K', function ()
-              vim.lsp.buf.hover({border = "rounded"})
+            map('K', function()
+              vim.lsp.buf.hover({ border = "rounded" })
             end, 'Hover Documentation')
 
             -- WARN: This is not Goto Definition, this is Goto Declaration.
@@ -89,15 +76,10 @@ else
             map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
             map('gd', vim.lsp.buf.definition, '[G]oto [d]efinition')
 
-            -- The following two autocommands are used to highlight references of the
-            -- word under your cursor when your cursor rests there for a little while.
-            --    See `:help CursorHold` for information about when this is executed
-            --
-            -- When you move your cursor, the highlights will be cleared (the second autocommand).
             local client = vim.lsp.get_client_by_id(event.data.client_id)
 
             if client and client.name == "pyrefly" then
-                vim.defer_fn(function ()
+              vim.defer_fn(function()
                 vim.lsp.inlay_hint.enable(true)
               end, 100)
             end
@@ -106,7 +88,7 @@ else
             -- code, if the language server you are using supports them
             --
             -- This may be unwanted, since they displace some of your code
-            if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+            if client and client:supports_method('textDocument/inlayHint') and vim.lsp.inlay_hint then
               vim.lsp.inlay_hint.enable(true)
               map('<leader>th', function()
                 vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
@@ -114,24 +96,6 @@ else
             end
           end,
         })
-
-
-        -- LSP servers and clients are able to communicate to each other what features they support.
-        --  By default, Neovim doesn't support everything that is in the LSP specification.
-        --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-        --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
-        -- Enable the following language servers
-        --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-        --
-        --  Add any additional override configuration in the following tables. Available keys are:
-        --  - cmd (table): Override the default command used to start the server
-        --  - filetypes (table): Override the default list of associated filetypes for the server
-        --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-        --  - settings (table): Override the default settings passed when initializing the server.
-        --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 
         -- For docker-compose files
         vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
@@ -141,41 +105,35 @@ else
           end
         })
 
-        -- For jinja files
-        --vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
-        --  pattern = {"**/templates/**/*.html", "**/templates/*.html"},
-        --  callback = function()
-        --    vim.bo.filetype = "jinja"
-        --  end
-        --})
-
-        local util = require 'lspconfig.util'
+        -- basedpyright: dynamically inject extraPaths based on the -iek workspace layout
         vim.api.nvim_create_autocmd("LspAttach", {
           callback = function(args)
             local client = vim.lsp.get_client_by_id(args.data.client_id)
             if client ~= nil and client.name == "basedpyright" then
-              local settings = client.config.settings and client.config.settings or { basedpyright = { analysis = {} } }
+              local settings = client.settings and client.settings or { basedpyright = { analysis = {} } }
               local root_dir = client.root_dir
               if root_dir == nil then
                 return
               end
-              --if root_dir == nil or string.find(root_dir, "iek") == nil then
-              --  settings.basedpyright.analysis.extraPaths = {}
-              --  client.notify("workspace/didChangeConfiguration", settings)
-              --  return
-              --end
 
               local path = vim.api.nvim_buf_get_name(0)
               local idx = string.find(path, "-iek")
+              local idxx = string.find(path, "iekuatiara")
               if idx then
                 local idx2 = string.find(path, "/", idx)
                 if idx2 then
-                  idx = idx2 - 1
+                  idx = idx2
                 end
                 path = string.sub(path, 1, idx)
+              elseif idxx ~= nil then
+                if string.find(path, "/", idxx) then
+                  idxx = string.find(path, "/", idxx)
+                end
+                path = string.sub(path, 1, idxx)
               else
                 return
               end
+
 
               settings.basedpyright.analysis.extraPaths = {
                 path .. "base/document-signer/libs/document-signer",
@@ -184,38 +142,27 @@ else
                 path .. "base/immutable-storage-registry/libs/immutable-storage-registry",
                 path .. "base/document-manager/libs/document-manager",
                 path .. "base/document-verifier/libs/document-verifier",
-                path .. "/libs/python-common",
+                path .. "libs/python-common",
               }
-              client.notify("workspace/didChangeConfiguration", settings)
+              client:notify("workspace/didChangeConfiguration", { settings = settings })
             end
           end
         })
 
+        -- Global defaults applied to every server via the "*" pseudo-config.
+        -- capabilities and handlers only need to be declared once here.
+        vim.lsp.config('*', {
+          capabilities = require('cmp_nvim_lsp').default_capabilities(),
+        })
+
+        -- Per-server configuration. Under the new API each key becomes a
+        -- vim.lsp.config(name, {...}) call and is started with vim.lsp.enable(name).
         local servers = {
           clangd = {},
           jdtls = { autoattach = false },
           texlab = {},
-          --ty = {
-          --  root_dir = function(fname)
-          --    local path = util.root_pattern("pyproject.toml", "setup.py", "requirements.txt", ".git")(fname)
-          --    if path == nil then
-          --      return path
-          --    end
-          --  end,
-          --  --settings = {
-          --  --  python = {
-          --  --    pyrefly = {
-          --  --      displayTypeErrors = "force-on"
-          --  --    }
-          --  --  }
-          --  --}
-          --},
           basedpyright = {
-            reuse_client = function (client, config)
-              return true
-              
-            end,
-            root_markers = { "app/", "pyproject.toml", "requirements.txt" },
+            root_markers = { "app/", "pyproject.toml", "requirements.txt", "requirements.in", ".git" },
             settings = {
               basedpyright = {
                 analysis = {
@@ -227,23 +174,8 @@ else
           dockerls = {},
           docker_compose_language_service = {},
           html = { filetypes = { "html", "css", "javascript", "htmldjango" } },
-          --postgres_lsp = {},
           jsonls = {},
-
-          -- rust_analyzer = {},
-          -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-          --
-          -- Some languages (like typescript) have entire language plugins that can be useful:
-          --    https://github.com/pmizio/typescript-tools.nvim
-          --
-          -- But for many setups, the LSP (`tsserver`) will work just fine
-          -- tsserver = {},
-          --
-
           lua_ls = {
-            -- cmd = {...},
-            -- filetypes = { ...},
-            -- capabilities = {},
             settings = {
               Lua = {
                 completion = {
@@ -256,38 +188,19 @@ else
           },
         }
 
-        -- Ensure the servers and tools above are installed
-        --  To check the current status of installed tools and/or manually install
-        --  other tools, you can run
-        --    :Mason
-        --
-        --  You can press `g?` for help in this menu.
+        -- Mason just installs the binaries now; it no longer wires up setup().
         require('mason').setup()
 
-
-
-        -- You can add other tools here that you want Mason to install
-        -- for you, so that they are available from within Neovim.
         local ensure_installed = vim.tbl_keys(servers or {})
         vim.list_extend(ensure_installed, {
           'stylua', -- Used to format Lua code
         })
-        require('mason-tool-installer').setup { ensure_installed = ensure_installed, }
+        require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-        local handlers = {
-          ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-          ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
-        }
-        for server, setting in pairs(servers) do
-
-          --setting.capabilities = vim.tbl_deep_extend('force', {}, capabilities, setting.capabilities or {})
-          --setting.handlers = handlers
-
-          vim.lsp.config(server, vim.tbl_deep_extend("force", setting, {handlers = handlers, capabilities = capabilities}))
+        for server, config in pairs(servers) do
+          vim.lsp.config(server, config)
           vim.lsp.enable(server)
         end
-
-
       end
     },
     { -- Autoformat
@@ -318,10 +231,6 @@ else
           -- Conform can also run multiple formatters sequentially
           python = { "isort", "black" },
           xml = { "xmllint" },
-          --
-          -- You can use a sub-list to tell conform to run *until* a formatter
-          -- is found.
-          -- javascript = { { "prettierd", "prettier" } },
         },
       },
     },
@@ -329,58 +238,18 @@ else
       'hrsh7th/nvim-cmp',
       event = 'InsertEnter',
       dependencies = {
-        ---- Snippet Engine & its associated nvim-cmp source
-        --{
-        --  'L3MON4D3/LuaSnip',
-        --  build = (function()
-        --    -- Build Step is needed for regex support in snippets.
-        --    -- This step is not supported in many windows environments.
-        --    -- Remove the below condition to re-enable on windows.
-        --    if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-        --      return
-        --    end
-        --    return 'make install_jsregexp'
-        --  end)(),
-        --  dependencies = {
-        --    -- `friendly-snippets` contains a variety of premade snippets.
-        --    --    See the README about individual language/framework/plugin snippets:
-        --    --    https://github.com/rafamadriz/friendly-snippets
-        --    -- {
-        --    --   'rafamadriz/friendly-snippets',
-        --    --   config = function()
-        --    --     require('luasnip.loaders.from_vscode').lazy_load()
-        --    --   end,
-        --    -- },
-        --  },
-        --},
-        --'saadparwaiz1/cmp_luasnip',
-
-        -- Adds other completion capabilities.
-        --  nvim-cmp does not ship with all sources by default. They are split
-        --  into multiple repos for maintenance purposes.
         { 'hrsh7th/cmp-nvim-lsp' },
         'hrsh7th/cmp-path',
       },
       config = function()
         -- See `:help cmp`
         local cmp = require 'cmp'
-        --local luasnip = require 'luasnip'
-        --luasnip.config.setup {}
         cmp.setup {
-          --snippet = {
-          --  expand = function(args)
-          --    luasnip.lsp_expand(args.body)
-          --  end,
-          --},
           completion = { completeopt = 'menu,menuone,noinsert' },
           window = {
             completion = cmp.config.window.bordered(),
             documentation = cmp.config.window.bordered(),
           },
-          -- For an understanding of why these mappings were
-          -- chosen, you will need to read `:help ins-completion`
-          --
-          -- No, but seriously. Please read `:help ins-completion`, it is really good!
           mapping = cmp.mapping.preset.insert {
             ['<C-b>'] = cmp.mapping.scroll_docs(-2),
             ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -392,7 +261,6 @@ else
           sources = {
             { name = 'nvim_lsp' },
             { name = "lazydev" },
-            --{ name = 'luasnip' },
             { name = 'path' },
           },
         }
@@ -408,15 +276,9 @@ else
       "folke/noice.nvim",
       event = "VeryLazy",
       enabled = true,
-      opts = {
-        -- add any options here
-      },
+      opts = {},
       dependencies = {
-        -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
         "MunifTanjim/nui.nvim",
-        -- OPTIONAL:
-        --   `nvim-notify` is only needed, if you want to use the notification view.
-        --   If not available, we use `mini` as the fallback
         "rcarriga/nvim-notify",
       },
       config = function()
@@ -432,7 +294,6 @@ else
               enabled = true,
             },
           },
-          -- you can enable a preset for easier configuration
           presets = {
             bottom_search = true,         -- use a classic bottom cmdline for search
             command_palette = true,       -- position the cmdline and popupmenu together
@@ -442,7 +303,7 @@ else
           },
         })
         require("notify").setup({
-          background_colour="#000000"
+          background_colour = "#000000"
         })
       end
     },
@@ -455,8 +316,6 @@ else
         }
         vim.api.nvim_create_autocmd({ "BufWritePost" }, {
           callback = function()
-            -- try_lint without arguments runs the linters defined in `linters_by_ft`
-            -- for the current filetype
             require("lint").try_lint()
           end,
         })
@@ -471,25 +330,5 @@ else
         }
       end
     },
-    --{
-    --  "ray-x/lsp_signature.nvim",
-    --  event = "VeryLazy",
-    --  opts = {},
-    --  config = function()
-    --    require "lsp_signature".setup()
-    --    vim.api.nvim_create_autocmd("LspAttach", {
-    --      callback = function(args)
-    --        local bufnr = args.buf
-    --        local client = vim.lsp.get_client_by_id(args.data.client_id)
-    --        if client and vim.tbl_contains({ 'null-ls' }, client.name) then -- blacklist lsp
-    --          return
-    --        end
-    --        require("lsp_signature").on_attach({
-    --          -- ... setup options here ...
-    --        }, bufnr)
-    --      end,
-    --    })
-    --  end
-    --}
   }
 end

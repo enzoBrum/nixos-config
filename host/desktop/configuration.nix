@@ -47,13 +47,13 @@
 
   zramSwap.enable = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
-	package = config.boot.kernelPackages.nvidiaPackages.latest;
 	modesetting.enable = true;
 	powerManagement.enable = true;
-	open = false;
+	open = true;
+	#package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
 	nvidiaSettings = true;
   };
   hardware.graphics.enable = true;

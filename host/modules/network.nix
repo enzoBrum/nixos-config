@@ -9,6 +9,8 @@
   networking.networkmanager.enable = true;
   networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn  pkgs.networkmanager-strongswan];
   services.strongswan.enable = true;
+  services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.package = pkgs.mullvad-vpn;
   environment.systemPackages = with pkgs; [
     networkmanagerapplet
     socat

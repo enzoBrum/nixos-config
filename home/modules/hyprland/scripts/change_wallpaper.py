@@ -1,9 +1,9 @@
-#!/usr/bin/env python
 import os
 import random
 import socket
 import subprocess
 import time
+from shlex import shlex
 
 
 def change_wallpaper(base_path: str, used: set):
@@ -43,9 +43,10 @@ def main():
                     stderr=subprocess.DEVNULL,
                 )
                 subprocess.run(
-                    ["wal", "-s", "-n", "-i", wallpaper],
+                    f"wal -s -n -i {shlex.escape(wallpaper)}",
                     stdout=subprocess.DEVNULL,
                     stderr=subprocess.DEVNULL,
+                    shell=True,
                 )
                 subprocess.run(
                     [
